@@ -1,23 +1,23 @@
-            <?php 
-              //error upload
-              if(isset($error)){
-                echo '<p class="alert alert-warning">';
-                echo $error;
-                echo '</p>';
-              }
-              //Notifikasi error
-              echo validation_errors('<div class = "alert alert-warning">','</div>');
+  <?php 
+    //error upload
+    if(isset($error)){
+      echo '<p class="alert alert-warning">';
+      echo $error;
+      echo '</p>';
+    }
+    //Notifikasi error
+    echo validation_errors('<div class = "alert alert-warning">','</div>');
 
-              
-               ?>
+    
+     ?>
 <!-- START CUSTOM TABS -->
       <div class="row">
         <div class="col-md-12">
           <!-- Custom Tabs -->
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-              <li><a href="#tab_1" data-toggle="tab">Tambah Data Customer</a></li>
-              <li class="active"><a href="#tab_2" data-toggle="tab">Data Customer</a></li>
+              <li><a href="#tab_1" data-toggle="tab">Tambah Data Mitra</a></li>
+              <li class="active"><a href="#tab_2" data-toggle="tab">Data Mitra</a></li>
             </ul>
             <div class="tab-content">
               <div class="tab-pane active" id="tab_2">
@@ -51,7 +51,7 @@
                         <td>
                           <?php echo $mitra->alamat ?>,<br> 
                           <?php echo $mitra->kecamatan ?>, 
-                          <?php echo $mitra->kabupaten ?>, 
+                          <?php echo $mitra->kabupaten ?>,<br> 
                           <?php echo $mitra->provinsi ?>
                           
                         </td>
@@ -59,8 +59,8 @@
                         <td><?php echo $mitra->pembelian_awal ?></td>
                         <td><?php echo $mitra->tanggal_daftar ?></td>
                         <td>
-                          <a href="<?php echo base_url('admin/pelanggan/edit_mitra/'.$customer->id_pelanggan) ?>" class="btn btn-warning btn-xs" ><i class="fa fa-edit"></i> Edit</a>
-                          <a href="<?php echo base_url('admin/pelanggan/delete/'.$customer->id_pelanggan) ?>" class="btn btn-danger btn-xs" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')" ><i class="fa fa-trash"></i> Hapus</a>
+                          <a href="<?php echo base_url('admin/pelanggan/edit_mitra/'.$mitra->id_pelanggan) ?>" class="btn btn-warning btn-xs" ><i class="fa fa-edit"></i> Edit</a>
+                          <a href="<?php echo base_url('admin/pelanggan/delete_mitra/'.$mitra->id_pelanggan) ?>" class="btn btn-danger btn-xs" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')" ><i class="fa fa-trash"></i> Hapus</a>
                         </td>
                       </tr>
                     <?php } ?>

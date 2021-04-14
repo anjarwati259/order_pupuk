@@ -1,4 +1,6 @@
-
+<script>
+  initSample();
+</script>
   </section>
       <!-- /.content -->
 </div>  <!-- /.content-wrapper -->

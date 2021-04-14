@@ -9,7 +9,7 @@ if(isset($error)){
 echo validation_errors('<div class = "alert alert-warning">','</div>');
 
 // Form open
-echo form_open_multipart(base_url('admin/customer/edit_customer/'.$customer->id_pelanggan), ' class="form-horizontal"');
+echo form_open_multipart(base_url('admin/pelanggan/edit_mitra/'.$mitra->id_pelanggan), ' class="form-horizontal"');
  ?>
 <!-- START CUSTOM TABS -->
       <div class="row">
@@ -17,8 +17,8 @@ echo form_open_multipart(base_url('admin/customer/edit_customer/'.$customer->id_
           <!-- Custom Tabs -->
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-              <li role="presentation" class="active"><a href="#tab_1">Edit Customer</a></li>
-            <li role="presentation"><a href="<?php echo site_url('admin/customer');?>">Data Customer</a></li>
+              <li role="presentation" class="active"><a href="#tab_1">Edit Mitra</a></li>
+            <li role="presentation"><a href="<?php echo site_url('admin/customer');?>">Data Mitra</a></li>
             </ul>
             <div class="tab-content">
               <!-- /.tab-pane -->
@@ -27,21 +27,21 @@ echo form_open_multipart(base_url('admin/customer/edit_customer/'.$customer->id_
                   <div class="box-body">
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label class="col-sm-4 control-label" for="id_customer">ID</label>
+                        <label class="col-sm-4 control-label">ID</label>
                         <div class="col-sm-8">
-                          <input type="text" name="id_pelanggan" class="form-control" value="<?php echo $customer->id_pelanggan ?>" disabled/>
+                          <input type="text" name="id_pelanggan" class="form-control" value="<?php echo $mitra->id_pelanggan ?>" disabled/>
                         </div>
                       </div>
                       <div class="form-group">
                         <label class="col-sm-4 control-label">Nama Customer</label>
                         <div class="col-sm-8">
-                          <input type="text" value="<?php echo $customer->nama_pelanggan ?>" name="nama_pelanggan" placeholder="Nama Customer" class="form-control" required/>
+                          <input type="text" value="<?php echo $mitra->nama_pelanggan ?>" name="nama_pelanggan" placeholder="Nama Customer" class="form-control" required/>
                         </div>
                       </div>
                       <div class="form-group">
                         <label class="col-sm-4 control-label" for="alamat">Alamat</label>
                         <div class="col-sm-8">
-                          <textarea name="alamat" value="<?php echo set_value('alamat') ?>" placeholder="Alamat" class="form-control"/><?php echo $customer->alamat ?></textarea>
+                          <textarea name="alamat" value="<?php echo set_value('alamat') ?>" placeholder="Alamat" class="form-control"/><?php echo $mitra->alamat ?></textarea>
                         </div>
                       </div>
                       <div class="form-group">
@@ -49,7 +49,7 @@ echo form_open_multipart(base_url('admin/customer/edit_customer/'.$customer->id_
                         <div class="col-sm-8">
                           <select class="form-control" id="form_prov" name="provinsi">
                             <?php foreach ($provinsi as $provinsi) { ?>
-                            <option value="<?php echo $provinsi->kode ?>"<?php if($customer->provinsi==$provinsi->nama){ echo "selected"; } ?>>
+                            <option value="<?php echo $provinsi->kode ?>"<?php if($mitra->provinsi==$provinsi->nama){ echo "selected"; } ?>>
                              <?php echo $provinsi->nama ?> 
                             </option>
                           <?php } ?>
@@ -60,7 +60,7 @@ echo form_open_multipart(base_url('admin/customer/edit_customer/'.$customer->id_
                         <label class="col-sm-4 control-label">Kabupaten/Kota</label>
                         <div class="col-sm-8">
                           <select class="form-control" id="form_kab" name="kabupaten">
-                            <option><?php echo $customer->kabupaten ?></option>
+                            <option><?php echo $mitra->kabupaten ?></option>
                           </select>
                         </div>
                       </div>
@@ -68,7 +68,7 @@ echo form_open_multipart(base_url('admin/customer/edit_customer/'.$customer->id_
                         <label class="col-sm-4 control-label">Kecamatan</label>
                         <div class="col-sm-8">
                           <select class="form-control" id="form_kec" name="kecamatan">
-                            <option><?php echo $customer->kecamatan ?></option>
+                            <option><?php echo $mitra->kecamatan ?></option>
                           </select>
                         </div>
                       </div>
@@ -77,13 +77,13 @@ echo form_open_multipart(base_url('admin/customer/edit_customer/'.$customer->id_
                       <div class="form-group">
                         <label class="col-sm-4 control-label">Tanggal Daftar</label>
                         <div class="col-sm-8">
-                          <input type="text" name="tanggal_daftar" class="form-control" value="<?php echo $customer->tanggal_daftar ?>" disabled/>
+                          <input type="text" name="tanggal_daftar" class="form-control" value="<?php echo $mitra->tanggal_daftar ?>" disabled/>
                         </div>
                       </div>
                       <div class="form-group">
                         <label class="col-sm-4 control-label" for="no_hp">No Telp</label>
                         <div class="col-sm-8">
-                          <input type="text" value="<?php echo $customer->no_hp ?>" name="no_hp" placeholder="No. HP" class="form-control"/>
+                          <input type="text" value="<?php echo $mitra->no_hp ?>" name="no_hp" placeholder="No. HP" class="form-control"/>
                         </div>
                       </div>
                       <div class="form-group">
@@ -91,7 +91,7 @@ echo form_open_multipart(base_url('admin/customer/edit_customer/'.$customer->id_
                         <div class="col-sm-8">
                           <select class="form-control" name="id_komoditi">
                             <?php foreach ($komoditi as $komoditi) { ?>
-                            <option value="<?php echo $provinsi->kode ?>"<?php if($customer->id_komoditi==$komoditi->id_komoditi){ echo "selected"; } ?>>
+                            <option value="<?php echo $komoditi->id_komoditi ?>"<?php if($mitra->id_komoditi==$komoditi->id_komoditi){ echo "selected"; } ?>>
                              <?php echo $komoditi->nama_komoditi ?> 
                             </option>
                           <?php } ?>
@@ -101,7 +101,7 @@ echo form_open_multipart(base_url('admin/customer/edit_customer/'.$customer->id_
                       <div class="form-group">
                         <label class="col-sm-4 control-label" for="pembelian_awal">Pembelian Awal</label>
                         <div class="col-sm-8">
-                          <input type="text" value="<?php echo $customer->pembelian_awal ?>" name="pembelian_awal" placeholder="Pembelian Awal" class="form-control"/>
+                          <input type="text" value="<?php echo $mitra->pembelian_awal ?>" name="pembelian_awal" placeholder="Pembelian Awal" class="form-control"/>
                         </div>
                       </div>
                     </div>
@@ -109,7 +109,7 @@ echo form_open_multipart(base_url('admin/customer/edit_customer/'.$customer->id_
                   <!-- /.box-body -->
                   <div class="box-footer">
                     <div class="col-md-3 col-md-offset-4">
-                      <a href="<?php echo base_url('admin/customer') ?>" class="btn btn-default">Cancel</a>
+                      <a href="<?php echo base_url('admin/pelanggan/mitra') ?>" class="btn btn-default">Cancel</a>
                       <button class="btn btn-info pull-right" type="submit">Save</button>
                     </div>
                   </div>

@@ -47,9 +47,9 @@ class Pelanggan extends CI_Controller
 
 		if($id){
 			$id = $id[0]->id_pelanggan;
-			$id_pelanggan = generate_code('DIS',$id);
+			$id_pelanggan = generate_code('MIT',$id);
 		}else{
-			$id_pelanggan = 'DIS001';
+			$id_pelanggan = 'MIT001';
 		}
 
 		$mitra = $this->pelanggan_model->listing_mitra();
@@ -63,7 +63,294 @@ class Pelanggan extends CI_Controller
 		$this->load->view('admin/layout/wrapper',$data, FALSE);
 	}
 
-	//tambah data
+	//list distributor
+	public function distributor(){
+		$id = $this->pelanggan_model->get_last_id();
+		$provinsi = $this->wilayah_model->listing();
+
+		if($id){
+			$id = $id[0]->id_pelanggan;
+			$id_pelanggan = generate_code('DIS',$id);
+		}else{
+			$id_pelanggan = 'DIS001';
+		}
+
+		$distributor = $this->pelanggan_model->listing_distributor();
+		$komoditi = $this->komoditi_model->listing();
+		$data = array(	'title' => 'Data Pelanggan',
+						'id'	=> $id_pelanggan,
+						'provinsi'	=> $provinsi,
+						'komoditi' =>$komoditi,
+						'distributor' => $distributor,
+						'isi' => 'admin/distributor/list' );
+		$this->load->view('admin/layout/wrapper',$data, FALSE);
+	}
+
+	//tambah data distributor
+	public function add_distributor()
+	{
+		//get provinsi
+		$provinsi = $this->wilayah_model->listing();
+		//validation
+		$valid = $this-> form_validation;
+
+		$valid->set_rules('nama_pelanggan', 'Nama Pelanggan','required',
+				array(	'required' 		=> '%s harus diisi'
+						));
+		$valid->set_rules('alamat', 'Alamat','required',
+				array(	'required' 		=> '%s harus diisi'
+						));
+		$valid->set_rules('no_hp', 'No. Telp','required',
+				array(	'required' 		=> '%s harus diisi',
+						));
+		$valid->set_rules('pembelian_awal', 'Pembelian Awal','required',
+				array(	'required' 		=> '%s harus diisi',
+						));
+
+		if($valid->run()===FALSE){
+			//end validation
+			$distributor = $this->pelanggan_model->listing();
+			$komoditi = $this->komoditi_model->listing_mitra();
+			$id = $this->pelanggan_model->get_last_id();
+
+			if($id){
+				$id = $id[0]->id_pelanggan;
+				$id_pelanggan = generate_code('DIS',$id);
+			}else{
+				$id_pelanggan = 'DIS001';
+			}
+			
+			$data = array(	'title'		=> 'Tambah Data Pelanggan',
+							'distributor'	=> $distributor,
+							'id'		=> $id,
+							'komoditi'	=> $komoditi,
+							'provinsi'	=> $provinsi,
+							'isi'		=> 'admin/distributor/list'
+						);
+			$this->load->view('admin/layout/wrapper', $data, FALSE);
+		}else{
+			$i 	= $this->input;
+			$data = array(	'id_pelanggan'		=> $i->post('id_pelanggan'),
+							'nama_pelanggan'	=> $i->post('nama_pelanggan'),
+							'alamat'			=> $i->post('alamat'),
+							'no_hp'				=> $i->post('no_hp'),
+							'id_komoditi'		=> $i->post('id_komoditi'),
+							'pembelian_awal'	=> $i->post('pembelian_awal'),
+							'tanggal_daftar'	=> $i->post('tanggal_daftar'),
+							'provinsi'			=> $i->post('prov'),
+							'kabupaten'			=> $i->post('kab'),
+							'kecamatan'			=> $i->post('kec'),
+							'jenis_pelanggan'	=>'Distributor'
+						);
+			$this->pelanggan_model->tambah($data);
+			$this->session->set_flashdata('sukses','Data telah ditambah');
+			redirect(base_url('admin/pelanggan/distributor'), 'refresh');
+		}
+	}
+	//edit distributor
+	public function edit_distributor($id_pelanggan){
+		$distributor = $this->pelanggan_model->detail($id_pelanggan);
+		$komoditi = $this->komoditi_model->listing();
+		//get provinsi
+		$provinsi = $this->wilayah_model->listing();
+		//validation
+		$valid = $this-> form_validation;
+
+		$valid->set_rules('nama_pelanggan', 'Nama Pelanggan','required',
+				array(	'required' 		=> '%s harus diisi'
+						));
+		$valid->set_rules('alamat', 'Alamat','required',
+				array(	'required' 		=> '%s harus diisi'
+						));
+		$valid->set_rules('no_hp', 'No. Telp','required',
+				array(	'required' 		=> '%s harus diisi',
+						));
+		$valid->set_rules('pembelian_awal', 'Pembelian Awal','required',
+				array(	'required' 		=> '%s harus diisi',
+						));
+
+
+		if($valid->run()===FALSE){
+			//end validation
+
+			$data = array(	'title'		=> 'Edit Pelanggan',
+							'distributor'	=> $distributor,
+							'komoditi'	=> $komoditi,
+							'provinsi'	=> $provinsi,
+							'isi'		=> 'admin/distributor/edit'
+						);
+			$this->load->view('admin/layout/wrapper', $data, FALSE);
+		}else{
+			$i = $this->input;
+			$prov = $i->post('prov');
+			$kab = $i->post('kab');
+			$kec = $i->post('kec');
+			if((!empty($prov)) and (!empty($kab)) and (!empty($kec))){
+				$data = array(	'id_pelanggan'		=> $id_pelanggan,
+								'nama_pelanggan'	=> $i->post('nama_pelanggan'),
+								'alamat'			=> $i->post('alamat'),
+								'no_hp'				=> $i->post('no_hp'),
+								'id_komoditi'		=> $i->post('id_komoditi'),
+								'pembelian_awal'	=> $i->post('pembelian_awal'),
+								'provinsi'			=> $i->post('prov'),
+								'kabupaten'			=> $i->post('kab'),
+								'kecamatan'			=> $i->post('kec')
+							);
+			}else{
+				$data = array(	'id_pelanggan'		=> $id_pelanggan,
+								'nama_pelanggan'	=> $i->post('nama_pelanggan'),
+								'alamat'			=> $i->post('alamat'),
+								'no_hp'				=> $i->post('no_hp'),
+								'id_komoditi'		=> $i->post('id_komoditi'),
+								'pembelian_awal'	=> $i->post('pembelian_awal')
+							);
+			}
+			$this->pelanggan_model->edit($data);
+			$this->session->set_flashdata('sukses','Data telah diedit');
+			redirect(base_url('admin/pelanggan/distributor'), 'refresh');
+		}
+	}
+	//delete distributor
+	public function delete_distributor($id_pelanggan){
+		$data = array('id_pelanggan' => $id_pelanggan);
+		$this->pelanggan_model->delete($data);
+		$this->session->set_flashdata('sukses', 'Data telah dihapus');
+		redirect(base_url('admin/pelanggan/distributor'), 'refresh');
+	}
+
+	//tambah data mitra
+	public function add_mitra()
+	{
+		//get provinsi
+		$provinsi = $this->wilayah_model->listing();
+		//validation
+		$valid = $this-> form_validation;
+
+		$valid->set_rules('nama_pelanggan', 'Nama Pelanggan','required',
+				array(	'required' 		=> '%s harus diisi'
+						));
+		$valid->set_rules('alamat', 'Alamat','required',
+				array(	'required' 		=> '%s harus diisi'
+						));
+		$valid->set_rules('no_hp', 'No. Telp','required',
+				array(	'required' 		=> '%s harus diisi',
+						));
+		$valid->set_rules('pembelian_awal', 'Pembelian Awal','required',
+				array(	'required' 		=> '%s harus diisi',
+						));
+
+		if($valid->run()===FALSE){
+			//end validation
+			$mitra = $this->pelanggan_model->listing();
+			$komoditi = $this->komoditi_model->listing_mitra();
+			$id = $this->pelanggan_model->get_last_id();
+
+			if($id){
+				$id = $id[0]->id_pelanggan;
+				$id_pelanggan = generate_code('MIT',$id);
+			}else{
+				$id_pelanggan = 'MIT001';
+			}
+			
+			$data = array(	'title'		=> 'Tambah Data Pelanggan',
+							'mitra'	=> $mitra,
+							'id'		=> $id,
+							'komoditi'	=> $komoditi,
+							'provinsi'	=> $provinsi,
+							'isi'		=> 'admin/mitra/list'
+						);
+			$this->load->view('admin/layout/wrapper', $data, FALSE);
+		}else{
+			$i 	= $this->input;
+			$data = array(	'id_pelanggan'		=> $i->post('id_pelanggan'),
+							'nama_pelanggan'	=> $i->post('nama_pelanggan'),
+							'alamat'			=> $i->post('alamat'),
+							'no_hp'				=> $i->post('no_hp'),
+							'id_komoditi'		=> $i->post('id_komoditi'),
+							'pembelian_awal'	=> $i->post('pembelian_awal'),
+							'tanggal_daftar'	=> $i->post('tanggal_daftar'),
+							'provinsi'			=> $i->post('prov'),
+							'kabupaten'			=> $i->post('kab'),
+							'kecamatan'			=> $i->post('kec'),
+							'jenis_pelanggan'	=>'Mitra'
+						);
+			$this->pelanggan_model->tambah($data);
+			$this->session->set_flashdata('sukses','Data telah ditambah');
+			redirect(base_url('admin/pelanggan/mitra'), 'refresh');
+		}
+	}
+	//edit mtra
+	public function edit_mitra($id_pelanggan){
+		$mitra = $this->pelanggan_model->detail($id_pelanggan);
+		$komoditi = $this->komoditi_model->listing();
+		//get provinsi
+		$provinsi = $this->wilayah_model->listing();
+		//validation
+		$valid = $this-> form_validation;
+
+		$valid->set_rules('nama_pelanggan', 'Nama Pelanggan','required',
+				array(	'required' 		=> '%s harus diisi'
+						));
+		$valid->set_rules('alamat', 'Alamat','required',
+				array(	'required' 		=> '%s harus diisi'
+						));
+		$valid->set_rules('no_hp', 'No. Telp','required',
+				array(	'required' 		=> '%s harus diisi',
+						));
+		$valid->set_rules('pembelian_awal', 'Pembelian Awal','required',
+				array(	'required' 		=> '%s harus diisi',
+						));
+
+
+		if($valid->run()===FALSE){
+			//end validation
+
+			$data = array(	'title'		=> 'Edit Pelanggan',
+							'mitra'	=> $mitra,
+							'komoditi'	=> $komoditi,
+							'provinsi'	=> $provinsi,
+							'isi'		=> 'admin/mitra/edit'
+						);
+			$this->load->view('admin/layout/wrapper', $data, FALSE);
+		}else{
+			$i = $this->input;
+			$prov = $i->post('prov');
+			$kab = $i->post('kab');
+			$kec = $i->post('kec');
+			if((!empty($prov)) and (!empty($kab)) and (!empty($kec))){
+				$data = array(	'id_pelanggan'		=> $id_pelanggan,
+								'nama_pelanggan'	=> $i->post('nama_pelanggan'),
+								'alamat'			=> $i->post('alamat'),
+								'no_hp'				=> $i->post('no_hp'),
+								'id_komoditi'		=> $i->post('id_komoditi'),
+								'pembelian_awal'	=> $i->post('pembelian_awal'),
+								'provinsi'			=> $i->post('prov'),
+								'kabupaten'			=> $i->post('kab'),
+								'kecamatan'			=> $i->post('kec')
+							);
+			}else{
+				$data = array(	'id_pelanggan'		=> $id_pelanggan,
+								'nama_pelanggan'	=> $i->post('nama_pelanggan'),
+								'alamat'			=> $i->post('alamat'),
+								'no_hp'				=> $i->post('no_hp'),
+								'id_komoditi'		=> $i->post('id_komoditi'),
+								'pembelian_awal'	=> $i->post('pembelian_awal')
+							);
+			}
+			$this->pelanggan_model->edit($data);
+			$this->session->set_flashdata('sukses','Data telah diedit');
+			redirect(base_url('admin/pelanggan/mitra'), 'refresh');
+		}
+	}
+	//delete mitra
+	public function delete_mitra($id_pelanggan){
+		$data = array('id_pelanggan' => $id_pelanggan);
+		$this->pelanggan_model->delete($data);
+		$this->session->set_flashdata('sukses', 'Data telah dihapus');
+		redirect(base_url('admin/pelanggan/mitra'), 'refresh');
+	}
+
+	//tambah data customer
 	public function add_customer()
 	{
 		//get provinsi
@@ -127,70 +414,7 @@ class Pelanggan extends CI_Controller
 			redirect(base_url('admin/pelanggan'), 'refresh');
 		}
 	}
-	//tambah data
-	public function add_customer()
-	{
-		//get provinsi
-		$provinsi = $this->wilayah_model->listing();
-		//validation
-		$valid = $this-> form_validation;
-
-		// $valid->set_rules('id_pelanggan', 'ID','required',
-		// 		array(	'required' 		=> '%s harus diisi'
-		// 				));
-		$valid->set_rules('nama_pelanggan', 'Nama Pelanggan','required',
-				array(	'required' 		=> '%s harus diisi'
-						));
-		$valid->set_rules('alamat', 'Alamat','required',
-				array(	'required' 		=> '%s harus diisi'
-						));
-		$valid->set_rules('no_hp', 'No. Telp','required',
-				array(	'required' 		=> '%s harus diisi',
-						));
-		$valid->set_rules('pembelian_awal', 'Pembelian Awal','required',
-				array(	'required' 		=> '%s harus diisi',
-						));
-
-		if($valid->run()===FALSE){
-			//end validation
-			$customer = $this->pelanggan_model->listing();
-			$komoditi = $this->komoditi_model->listing();
-			$id = $this->pelanggan_model->get_last_id();
-
-			if($id){
-				$id = $id[0]->id_pelanggan;
-				$id_pelanggan = generate_code('CUS',$id);
-			}else{
-				$id_pelanggan = 'CUS001';
-			}
-			
-			$data = array(	'title'		=> 'Tambah Data Pelanggan',
-							'customer'	=> $customer,
-							'id'		=> $id,
-							'komoditi'	=> $komoditi,
-							'provinsi'	=> $provinsi,
-							'isi'		=> 'admin/customer/list'
-						);
-			$this->load->view('admin/layout/wrapper', $data, FALSE);
-		}else{
-			$i 	= $this->input;
-			$data = array(	'id_pelanggan'		=> $i->post('id_pelanggan'),
-							'nama_pelanggan'	=> $i->post('nama_pelanggan'),
-							'alamat'			=> $i->post('alamat'),
-							'no_hp'				=> $i->post('no_hp'),
-							'id_komoditi'		=> $i->post('id_komoditi'),
-							'pembelian_awal'	=> $i->post('pembelian_awal'),
-							'tanggal_daftar'	=> $i->post('tanggal_daftar'),
-							'provinsi'			=> $i->post('prov'),
-							'kabupaten'			=> $i->post('kab'),
-							'kecamatan'			=> $i->post('kec'),
-							'jenis_pelanggan'	=>'Customer'
-						);
-			$this->pelanggan_model->tambah($data);
-			$this->session->set_flashdata('sukses','Data telah ditambah');
-			redirect(base_url('admin/pelanggan'), 'refresh');
-		}
-	}
+	
 	public function edit_customer($id_pelanggan){
 		$customer = $this->pelanggan_model->detail($id_pelanggan);
 		$komoditi = $this->komoditi_model->listing();

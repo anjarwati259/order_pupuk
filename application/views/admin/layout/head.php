@@ -32,6 +32,8 @@
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script type="text/javascript" src="<?php echo base_url()?>assets/admin/ckeditor/ckeditor.js"></script>
+  <script type="text/javascript" src="<?php echo base_url()?>assets/admin/ckeditor/samples/js/sample.js"></script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
   <div class="wrapper">

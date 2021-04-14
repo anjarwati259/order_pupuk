@@ -22,68 +22,20 @@
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
-        <!-- <li>
-          <a href="pages/widgets.html">
-            <i class="fa fa-th"></i> <span>Widgets</span>
-            <span class="pull-right-container">
-              <small class="label pull-right bg-green">new</small>
-            </span>
-          </a>
-        </li> -->
         <!-- customer -->
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-user"></i>
-            <span>Customer</span>
+            <i class="fa fa-group"></i>
+            <span>Master Data</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
             <li><a href="<?php echo base_url('admin/pelanggan') ?>"><i class="fa fa-user"></i> Data Customer</a></li>
-            <li><a href="<?php echo base_url('admin/pelanggan/add_customer') ?>"><i class="fa fa-plus-square-o"></i> Tambah Customer</a></li>
-          </ul>
-        </li>
-        <!-- mitra -->
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-users"></i>
-            <span>Mitra</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="<?php echo base_url('admin/pelanggan/mitra') ?>"><i class="fa fa-user"></i> Data Mitra</a></li>
-            <li><a href="<?php echo base_url('admin/pelanggan/add_mitra') ?>"><i class="fa fa-plus-square-o"></i> Tambah Mitra</a></li>
-          </ul>
-        </li>
-        <!-- distributor -->
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-users"></i>
-            <span>Distributor</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="pages/charts/chartjs.html"><i class="fa fa-user"></i> Data Distributor</a></li>
-            <li><a href="pages/charts/morris.html"><i class="fa fa-plus-square-o"></i> Tambah Distributor</a></li>
-          </ul>
-        </li>
-        <!-- Komoditi -->
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-th-large"></i>
-            <span>Komoditi</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="pages/charts/chartjs.html"><i class="fa fa-th-large"></i> Data Komoditi</a></li>
-            <li><a href="pages/charts/morris.html"><i class="fa fa-plus-square-o"></i> Tambah Komoditi</a></li>
+            <li><a href="<?php echo base_url('admin/pelanggan/mitra') ?>"><i class="fa fa-users"></i> Data Mitra</a></li>
+            <li><a href="<?php echo base_url('admin/pelanggan/distributor') ?>"><i class="fa fa-users"></i> Data Distributor</a></li>
+            <li><a href="<?php echo base_url('admin/komoditi') ?>"><i class="fa fa-th-large"></i> Data Komoditi</a></li>
           </ul>
         </li>
         <!-- distributor -->
@@ -96,8 +48,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/charts/chartjs.html"><i class="fa fa-shopping-cart"></i> Data Produk</a></li>
-            <li><a href="pages/charts/morris.html"><i class="fa fa-plus-square-o"></i> Tambah Produk</a></li>
+            <li><a href="<?php echo base_url('admin/produk') ?>"><i class="fa fa-shopping-cart"></i> Data Produk</a></li>
+            <li><a href="<?php echo base_url('admin/produk/tambah') ?>"><i class="fa fa-plus-square-o"></i> Tambah Produk</a></li>
           </ul>
         </li>
         <!-- Order -->
