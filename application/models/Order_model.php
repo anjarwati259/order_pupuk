@@ -55,18 +55,20 @@ class Order_model extends CI_Model
 		$query = $this->db->get();
 		return $query->result();
 	}
-	//listing all transaksi berdasarkan header
-	public function kode_bayar($kode_transaksi){
-		$this->db->select('tb_order.*, 
-						tb_produk.nama_produk,
-						tb_produk.gambar');
-		$this->db->from('tb_order');
-		//join
-		$this->db->join('tb_produk', 'tb_produk.kode_produk = tb_order.id_produk', 'left');
-		//end join
-		$this->db->where('kode_transaksi', $kode_transaksi);
-		// $this->db->group_by('tb_order.kode_transaksi');
-		$this->db->order_by('id_order','asc');
+	//edit
+	public function edit($data){
+		$this->db->where('kode_transaksi', $data['kode_transaksi']);
+		$this->db->update('tb_detail_order',$data);
+	}
+	//listing order admin
+	public function listing_admin($data){
+		$this->db->select('tb_detail_order.*,
+							tb_pelanggan.nama_pelanggan');
+		$this->db->from('tb_detail_order');
+		$this->db->where('status_bayar', $data);
+		$this->db->join('tb_pelanggan','tb_pelanggan.id_pelanggan = tb_detail_order.id_pelanggan', 'left');
+		$this->db->group_by('tb_detail_order.kode_transaksi');
+		$this->db->order_by('kode_transaksi','asc');
 		$query = $this->db->get();
 		return $query->result();
 	}

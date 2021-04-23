@@ -33,11 +33,6 @@
           </a>
         </li>
         <li>
-          <a href="<?php echo base_url('pembayaran') ?>">
-            <i class="fa fa-money"></i> <span>Pembayaran</span>
-          </a>
-        </li>
-        <li class="treeview">
           <a href="#">
             <i class="fa fa-money"></i> <span>Point</span>
           </a>

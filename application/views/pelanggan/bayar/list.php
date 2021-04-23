@@ -13,6 +13,8 @@
             <th>No</th>
             <th>Kode Order</th>
             <th>Tanggal Order</th>
+            <th>Total Belanja</th>
+            <th>Total Bayar</th>
             <th>Status</th>
           </tr>
           </thead>

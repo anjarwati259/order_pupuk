@@ -8,8 +8,6 @@ class Order extends CI_Controller
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->model('produk_model');
-		$this->load->model('pelanggan_model');
 		$this->load->model('order_model');
 		$this->load->model('pembayaran_model');
 		//load helper random string
@@ -20,36 +18,31 @@ class Order extends CI_Controller
 	//halaman belanja
 	public function index()
 	{ 
-		if($this->session->userdata('hak_akses')=='Customer'){
-			$id_user	= $this->session->userdata('id_user');
-			$order 			= $this->order_model->listing($id_user);
-			$data = array(	'title'		=> 'Order Saya',
-							'order'		=> $order,
-						    'isi'		=> 'pelanggan/customer/order'
+		$order 	= $this->order_model->listing_admin(0);
+		$menunggu 	= $this->order_model->listing_admin(2);
+		$sudah_bayar 	= $this->order_model->listing_admin(1);
+		$data = array(	'title'			=> 'Data Pesanan',
+						'order'			=> $order,
+						'menunggu'		=> $menunggu,
+						'sudah_bayar' 	=> $sudah_bayar,
+						'isi'			=> 'admin/order/list'
 						);
-		$this->load->view('pelanggan/layout/wrapper', $data, FALSE);
-		}
+		$this->load->view('admin/layout/wrapper', $data, FALSE);
 	}
 	//detail 
 	public function detail($kode_transaksi)
 	{
 		//ambil data login id_distributor dari session
-		$id_user 		= $this->session->userdata('id_user');
 		$detail_order 	= $this->order_model->kode_transaksi($kode_transaksi);
 		$transaksi 		= $this->order_model->kode_order($kode_transaksi);
 		$bayar 			= $this->pembayaran_model->detail($kode_transaksi);
 
-		//pastikan bahwa distributor hanya mengakses data transaksinya
-		if($detail_order->id_user != $id_user){
-			$this->session->set_flashdata('warning', 'Anda mencoba mengakses data transaksi orang lain');
-			redirect(base_url('masuk'));
-		}
 		$data = array(	'title'				=> 'Order #' . $kode_transaksi,
 						'detail_order'		=> $detail_order,
 						'bayar'				=> $bayar,
 						'transaksi'			=> $transaksi,
-						'isi'				=> 'pelanggan/customer/detail_order'
+						'isi'				=> 'admin/order/detail_order'
 					);
-		$this->load->view('pelanggan/layout/wrapper', $data, FALSE);
+		$this->load->view('admin/layout/wrapper', $data, FALSE);
 	} 
 }

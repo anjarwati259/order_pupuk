@@ -7,6 +7,13 @@
         <div class="box-header with-border">
           <h3 class="box-title"><strong>Data Order</strong></h3>
         </div>
+        <?php 
+          //notif error
+          echo validation_errors('<p class="alert alert-warning">','</p>');
+
+          //form open
+          echo form_open_multipart(base_url('pembayaran/bayar/'.$detail_order->kode_transaksi));
+           ?>
         <form role="form">
           <div class="box-body">
             <div class="form-group">
@@ -40,15 +47,31 @@
                 </div>
               </div>
             </div>
+            <!-- Date -->
+              <div class="form-group">
+                <label>Tanggal Bayar</label>
+
+                <div class="input-group date">
+                  <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                  </div>
+                  <input type="text" class="form-control pull-right" id="datepicker" name="tanggal_bayar" value="<?php echo set_value('tanggal_bayar') ?>">
+                </div>
+                <!-- /.input group -->
+              </div>
+              <!-- /.form group -->
+
             <div class="form-group">
               <label>Transfer Ke</label>
-              <select class="form-control">
-
+              <select class="form-control" name="id_rekening">
+                <?php foreach ($rekening as $rekening) { ?>
+                  <option value="<?php echo $rekening->id_rekening ?>"><strong><?php echo $rekening->nama_bank ?> a.n <?php echo $rekening->nama_pemilik ?> (<?php echo $rekening->no_rekening ?> )</strong></option>
+                <?php } ?>
               </select>
             </div>
             <div class="form-group">
               <label>Bukti Pembayaran</label>
-              <input type="file">
+              <input type="file" name="bukti_bayar">
             </div>
           </div>
           <!-- /.box-body -->
@@ -56,6 +79,7 @@
             <button type="submit" class="btn btn-primary">Konfirmasi</button>
           </div>
         </form>
+        <?php echo form_close(); ?>
       </div>
     </div>
     <div class="col-md-4">
@@ -99,3 +123,13 @@
     </div>
   </div>
 </section>
+<script type="text/javascript">
+  $(function () {
+    //Initialize Select2 Elements
+    //Date picker
+    $('#datepicker').datepicker({
+      autoclose: true,
+      format:'yyyy-mm-dd'
+    })
+  })
+</script>

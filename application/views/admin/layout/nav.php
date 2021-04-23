@@ -63,7 +63,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/charts/chartjs.html"><i class="fa fa-area-chart"></i> Data Order</a></li>
+            <li><a href="<?php echo base_url('admin/order') ?>"><i class="fa fa-area-chart"></i> Data Order</a></li>
             <li><a href="pages/charts/morris.html"><i class="fa fa-plus-square-o"></i> Tambah Order</a></li>
           </ul>
         </li>

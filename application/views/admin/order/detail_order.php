@@ -143,24 +143,17 @@ function tanggal_indo($tanggal, $cetak_hari = false)
         <?php if($detail_order->status_bayar==0){ ?>
           <br>
           <div class="alert alert-success alert-dismissible">
-            Belum Ada Pembayaran, segera lakukan pembayaran terlebih dahulu!!!
-          </div>
-          <div class="row">
-            <div class="col-md-4">
-              
-            </div>
-            
-            <div class="col-md-4">
-              <a href="<?php echo base_url('pembayaran/bayar/'.$detail_order->kode_transaksi) ?>" type="button" class="btn btn-block btn-primary">Konfirmasi</a>
-            </div>
-            <div class="col-md-4">
-              
-            </div>
+            Belum Ada Pembayaran
           </div>
           <br>
+          </div>
+          
         <?php }else{ ?>
         <table id="example1" class="table table-bordered table-striped">
           <tbody>
+            <tr>
+              <td colspan="2"><img height="450px" width="400px" src="<?php echo base_url('assets/upload/image/thumbs/'.$bayar->bukti_bayar) ?>"></td>
+            </tr>
           	<tr>
           		<td width="40%">Transfer</td>
           		<th>Rp. <?php echo number_format($bayar->jumlah_bayar,'0',',','.') ?></th>
@@ -177,29 +170,22 @@ function tanggal_indo($tanggal, $cetak_hari = false)
           		<td width="40%">Transfer Dari</td>
           		<th><?php echo $bayar->nama_bank ?> a.n <?php echo $bayar->atas_nama ?> (<?php echo $bayar->no_rekening ?>)</th>
           	</tr>
-            <tr>
-              <td width="40%">Bukti Bayar</td>
-            </tr>
-            <tr>
-              <td colspan="2"><img height="450px" width="400px" src="<?php echo base_url('assets/upload/image/thumbs/'.$bayar->bukti_bayar) ?>"></td>
-            </tr>
           </tbody>
         </table>
-      <?php } ?>
-      <div class="row">
-            <div class="col-md-4">
-              
-            </div>
-            
-            <div class="col-md-4">
-              <a href="<?php echo base_url('pembayaran/bayar/'.$detail_order->kode_transaksi) ?>" type="button" class="btn btn-block btn-danger">Cetak PDF</a>
+        <div class="row">
+            <div class="col-md-8">
+              <select class="form-control" name="konfirmasi">
+                <option value="">konfirmasi</option>
+              </select>
             </div>
             <div class="col-md-4">
-              
+              <a href="<?php echo base_url('pembayaran/bayar/'.$detail_order->kode_transaksi) ?>" type="button" class="btn btn-block btn-success">Konfirmasi</a>
             </div>
           </div>
           <br>
       </div>
+      <?php } ?>
+      
       <!-- /.box -->
     </div>
     <!--/.col (right) -->

@@ -62,7 +62,16 @@
               <td><?php echo tanggal_indo(date('Y-m-d',strtotime($order->tanggal_transaksi)),true); ?></td>
               <td><?php echo $order->total_item ?> Barang</td>
               <td>Rp. <?php echo number_format($order->total_bayar,'0',',','.') ?></td>
-              <td><?php echo $order->status_bayar == 0 ? "<span class='alert-warning'>Belum Bayar</span>" : "<span class='alert-success'>Sudah Bayar</span>";?></td>
+              <td><?php 
+              $status = $order->status_bayar;
+              if($status==0){
+                echo "<span class='alert-warning'>Belum Bayar</span>";
+              }else if($status==2){
+                echo "<span class='alert-warning'>Menunggu Konfirmasi</span>";
+              }else{
+                echo "<span class='alert-success'>Sudah Bayar</span>";
+              } ?>
+              </td>
             </tr>
           <?php } ?>
           </tbody>
