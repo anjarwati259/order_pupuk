@@ -1,32 +1,25 @@
-
-	<!-- Header -->
-	<header class="header shop">
-		<!-- Topbar -->
-		<div class="topbar">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-4 col-md-12 col-12">
-						<!-- Top Left -->
-						<div class="top-left">
-							<ul class="list-main">
-								<li><i class="ti-headphone-alt"></i> +6281 335 005 334</li>
-								<li><i class="ti-email"></i> ptagiofficial@gmail.com </li>
-							</ul>
-						</div>
-						<!--/ End Top Left -->
-					</div>
-					<div class="col-lg-8 col-md-12 col-12">
-						<!-- Top Right -->
-						<div class="right-content">
-							<ul class="list-main">
-								<li><i class="ti-location-pin"></i> Jl. Manggis Raya No.11 Jemberlor Patrang, Jember, Jawa Timur</li>
-								<!-- <li><i class="ti-alarm-clock"></i> <a href="#">Daily deal</a></li> -->
-								<li><i class="ti-user"></i> <a href="#">Register</a></li>
-								<li><i class="ti-power-off"></i><a href="login.html#">Login</a></li>
-							</ul>
-						</div>
-						<!-- End Top Right -->
-					</div>
-				</div>
-			</div>
-		</div>
+<!-- Start Main Top -->
+    <div class="main-top">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="right-phone-box">
+                        <p>Call US :- <a href="#">  +6281 335 005 334 </a></p>
+                    </div>
+                    <div class="our-link">
+                        <ul>
+                        	<?php if($this->session->userdata('username')){ ?>
+                            <li><a href="<?php echo base_url('home/dashboard') ?>"><i class="fa fa-user s_color"></i> My Account</a></li>
+                            <li><a href="<?php echo base_url('masuk/logout') ?>"><i class="fas fa-sign-in-alt"></i> Logout</a></li>
+                        <?php }else{ ?>
+                        	<li><a href="<?php echo base_url('masuk') ?>"><i class="fa fa-user s_color"></i> My Account</a></li>
+                            <li><a href="#"><i class="fas fa-user-lock"></i> Register</a></li>
+                            <li><a href="<?php echo base_url('masuk') ?>"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                        <?php } ?>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Main Top -->

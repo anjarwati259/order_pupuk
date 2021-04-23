@@ -1,114 +1,78 @@
-<!-- Start Footer Area -->
-	<footer class="footer">
-		<!-- Footer Top -->
-		<div class="footer-top section">
-			<div class="container">
+<!-- Start Footer  -->
+    <footer>
+        <div class="footer-main">
+            <div class="container">
 				<div class="row">
-					<div class="col-lg-5 col-md-6 col-12">
-						<!-- Single Widget -->
-						<div class="single-footer about">
-							<div class="logo">
-								<a href="index.html"><img src="<?php echo base_url() ?>assets/template/images/logo2.png" alt="#"></a>
-							</div>
-							<p class="text">PT. Agrikultur Gemilang Indonesia bergerak dibidang pemasaran produk brand KILAT untuk pertanian, perikanan dan peternakan berbasis organik</p>
-						</div>
-						<!-- End Single Widget -->
-					</div>
-					<div class="col-lg-2 col-md-6 col-12">
-						<!-- Single Widget -->
-						<div class="single-footer links">
-							<h4>Information</h4>
-							<ul>
-								<li><a href="#">About Us</a></li>
-								<li><a href="#">Faq</a></li>
-								<li><a href="#">Terms & Conditions</a></li>
-								<li><a href="#">Contact Us</a></li>
-								<li><a href="#">Help</a></li>
+					<div class="col-lg-4 col-md-12 col-sm-12">
+						<div class="footer-top-box">
+							<h3>Business Time</h3>
+							<ul class="list-time">
+								<li>Monday - Friday: 08.00am to 05.00pm</li> <li>Saturday: 10.00am to 08.00pm</li> <li>Sunday: <span>Closed</span></li>
 							</ul>
 						</div>
-						<!-- End Single Widget -->
 					</div>
-					<div class="col-lg-2 col-md-6 col-12">
-						<!-- Single Widget -->
-						<div class="single-footer links">
-							<h4>Customer Service</h4>
+					<div class="col-lg-4 col-md-12 col-sm-12">
+						<div class="footer-link-contact">
+                            <h4>Contact Us</h4>
+                            <ul>
+                                <li>
+                                    <p><i class="fas fa-map-marker-alt"></i>Address: Michael I. Days 3756 <br>Preston Street Wichita,<br> KS 67213 </p>
+                                </li>
+                                <li>
+                                    <p><i class="fas fa-phone-square"></i>Phone: <a href="tel:+1-888705770">+1-888 705 770</a></p>
+                                </li>
+                                <li>
+                                    <p><i class="fas fa-envelope"></i>Email: <a href="mailto:contactinfo@gmail.com">contactinfo@gmail.com</a></p>
+                                </li>
+                            </ul>
+                        </div>
+					</div>
+					<div class="col-lg-4 col-md-12 col-sm-12">
+						<div class="footer-top-box">
+							<h3>Social Media</h3>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
 							<ul>
-								<li><a href="#">Payment Methods</a></li>
-								<li><a href="#">Money-back</a></li>
-								<li><a href="#">Returns</a></li>
-								<li><a href="#">Shipping</a></li>
-								<li><a href="#">Privacy Policy</a></li>
-							</ul>
-						</div>
-						<!-- End Single Widget -->
-					</div>
-					<div class="col-lg-3 col-md-6 col-12">
-						<!-- Single Widget -->
-						<div class="single-footer social">
-							<h4>Get In Tuch</h4>
-							<!-- Single Widget -->
-							<div class="contact">
-								<ul>
-									<li>NO. 342 - London Oxford Street.</li>
-									<li>012 United Kingdom.</li>
-									<li>info@eshop.com</li>
-									<li>+032 3456 7890</li>
-								</ul>
-							</div>
-							<!-- End Single Widget -->
-							<ul>
-								<li><a href="#"><i class="ti-facebook"></i></a></li>
-								<li><a href="#"><i class="ti-twitter"></i></a></li>
-								<li><a href="#"><i class="ti-flickr"></i></a></li>
-								<li><a href="#"><i class="ti-instagram"></i></a></li>
-							</ul>
-						</div>
-						<!-- End Single Widget -->
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- End Footer Top -->
-		<div class="copyright">
-			<div class="container">
-				<div class="inner">
-					<div class="row">
-						<div class="col-lg-6 col-12">
-							<div class="left">
-								<p>Copyright © 2020 <a href="http://www.wpthemesgrid.com" target="_blank">Wpthemesgrid</a>  -  All Rights Reserved.</p>
-							</div>
-						</div>
-						<div class="col-lg-6 col-12">
-							<div class="right">
-								<img src="<?php echo base_url() ?>assets/template/images/payments.png" alt="#">
-							</div>
+                                <li><a href="#"><i class="fab fa-facebook" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fab fa-google-plus" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fa fa-rss" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fab fa-pinterest-p" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
+                            </ul>
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-	</footer>
-	<!-- /End Footer Area -->
+            </div>
+        </div>
+    </footer>
+    <!-- End Footer  -->
 
-	<!-- Jquery -->
-    <script src="<?php echo base_url() ?>assets/template/js/jquery.min.js"></script>
-    <script src="<?php echo base_url() ?>assets/template/js/jquery-migrate-3.0.0.js"></script>
-	<script src="<?php echo base_url() ?>assets/template/js/jquery-ui.min.js"></script>
-	<!-- Popper JS -->
-	<script src="<?php echo base_url() ?>assets/template/js/popper.min.js"></script>
-	<!-- Bootstrap JS -->
-	<script src="<?php echo base_url() ?>assets/template/js/bootstrap.min.js"></script>
-	<!-- Color JS -->
-	<script src="<?php echo base_url() ?>assets/template/js/colors.js"></script>
-	<!-- Slicknav JS -->
-	<script src="<?php echo base_url() ?>assets/template/js/slicknav.min.js"></script>
-	<!-- Owl Carousel JS -->
-	<script src="<?php echo base_url() ?>assets/template/js/owl-carousel.js"></script>
-	<!-- Countdown JS -->
-	<script src="<?php echo base_url() ?>assets/template/js/finalcountdown.min.js"></script>
-	<!-- Nice Select JS -->
-	<script src="<?php echo base_url() ?>assets/template/js/nicesellect.js"></script>
-	<!-- Active JS -->
-	<script src="<?php echo base_url() ?>assets/template/js/active.js"></script>
+    <!-- Start copyright  -->
+    <div class="footer-copyright">
+        <p class="footer-company">All Rights Reserved. &copy; 2018 <a href="#">ThewayShop</a> Design By :
+            <a href="https://html.design/">html design</a></p>
+    </div>
+    <!-- End copyright  -->
+
+    <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+
+    <!-- ALL JS FILES -->
+    <script src="<?php echo base_url() ?>/assets/templates/js/jquery-3.2.1.min.js"></script>
+    <script src="<?php echo base_url() ?>/assets/templates/js/popper.min.js"></script>
+    <script src="<?php echo base_url() ?>/assets/templates/js/bootstrap.min.js"></script>
+    <!-- ALL PLUGINS -->
+    <script src="<?php echo base_url() ?>/assets/templates/js/jquery.superslides.min.js"></script>
+    <script src="<?php echo base_url() ?>/assets/templates/js/bootstrap-select.js"></script>
+    <script src="<?php echo base_url() ?>/assets/templates/js/inewsticker.js"></script>
+    <script src="<?php echo base_url() ?>/assets/templates/js/bootsnav.js."></script>
+    <script src="<?php echo base_url() ?>/assets/templates/js/images-loded.min.js"></script>
+    <script src="<?php echo base_url() ?>/assets/templates/js/isotope.min.js"></script>
+    <script src="<?php echo base_url() ?>/assets/templates/js/owl.carousel.min.js"></script>
+    <script src="<?php echo base_url() ?>/assets/templates/js/baguetteBox.min.js"></script>
+    <script src="<?php echo base_url() ?>/assets/templates/js/form-validator.min.js"></script>
+    <script src="<?php echo base_url() ?>/assets/templates/js/contact-form-script.js"></script>
+    <script src="<?php echo base_url() ?>/assets/templates/js/custom.js"></script>
 </body>
+
 </html>

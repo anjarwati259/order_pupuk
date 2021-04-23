@@ -7,8 +7,6 @@
     }
     //Notifikasi error
     echo validation_errors('<div class = "alert alert-warning">','</div>');
-
-    
      ?>
 <!-- START CUSTOM TABS -->
       <div class="row">

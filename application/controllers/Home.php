@@ -19,4 +19,11 @@ class Home extends CI_Controller
 						); 
 		$this->load->view('layout/wrapper', $data, FALSE);
 	}
+	public function dashboard(){
+
+		$data = array(	'title'		=> 'Dashboard Pelanggan',
+						'isi'		=> 'pelanggan/dashboard/list'
+						); 
+		$this->load->view('pelanggan/layout/wrapper', $data, FALSE);
+	}
 }

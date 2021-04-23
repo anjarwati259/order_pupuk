@@ -35,6 +35,7 @@
             <li><a href="<?php echo base_url('admin/pelanggan') ?>"><i class="fa fa-user"></i> Data Customer</a></li>
             <li><a href="<?php echo base_url('admin/pelanggan/mitra') ?>"><i class="fa fa-users"></i> Data Mitra</a></li>
             <li><a href="<?php echo base_url('admin/pelanggan/distributor') ?>"><i class="fa fa-users"></i> Data Distributor</a></li>
+            <li><a href="<?php echo base_url('admin/rekening') ?>"><i class="fa fa-users"></i> Data Rekening</a></li>
             <li><a href="<?php echo base_url('admin/komoditi') ?>"><i class="fa fa-th-large"></i> Data Komoditi</a></li>
           </ul>
         </li>
@@ -65,6 +66,13 @@
             <li><a href="pages/charts/chartjs.html"><i class="fa fa-area-chart"></i> Data Order</a></li>
             <li><a href="pages/charts/morris.html"><i class="fa fa-plus-square-o"></i> Tambah Order</a></li>
           </ul>
+        </li>
+
+        <!-- setting toko -->
+        <li>
+          <a href="<?php echo base_url('admin/dashboard/setting') ?>">
+            <i class="fa fa-dashboard"></i> <span>Setting Lokasi</span>
+          </a>
         </li>
 
         <!-- pengguna -->

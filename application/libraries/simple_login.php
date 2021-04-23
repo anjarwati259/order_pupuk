@@ -50,7 +50,7 @@ class Simple_login
 			$this->CI->session->set_userdata('username',$username);
 			$this->CI->session->set_userdata('hak_akses',$hak_akses);
 			//redirect ke halaman admin yang diproteksi
-			redirect(base_url('home'),'refresh');
+			redirect(base_url('home/dashboard'),'refresh');
 		}else{
 			//kalau tidak ada, maka suruh login lagi
 			$this->CI->session->set_flashdata('warning','Username atau password salah');
