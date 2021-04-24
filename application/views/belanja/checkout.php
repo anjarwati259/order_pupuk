@@ -70,18 +70,18 @@
                                 
                             </div>
                         </div>
-                       <!--  <hr class="mb-4">
-                        <div class="title"> <span>Metode Pembayaran</span> </div>
+                        <hr class="mb-4">
+                        <div class="title"> <span>Rekening Pembayaran</span> </div>
                         <div class="d-block my-3">
                             <div class="custom-control custom-radio">
-                                <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
-                                <label class="custom-control-label" for="credit">Transfer Bank</label>
+                                <input id="credit" name="rekening" type="radio" class="custom-control-input" value="2" checked required>
+                                <label class="custom-control-label" for="credit">Bank BCA</label>
                             </div>
                             <div class="custom-control custom-radio">
-                                <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
-                                <label class="custom-control-label" for="debit">Bayar ditempat(COD)</label>
+                                <input id="debit" name="rekening" type="radio" class="custom-control-input" value="1" required>
+                                <label class="custom-control-label" for="debit">Bank Mandiri</label>
                             </div>
-                        </div> -->
+                        </div>
                         <hr class="mb-1"> </form>
                 </div>
             </div>
@@ -156,10 +156,10 @@
                       <input type="hidden" name="alamat" class="form-control" value="<?php echo $pelanggan->alamat ?>">
                       <input type="hidden" name="total_transaksi" value="<?php echo $this->cart->total() ?>">
                       <input type="hidden" name="tanggal_transaksi" value="<?php echo date('Y-m-d'); ?>">
-                      <input type="text" name="total_item" value="<?php echo $total_item ?>">
-                      <input type="text" name="expedisi">
-                      <input type="text" name="ongkir">
-                      <input type="text" name="total">
+                      <input type="hidden" name="total_item" value="<?php echo $total_item ?>">
+                      <input type="hidden" name="expedisi">
+                      <input type="hidden" name="ongkir">
+                      <input type="hidden" name="total">
 
                     <div class="col-12 d-flex shopping-box"> <button class="ml-auto btn hvr-hover">Buat Pesanan</button> </div>
                     <?php echo form_close(); ?>

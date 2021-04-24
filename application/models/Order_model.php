@@ -20,6 +20,14 @@ class Order_model extends CI_Model
 		$query = $this->db->get();
 		return $query->result();
 	}
+	//list all order
+	public function Alllisting(){
+		$this->db->select('*');
+		$this->db->from('tb_detail_order');
+		$this->db->order_by('kode_transaksi','desc');
+		$query = $this->db->get();
+		return $query->result();
+	}
 	//tambah
 	public function tambah($data)
 	{
@@ -71,5 +79,10 @@ class Order_model extends CI_Model
 		$this->db->order_by('kode_transaksi','asc');
 		$query = $this->db->get();
 		return $query->result();
+	}
+	public function update_status($data)
+	{
+		$this->db->where('kode_transaksi', $data['kode_transaksi']);
+		$this->db->update('tb_detail_order',$data);
 	}
 }

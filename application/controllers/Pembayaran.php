@@ -109,4 +109,12 @@ class Pembayaran extends CI_Controller
 					);
 		$this->load->view('pelanggan/layout/wrapper', $data, FALSE);
 	}
+	public function konfirmasi($kode_transaksi){
+		$data = array(	'kode_transaksi'	=> $kode_transaksi,
+						'status_bayar'		=> $this->input->post('konfirmasi')
+						);
+			$this->order_model->update_status($data);
+			$this->session->set_flashdata('sukses','Status Pembayaran telah Diubah');
+			redirect(base_url('admin/order/detail/'.$kode_transaksi), 'refresh');
+	}
 }

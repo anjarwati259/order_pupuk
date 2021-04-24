@@ -35,6 +35,11 @@ function tanggal_indo($tanggal, $cetak_hari = false)
       return $tgl_indo;
     }
  ?>
+ <?php if($this->session->flashdata('sukses')){
+    echo '<div class="alert alert-warning">';
+    echo $this->session->flashdata('sukses');
+    echo '</div>';
+  } ?>
 <section class="content">
   <div class="row">
     <!-- left column -->
@@ -172,19 +177,23 @@ function tanggal_indo($tanggal, $cetak_hari = false)
           	</tr>
           </tbody>
         </table>
+        <?php echo form_open(base_url('pembayaran/konfirmasi/'.$detail_order->kode_transaksi)); ?>
         <div class="row">
             <div class="col-md-8">
               <select class="form-control" name="konfirmasi">
-                <option value="">konfirmasi</option>
+                <option>-- Pilih --</option>
+                <option value="1">Konfirmasi Pembayaran</option>
+                <option value="3">Tidak Ada Pembayaran</option>
               </select>
             </div>
             <div class="col-md-4">
-              <a href="<?php echo base_url('pembayaran/bayar/'.$detail_order->kode_transaksi) ?>" type="button" class="btn btn-block btn-success">Konfirmasi</a>
+              <button type="submit" class="btn btn-block btn-success">Konfirmasi</button>
             </div>
           </div>
           <br>
       </div>
-      <?php } ?>
+      <?php echo form_close();
+    } ?>
       
       <!-- /.box -->
     </div>

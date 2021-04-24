@@ -15,20 +15,41 @@ class Order extends CI_Controller
 		//proteksi halaman
 		$this->simple_login->ceklogin();
 	}
-	//halaman belanja
+	//halaman list order
 	public function index()
 	{ 
-		$order 	= $this->order_model->listing_admin(0);
 		$menunggu 	= $this->order_model->listing_admin(2);
-		$sudah_bayar 	= $this->order_model->listing_admin(1);
+		$order 	= $this->order_model->listing_admin(0);
 		$data = array(	'title'			=> 'Data Pesanan',
-						'order'			=> $order,
 						'menunggu'		=> $menunggu,
-						'sudah_bayar' 	=> $sudah_bayar,
+						'order'			=> $order,
 						'isi'			=> 'admin/order/list'
 						);
 		$this->load->view('admin/layout/wrapper', $data, FALSE);
 	}
+	//list menunggu
+	public function menunggu()
+	{ 
+		$menunggu 	= $this->order_model->listing_admin(2);
+		$data = array(	'title'			=> 'Data Pesanan',
+						'menunggu'		=> $menunggu,
+						'isi'			=> 'admin/order/menunggu'
+						);
+		$this->load->view('admin/layout/wrapper', $data, FALSE);
+	}
+	//list sudah bayar
+	public function sudah_bayar()
+	{ 
+		$order 	= $this->order_model->Alllisting();
+		$sudah_bayar 	= $this->order_model->listing_admin(1);
+		$data = array(	'title'			=> 'Data Pesanan',
+						'sudah_bayar'	=> $sudah_bayar,
+						'order'			=> $order,
+						'isi'			=> 'admin/order/dikemas'
+						);
+		$this->load->view('admin/layout/wrapper', $data, FALSE);
+	}
+
 	//detail 
 	public function detail($kode_transaksi)
 	{
@@ -44,5 +65,34 @@ class Order extends CI_Controller
 						'isi'				=> 'admin/order/detail_order'
 					);
 		$this->load->view('admin/layout/wrapper', $data, FALSE);
-	} 
+	}
+	//tambah no resi 
+	public function dikirim($kode_transaksi)
+	{
+			$data = array(	'kode_transaksi'	=> $kode_transaksi,
+							'no_resi'			=> $this->input->post('no_resi'),
+							'status_bayar'		=> 5
+						);
+			$this->order_model->update_status($data);
+			$this->session->set_flashdata('sukses','Status Telah Diubah');
+			redirect(base_url('admin/order/listkirim'), 'refresh');
+	}
+	public function listkirim()
+	{
+		$dikirim 	= $this->order_model->listing_admin(5);
+		$data = array(	'title'			=> 'Data Pesanan',
+						'dikirim'		=> $dikirim,
+						'isi'			=> 'admin/order/dikirim'
+						);
+		$this->load->view('admin/layout/wrapper', $data, FALSE);	
+	}
+	public function selesai()
+	{
+		$selesai 	= $this->order_model->listing_admin(6);
+		$data = array(	'title'			=> 'Data Pesanan',
+						'selesai'		=> $selesai,
+						'isi'			=> 'admin/order/selesai'
+						);
+		$this->load->view('admin/layout/wrapper', $data, FALSE);	
+	}
 }

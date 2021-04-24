@@ -125,8 +125,10 @@ class Belanja extends CI_Controller
 			}else{
 			//masuk database
 			$i = $this->input;
+			$kode_transaksi = $i->post('kode_transaksi');
 			$data = array(	'id_pelanggan'		=> $pelanggan->id_pelanggan,
 							'id_user'			=> $id_user,
+							'id_rekenin'		=> $this->input->post('radio'),
 							'nama_pelanggan'	=> $i->post('nama_pelanggan'),
 							'no_hp'				=> $i->post('no_hp'),
 							'alamat'			=> $i->post('alamat'),
@@ -159,7 +161,7 @@ class Belanja extends CI_Controller
 			//hapus keranjang
 			$this->cart->destroy();
 			$this->session->set_flashdata('sukses','Checkout berhasil');
-			redirect(base_url('belanja/sukses'), 'refresh');
+			redirect(base_url('order/detail/'.$kode_transaksi), 'refresh');
 		}
 		//end masuk database
 			//end database

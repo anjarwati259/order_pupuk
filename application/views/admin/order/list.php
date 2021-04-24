@@ -4,10 +4,10 @@
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
               <li class="active"><a href="#tab_1" data-toggle="tab">Belum Bayar</a></li>
-              <li><a href="#tab_2" data-toggle="tab">Menunggu Konfirmasi</a></li>
-              <li><a href="#tab_3" data-toggle="tab">Dikemas</a></li>
-              <li><a href="#tab_4" data-toggle="tab">Dikirim</a></li>
-              <li><a href="#tab_5" data-toggle="tab">Selesai</a></li>
+              <li><a href="<?php echo site_url('admin/order/menunggu');?>">Menunggu Konfirmasi</a></li>
+              <li><a href="<?php echo site_url('admin/order/sudah_bayar');?>">Dikemas</a></li>
+              <li><a href="<?php echo site_url('admin/order/listkirim');?>">Dikirim</a></li>
+              <li><a href="<?php echo site_url('admin/order/selesai');?>">Selesai</a></li>
             </ul>
             <div class="tab-content">
               <div class="tab-pane active" id="tab_1">
@@ -67,68 +67,6 @@
                       <td><?php echo $order->total_bayar ?></td>
                       <td><?php if($order->status_bayar==0){
                             echo "<span class='alert-warning'>Belum Bayar</span>";
-                          }
-                       ?></td>
-                    </tr>
-                  <?php } ?>
-                  </tbody>
-                </table>
-              </div>
-              <!-- /.tab-pane -->
-              <div class="tab-pane" id="tab_2">
-                <table id="example1" class="table table-bordered table-striped">
-                  <thead>
-                  <tr>
-                    <th>Kode Transaksi</th>
-                    <th>Nama</th>
-                    <th>Tanggal</th>
-                    <th>Jumlah Item</th>
-                    <th>Jumlah Belanja</th>
-                    <th>Status</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                    <?php 
-                    foreach ($menunggu as $menunggu) { ?>
-                    <tr>
-                      <td><a href="<?php echo base_url('admin/order/detail/'.$menunggu->kode_transaksi) ?>"><?php echo $menunggu->kode_transaksi ?></a></td>
-                      <td><?php echo $menunggu->nama_pelanggan ?></td>
-                      <td><?php echo tanggal_indo(date('Y-m-d',strtotime($menunggu->tanggal_transaksi)),true); ?></td>
-                      <td><?php echo $menunggu->total_item ?></td>
-                      <td><?php echo $menunggu->total_bayar ?></td>
-                      <td><?php if($menunggu->status_bayar==2){
-                            echo "<span class='alert-warning'>Menunggu Konfirmasi</span>";
-                          }
-                       ?></td>
-                    </tr>
-                  <?php } ?>
-                  </tbody>
-                </table>
-              </div>
-              <!-- /.tab-pane -->
-              <div class="tab-pane" id="tab_3">
-                <table id="example1" class="table table-bordered table-striped">
-                  <thead>
-                  <tr>
-                    <th>Kode Transaksi</th>
-                    <th>Nama</th>
-                    <th>Tanggal</th>
-                    <th>Jumlah Item</th>
-                    <th>Jumlah Belanja</th>
-                    <th>Status</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                    <?php 
-                    foreach ($sudah_bayar as $sudah_bayar) { ?>
-                    <tr>
-                      <td><?php echo $sudah_bayar->kode_transaksi ?></td>
-                      <td><?php echo $sudah_bayar->nama_pelanggan ?></td>
-                      <td><?php echo tanggal_indo(date('Y-m-d',strtotime($sudah_bayar->tanggal_transaksi)),true); ?></td>
-                      <td><?php echo $sudah_bayar->total_item ?></td>
-                      <td><?php echo $sudah_bayar->total_bayar ?></td>
-                      <td><?php if($sudah_bayar->status_bayar==1){
-                            echo "<span class='alert-success'>Sudah Bayar</span>";
                           }
                        ?></td>
                     </tr>

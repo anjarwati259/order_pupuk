@@ -185,19 +185,20 @@ function tanggal_indo($tanggal, $cetak_hari = false)
             </tr>
           </tbody>
         </table>
-      <?php } ?>
-      <div class="row">
-            <div class="col-md-4">
-              
-            </div>
+        <div class="row">
+          <div class="col-md-4">
             
-            <div class="col-md-4">
-              <a href="<?php echo base_url('pembayaran/bayar/'.$detail_order->kode_transaksi) ?>" type="button" class="btn btn-block btn-danger">Cetak PDF</a>
-            </div>
-            <div class="col-md-4">
-              
-            </div>
           </div>
+          
+          <div class="col-md-4">
+            <a href="<?php echo base_url('pembayaran/bayar/'.$detail_order->kode_transaksi) ?>" type="button" class="btn btn-block btn-danger">Cetak PDF</a>
+          </div>
+          <div class="col-md-4">
+            
+          </div>
+        </div>
+      <?php } ?>
+      
           <br>
       </div>
       <!-- /.box -->
