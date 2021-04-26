@@ -70,19 +70,7 @@
                                 
                             </div>
                         </div>
-                        <hr class="mb-4">
-                        <div class="title"> <span>Rekening Pembayaran</span> </div>
-                        <div class="d-block my-3">
-                            <div class="custom-control custom-radio">
-                                <input id="credit" name="rekening" type="radio" class="custom-control-input" value="2" checked required>
-                                <label class="custom-control-label" for="credit">Bank BCA</label>
-                            </div>
-                            <div class="custom-control custom-radio">
-                                <input id="debit" name="rekening" type="radio" class="custom-control-input" value="1" required>
-                                <label class="custom-control-label" for="debit">Bank Mandiri</label>
-                            </div>
-                        </div>
-                        <hr class="mb-1"> </form>
+                         </form>
                 </div>
             </div>
             <div class="col-sm-6 col-lg-6 mb-3">
@@ -144,12 +132,28 @@
                                 <h5>Total Belanja</h5>
                                 <div class="ml-auto h5"> <label id="total_bayar"></label></div>
                             </div>
-                            <hr> </div>
-                    </div>
-                    <?php 
+                            <hr> 
+                        </div>
+                        <?php 
                       echo form_open(base_url('belanja/checkout'));
                       $kode_transaksi = date('dmY').strtoupper(random_string('alnum',8));
                       ?>
+                        <div class="order-box">
+                            <div class="title-left">
+                                <h3>Rekening Pembayaran</h3>
+                            </div>
+                            <div class="d-block my-3">
+                            <div class="custom-control custom-radio">
+                                <input id="credit" name="rekening" type="radio" class="form-control custom-control-input" value="2" checked required>
+                                <label class="custom-control-label" for="credit">Bank BCA</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input id="debit" name="rekening" type="radio" class="form-control custom-control-input" value="1" required>
+                                <label class="custom-control-label" for="debit">Bank Mandiri</label>
+                            </div>
+                        </div>
+                    </div>
+                    
                       <input type="hidden" name="kode_transaksi" class="form-control" value="<?php echo $kode_transaksi ?>">
                       <input type="hidden" name="nama_pelanggan" class="form-control" value="<?php echo $pelanggan->nama_pelanggan ?>">
                       <input type="hidden" name="no_hp" class="form-control" value="<?php echo $pelanggan->no_hp ?>">

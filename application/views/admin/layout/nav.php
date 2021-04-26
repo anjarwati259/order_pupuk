@@ -35,7 +35,6 @@
             <li><a href="<?php echo base_url('admin/pelanggan') ?>"><i class="fa fa-user"></i> Data Customer</a></li>
             <li><a href="<?php echo base_url('admin/pelanggan/mitra') ?>"><i class="fa fa-users"></i> Data Mitra</a></li>
             <li><a href="<?php echo base_url('admin/pelanggan/distributor') ?>"><i class="fa fa-users"></i> Data Distributor</a></li>
-            <li><a href="<?php echo base_url('admin/rekening') ?>"><i class="fa fa-users"></i> Data Rekening</a></li>
             <li><a href="<?php echo base_url('admin/komoditi') ?>"><i class="fa fa-th-large"></i> Data Komoditi</a></li>
           </ul>
         </li>
@@ -99,12 +98,7 @@
     <section class="content-header">
       <h1>
         <?php echo $title; ?>
-        <small>Control panel</small>
       </h1>
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Dashboard</li>
-      </ol>
     </section>
 
     <!-- Main content -->

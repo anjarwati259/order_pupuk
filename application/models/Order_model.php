@@ -41,8 +41,11 @@ class Order_model extends CI_Model
 
 	//detail
 	public function kode_transaksi($kode_transaksi){
-		$this->db->select('*');
+		$this->db->select('tb_detail_order.*, tb_rekening.nama_bank, tb_rekening.no_rekening');
 		$this->db->from('tb_detail_order');
+		//join
+		$this->db->join('tb_rekening', 'tb_rekening.id_rekening = tb_detail_order.id_rekening', 'left');
+		//end join
 		$this->db->where('kode_transaksi', $kode_transaksi);
 		$this->db->order_by('kode_transaksi','desc');
 		$query = $this->db->get();

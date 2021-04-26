@@ -177,6 +177,7 @@ function tanggal_indo($tanggal, $cetak_hari = false)
           	</tr>
           </tbody>
         </table>
+        <?php if($detail_order->status_bayar == 2){ ?>
         <?php echo form_open(base_url('pembayaran/konfirmasi/'.$detail_order->kode_transaksi)); ?>
         <div class="row">
             <div class="col-md-8">
@@ -193,8 +194,7 @@ function tanggal_indo($tanggal, $cetak_hari = false)
           <br>
       </div>
       <?php echo form_close();
-    } ?>
-      
+    }}?>
       <!-- /.box -->
     </div>
     <!--/.col (right) -->

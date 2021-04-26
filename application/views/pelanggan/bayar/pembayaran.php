@@ -24,11 +24,11 @@
               <div class="row">
                 <div class="col-md-6">
                    <label >Nama Bank</label>
-                    <input type="text" name="nama_bank" class="form-control">
+                    <input type="text" name="nama_bank" placeholder="Bank BRI" class="form-control">
                 </div>
                 <div class="col-md-6">
                    <label >No. Rekening</label>
-                    <input type="text" name="no_rekening" class="form-control">
+                    <input type="text" name="no_rekening" placeholder="082568888" class="form-control">
                 </div> 
               </div>
             </div>
@@ -43,7 +43,7 @@
                 </div>
                 <div class="col-md-6">
                    <label >Atas Nama</label>
-                    <input type="text" name="nama_pemilik" class="form-control">
+                    <input type="text" placeholder="Contoh : Andi Kurniawan" name="nama_pemilik" class="form-control">
                 </div>
               </div>
             </div>
@@ -55,7 +55,8 @@
                   <div class="input-group-addon">
                     <i class="fa fa-calendar"></i>
                   </div>
-                  <input type="text" class="form-control pull-right" id="datepicker" name="tanggal_bayar" value="<?php echo set_value('tanggal_bayar') ?>">
+                  <input type="text" name="tanggal_bayar" class="form-control pull-right" id="datepicker" value="<?php echo date("Y-m-d") ?>">
+                 <!--  <input type="text" class="form-control pull-right" name="tanggal_bayar" value="<?php echo set_value('tanggal') ?>"> -->
                 </div>
                 <!-- /.input group -->
               </div>
@@ -63,11 +64,9 @@
 
             <div class="form-group">
               <label>Transfer Ke</label>
-              <select class="form-control" name="id_rekening">
-                <?php foreach ($rekening as $rekening) { ?>
-                  <option value="<?php echo $rekening->id_rekening ?>"><strong><?php echo $rekening->nama_bank ?> a.n <?php echo $rekening->nama_pemilik ?> (<?php echo $rekening->no_rekening ?> )</strong></option>
-                <?php } ?>
-              </select>
+              <input type="text" class="form-control" value="<?php echo $detail_order->nama_bank ?> - <?php echo $detail_order->no_rekening ?>" readonly>
+              <input type="hidden" name="id_rekening" class="form-control" value="<?php echo $detail_order->id_rekening ?>">
+
             </div>
             <div class="form-group">
               <label>Bukti Pembayaran</label>

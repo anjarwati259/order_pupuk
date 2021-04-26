@@ -81,6 +81,10 @@ function tanggal_indo($tanggal, $cetak_hari = false)
           			echo "Sudah Bayar";
           		} ?></th>
           	</tr>
+            <tr>
+              <td width="40%">Rekening Pembayaran</td>
+              <th><?php echo $detail_order->nama_bank ?> - <?php echo $detail_order->no_rekening ?></th>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -191,7 +195,7 @@ function tanggal_indo($tanggal, $cetak_hari = false)
           </div>
           
           <div class="col-md-4">
-            <a href="<?php echo base_url('pembayaran/bayar/'.$detail_order->kode_transaksi) ?>" type="button" class="btn btn-block btn-danger">Cetak PDF</a>
+            <a href="<?php echo base_url('pdf/pdf/'.$detail_order->kode_transaksi) ?>" type="button" class="btn btn-block btn-danger" target="_blank">Cetak PDF</a>
           </div>
           <div class="col-md-4">
             

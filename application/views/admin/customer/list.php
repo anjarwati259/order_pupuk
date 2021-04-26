@@ -32,9 +32,11 @@
                       <tr>
                         <th>No</th>
                         <th>ID</th>
-                        <th>Nama Customer</th>
+                        <th>Nama</th>
                         <th>No. Hp</th>
                         <th>Alamat</th>
+                        <th>Kabupaten</th>
+                        <th>Provinsi</th>
                         <th>Komoditi</th>
                         <th>Beli Awal</th>
                         <th>Tanggal Gabung</th>
@@ -42,22 +44,55 @@
                       </tr>
                       </thead>
                       <tbody>
-                      <?php $no=1; foreach ($customer as $customer) { ?>
+                      <?php $no=1; 
+                       //format tanggal
+                        function tanggal_indo($tanggal, $cetak_hari = false)
+                            {
+                              $hari = array ( 1 =>    'Senin',
+                                    'Selasa',
+                                    'Rabu',
+                                    'Kamis',
+                                    'Jumat',
+                                    'Sabtu',
+                                    'Minggu'
+                                  );
+                                  
+                              $bulan = array (1 =>   'Januari',
+                                    'Februari',
+                                    'Maret',
+                                    'April',
+                                    'Mei',
+                                    'Juni',
+                                    'Juli',
+                                    'Agustus',
+                                    'September',
+                                    'Oktober',
+                                    'November',
+                                    'Desember'
+                                  );
+                              $split    = explode('-', $tanggal);
+                              $tgl_indo = $split[2] . ' ' . $bulan[ (int)$split[1] ] . ' ' . $split[0];
+                              
+                              if ($cetak_hari) {
+                                $num = date('N', strtotime($tanggal));
+                                return $hari[$num] . ', ' . $tgl_indo;
+                              }
+                              return $tgl_indo;
+                            }
+                      foreach ($customer as $customer) { ?>
                       <tr>
                         <td><?php echo $no++ ?></td>
                         <td><?php echo $customer->id_pelanggan ?></td>
                         <td><?php echo $customer->nama_pelanggan ?></td>
                         <td><?php echo $customer->no_hp ?></td>
                         <td>
-                          <?php echo $customer->alamat ?>,<br> 
-                          <?php echo $customer->kecamatan ?>, 
-                          <?php echo $customer->kabupaten ?>,<br> 
-                          <?php echo $customer->provinsi ?>
-                          
+                          <?php echo $customer->alamat ?><br> 
                         </td>
+                        <td><?php echo $customer->kabupaten ?></td>
+                        <td><?php echo $customer->provinsi ?></td>
                         <td><?php echo $customer->nama_komoditi ?></td>
                         <td><?php echo $customer->pembelian_awal ?></td>
-                        <td><?php echo $customer->tanggal_daftar ?></td>
+                        <td><?php echo tanggal_indo(date('Y-m-d',strtotime($customer->tanggal_daftar))); ?></td>
                         <td>
                           <a href="<?php echo base_url('admin/pelanggan/edit_customer/'.$customer->id_pelanggan) ?>" class="btn btn-warning btn-xs" ><i class="fa fa-edit"></i> Edit</a>
                           <a href="<?php echo base_url('admin/pelanggan/delete/'.$customer->id_pelanggan) ?>" class="btn btn-danger btn-xs" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')" ><i class="fa fa-trash"></i> Hapus</a>

@@ -128,7 +128,7 @@ class Belanja extends CI_Controller
 			$kode_transaksi = $i->post('kode_transaksi');
 			$data = array(	'id_pelanggan'		=> $pelanggan->id_pelanggan,
 							'id_user'			=> $id_user,
-							'id_rekenin'		=> $this->input->post('radio'),
+							'id_rekening'		=> $this->input->post('rekening'),
 							'nama_pelanggan'	=> $i->post('nama_pelanggan'),
 							'no_hp'				=> $i->post('no_hp'),
 							'alamat'			=> $i->post('alamat'),
@@ -136,7 +136,6 @@ class Belanja extends CI_Controller
 							'tanggal_transaksi'	=> $i->post('tanggal_transaksi'),
 							'total_bayar'		=> $i->post('total'),
 							'total_transaksi'	=> $i->post('total_transaksi'),
-							'metode_pembayaran' => 1,
 							'total_item'		=> $i->post('total_item'),
 							'expedisi'			=> $i->post('expedisi'),
 							'ongkir'			=> $i->post('ongkir'),
