@@ -17,8 +17,8 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header"></li>
-        <li class="active treeview">
-          <a href="#">
+        <li class="active">
+          <a href="<?php echo base_url('home/dashboard') ?>">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>

@@ -17,8 +17,13 @@
 						echo form_open(base_url('belanja/add')); 
 						//elemen yang dibawa
 						echo form_hidden('id', $produk->kode_produk);
-						echo form_hidden('qty', 1);
-						echo form_hidden('price', $produk->harga_customer);
+                        if($this->session->userdata('hak_akses')=='2'){
+						echo form_hidden('qty', 260);
+						echo form_hidden('price', $produk->harga_distributor);
+                    }else if($this->session->userdata('hak_akses')=='3'){
+                        echo form_hidden('qty', 20);
+                        echo form_hidden('price', $produk->harga_mitra);
+                    }
 						echo form_hidden('name', $produk->nama_produk);
 						//elemen redirect
 						echo form_hidden('redirect_page', str_replace('index.php/', '', current_url()));
@@ -35,7 +40,7 @@
                         </div>
                         <div class="why-text">
                             <h4><?php echo $produk->nama_produk ?></h4>
-                            <h5> Rp. <?php echo number_format($produk->harga_customer,'0',',','.') ?></h5>
+                            <h5>Rp. <?php echo number_format($produk->harga_mitra,'0',',','.') ?></h5>
                         </div>
                     </div>
                     <?php echo form_close(); ?>

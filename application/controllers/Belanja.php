@@ -14,7 +14,7 @@ class Belanja extends CI_Controller
 		//load helper random string
 		$this->load->helper('string');
 		//proteksi halaman
-		$this->simple_login->ceklogin();
+		$this->simple_login->cek_login();
 	}
 	//halaman belanja
 	public function index()
@@ -29,27 +29,31 @@ class Belanja extends CI_Controller
 	//tambahkan ke keranjang belanja
 	public function add()
 	{
-		$kode_produk = $this->input->post('id');
-		$produk = $this->produk_model->listing_produk($kode_produk);
-		if($this->input->post('qty') > $produk->stok ){
-			$this->session->set_flashdata('sukses','Belanja Anda melebihi stok');
-			 redirect($this->input->post('redirect_page'),'refresh');
-		}else{
-		//ambil data dari form
-		$id 			= $this->input->post('id');
-		$qty 			= $this->input->post('qty');
-		$price 			= $this->input->post('price');
-		$name 			= $this->input->post('name');
-		$redirect_page 	= $this->input->post('redirect_page');
-		//proses memasukkan ke keranjang belanja
-		$data = array(	'id'	=> $id,
-						'qty'	=> $qty,
-						'price'	=> $price,
-						'name'	=> $name
-						);
-		$this->cart->insert($data);
-		//redirect page
-		 redirect($redirect_page,'refresh');
+		if($this->session->userdata('hak_akses')!='1'){
+			$kode_produk = $this->input->post('id');
+			$produk = $this->produk_model->listing_produk($kode_produk);
+			if($this->input->post('qty') > $produk->stok ){
+				$this->session->set_flashdata('sukses','Belanja Anda melebihi stok');
+				 redirect($this->input->post('redirect_page'),'refresh');
+			}else{
+			//ambil data dari form
+			$id 			= $this->input->post('id');
+			$qty 			= $this->input->post('qty');
+			$price 			= $this->input->post('price');
+			$name 			= $this->input->post('name');
+			$redirect_page 	= $this->input->post('redirect_page');
+			//proses memasukkan ke keranjang belanja
+			$data = array(	'id'	=> $id,
+							'qty'	=> $qty,
+							'price'	=> $price,
+							'name'	=> $name
+							);
+			$this->cart->insert($data);
+			//redirect page
+			 redirect($redirect_page,'refresh');
+		}
+	}else{
+		redirect(base_url('login'),'refresh');
 	}
 	}
 

@@ -13,7 +13,7 @@ class Order extends CI_Controller
 		//load helper random string
 		$this->load->helper('string');
 		//proteksi halaman
-		$this->simple_login->ceklogin();
+		$this->simple_login->cek_login();
 	}
 	//halaman list order
 	public function index()
@@ -95,4 +95,12 @@ class Order extends CI_Controller
 						);
 		$this->load->view('admin/layout/wrapper', $data, FALSE);	
 	}
+	public function tambah_order()
+	{
+		
+		$data = array(	'title'				=> 'Tambah Order',
+						'isi'				=> 'admin/order/tambah_order'
+					);
+		$this->load->view('admin/layout/wrapper', $data, FALSE);
+	} 
 }

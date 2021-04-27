@@ -14,7 +14,7 @@ class Pdf extends CI_Controller
 		//load helper random string
 		$this->load->helper('string');
 		//proteksi halaman
-		$this->simple_login->ceklogin();
+		$this->simple_login->cek_login();
 	}
 
 	public function pdf($kode_transaksi)

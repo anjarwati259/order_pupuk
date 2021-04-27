@@ -31,7 +31,7 @@
             echo '</div>';
         }
         //form open
-        echo form_open(base_url('masuk'),'class="leave-comment"'); ?>
+        echo form_open(base_url('login'),'class="leave-comment"'); ?>
             
             <form method="post" accept-charset="utf-8">
 

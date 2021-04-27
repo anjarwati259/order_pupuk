@@ -40,7 +40,11 @@
                                         <td class="price-pr">
                                             <p><?php echo 'Rp. '.number_format($keranjang['price'],'0',',','.') ?></p>
                                         </td>
-                                        <td class="quantity-box"><input type="number" size="4" name="qty" value="<?php echo $keranjang['qty'] ?>" min="0" step="1" class="c-input-text qty text"></td>
+                                        <?php if($this->session->userdata('hak_akses')=='2'){ ?>
+                                        <td class="quantity-box"><input type="number" size="4" name="qty" value="<?php echo $keranjang['qty'] ?>" min="260" step="1" class="c-input-text qty text"></td>
+                                    <?php }else if($this->session->userdata('hak_akses')=='3'){ ?>
+                                    <td class="quantity-box"><input type="number" size="4" name="qty" value="<?php echo $keranjang['qty'] ?>" min="20" step="1" class="c-input-text qty text"></td>
+                                <?php } ?>
                                         <td class="total-pr">
                                             <p>Rp. 
                                             <?php 

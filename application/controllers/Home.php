@@ -9,6 +9,7 @@ class Home extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('produk_model');
+		$this->load->model('dashboard_model');
 	}
 	public function index(){
 		$produk 	= $this->produk_model->home();
@@ -20,10 +21,13 @@ class Home extends CI_Controller
 		$this->load->view('layout/wrapper', $data, FALSE);
 	}
 	public function dashboard(){
-
+		$order = $this->dashboard_model->order();
+		$proses = $this->dashboard_model->order_proses();
 		$data = array(	'title'		=> 'Dashboard Pelanggan',
+						'order'		=> $order,
+						'proses'	=> $proses,
 						'isi'		=> 'pelanggan/dashboard/list'
-						); 
+						);
 		$this->load->view('pelanggan/layout/wrapper', $data, FALSE);
 	}
 }

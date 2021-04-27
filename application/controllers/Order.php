@@ -15,12 +15,12 @@ class Order extends CI_Controller
 		//load helper random string
 		$this->load->helper('string');
 		//proteksi halaman
-		$this->simple_login->ceklogin();
+		$this->simple_login->cek_login();
 	}
 	//halaman belanja
 	public function index()
 	{ 
-		if($this->session->userdata('hak_akses')=='Customer'){
+		if($this->session->userdata('hak_akses')=='2' | $this->session->userdata('hak_akses')=='3'){
 			$id_user	= $this->session->userdata('id_user');
 			$order 			= $this->order_model->listing($id_user);
 			$data = array(	'title'		=> 'Order Saya',
@@ -52,4 +52,5 @@ class Order extends CI_Controller
 					);
 		$this->load->view('pelanggan/layout/wrapper', $data, FALSE);
 	} 
+	
 }
