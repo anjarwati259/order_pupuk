@@ -161,9 +161,8 @@ class Order extends CI_Controller
 			$data['total_transaksi'] = $this->cart->total();
 			$data['status_bayar'] = '0';
 			$data['tanggal_transaksi'] = $this->input->post('tanggal_transaksi');
-			// $data['metode_pembayaran'] = $this->input->post('metode_pembayaran');
 			$data['total_item'] = $this->cart->total_items();
-			$data['metode_pembayara'] = $this->input->post("username");
+			$data['metode_pembayaran'] = $this->input->post('metode_pembayaran');
 
 			$this->order_model->tambah($data);
 			if($data['kode_transaksi']){
@@ -179,7 +178,7 @@ class Order extends CI_Controller
 			$purchase_data = array(
 				'kode_transaksi' => $kode_transaksi,
 				'id_produk' => $cart['id'],
-				//'category_id' => $cart['category_id'],
+				//'id_pelanggan' => $cart['category_id'],
 				'jml_beli' => $cart['qty'],
 				'harga' => $cart['price'],
 				'total_harga' => $cart['subtotal']

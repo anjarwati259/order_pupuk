@@ -33,31 +33,21 @@
                       </select>
                     </div>
                   </div>
-                  <div class="form-group">
-                    <label class="col-sm-4 control-label" for="kode">Kode Order</label>
-                    <div class="col-sm-8">
-                      <input type="text" name="username" value="<?php echo set_value('username') ?>">  
-                    </div>
-                  </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label class="col-sm-4 control-label" for="date">Tanggal</label>
                     <div class="col-sm-8">
                       <input type="text" value="<?php echo date('Y-m-d H:i:s');?>" id="date" class="form-control" disabled/>
-                      <input type="hidden" name="tanggal_transaksi" value="<?php echo date('Y-m-d H:i:s');?>" id="tanggal_transaksi" class="form-control"/>
+                      <input type="hidden" id="tanggal_transaksi" name="tanggal_transaksi" value="<?php echo date('Y-m-d H:i:s');?>" id="tanggal_transaksi" class="form-control"/>
                     </div>
                   </div>
                   <div class="form-group">
                     <label class="col-sm-4 control-label" for="category_id">Pembayaran</label>
                     <div class="col-sm-8">
-                      <select name='is_cash' class="form-control">
-                        <option value="1" <?php if(!empty($penjualan) && $penjualan[0]->is_cash == true) echo 'selected="selected"';?>>
-                          Cash
-                        </option>
-                        <option value="0" <?php if(!empty($penjualan) && $penjualan[0]->is_cash == true) echo 'selected="selected"';?>>
-                          Cash
-                        </option>
+                      <select name='metode_pembayaran' class="form-control" id="metode_pembayaran">
+                        <option value='1'>Transfer Bank</option>
+                        <option value='0'>COD</option>
                       </select>
                     </div>
                   </div>
@@ -249,15 +239,6 @@
         var kode_transaksi = $("#kode_transaksi").val();
         var supplier_id = $("#supplier_id").val();
         var status_id = $("#kode_transaksi").attr("data-attr");
-        // if(typeof transaction_id !== "undefined" && transaction_id != ""){
-        //     status = true;
-        //     method = "transaksi";
-        //     arr = {
-        //         'transaction_id': transaction_id,
-        //         'supplier_id': supplier_id
-        //     };
-        //     console.log(arr);
-        // }
 
         // Penjualan
         var penjualan = penjualan_status();
@@ -266,7 +247,6 @@
             method = penjualan[1];
             arr = penjualan[2];
         }
-
 
         if(status == true) {
             $.ajax({
@@ -297,14 +277,16 @@
         var data = false;
         var kode_transaksi = $("#kode_transaksi").val();
         var id_pelanggan = $("#id_pelanggan").val();
-        // var is_cash = $("#is_cash").val();
+        var metode_pembayaran = $("#metode_pembayaran").val();
+        var tanggal_transaksi = $("#tanggal_transaksi").val();
         if(typeof kode_transaksi !== "undefined" && kode_transaksi != ""){
             var status = true;
             var method = "penjualan";
             var arr = {
                 'kode_transaksi': kode_transaksi,
                 'id_pelanggan': id_pelanggan,
-                // 'is_cash' : is_cash
+                'metode_pembayaran' : metode_pembayaran,
+                'tanggal_transaksi' : tanggal_transaksi
             };
             data = [status,method,arr];
         }
