@@ -60,4 +60,21 @@ class Produk_model extends CI_Model
 		$query = $this->db->get();
 		return $query->row();
 	}
+	public function get_by_produk($kode_produk){
+		$response = false;
+		$query = $this->db->get_where('tb_produk',array('kode_produk' => $kode_produk));
+		if($query && $query->num_rows()){
+			$response = $query->result_array();
+		}
+		return $response;
+	}
+	public function detail_by_id($kode_produk){
+		$response = false;
+		$this->db->where('tb_produk.kode_produk',$kode_produk);
+		$query = $this->db->get('tb_produk');
+		if($query && $query->num_rows()){
+			$response = $query->result_array();
+		}
+		return $response;
+	}
 }

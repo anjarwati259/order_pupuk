@@ -11,28 +11,32 @@
             <div class="tab-content">
               <!-- /.tab-pane -->
               <div class="tab-pane active" id="tab_1">
-                <form id="transaction-form" class="form-horizontal" method="POST" action="">
+                <form id="transaction-form" class="form-horizontal" method="POST" action="<?php echo base_url('admin/order/add_process');?>">
               <div class="box-body">
                 <div class="col-md-6">
                   <div class="form-group">
                     <label class="col-sm-4 control-label" for="kode">Kode Order</label>
                     <div class="col-sm-8">
-                      <input type="text" name="kode_transaksi" value="<?php echo !empty($code_order) ? $code_order : '';?>" class="form-control" disabled/>
-                      <input type="hidden" name="kode_transaksi" id="kode_transaksi" value="<?php echo !empty($code_order) ? $code_order : '';?>"/>
+                      <input type="hidden" name="kode_transaksi" id="kode_transaksi" value="<?php echo $kode_transaksi?>"/>
+                      <input type="text" name="kode" id="kode_transaksi" class="form-control" value="<?php echo $kode_transaksi ?>" disabled/>
                     </div>
                   </div>
                   <div class="form-group">
                     <label class="col-sm-4 control-label" for="category_id">Customer</label>
                     <div class="col-sm-8">
-                      <select class="form-control" id="customer_id" name="customer_id">
-                        <?php if(isset($customers) && is_array($customers)){?>
-                          <?php foreach($customers as $item){?>
-                             <option value="<?php echo $item->nama_customer;?>" <?php if(!empty($order) && $item->nama_customer == $order[0]->nama_customer) echo 'selected="selected"';?>>
-                              <?php echo $item->nama_customer;?>
+                      <select class="form-control" id="id_pelanggan" name="id_pelanggan">
+                          <?php foreach($pelanggan as $item){?>
+                             <option value="<?php echo $item->id_pelanggan;?>">
+                              <?php echo $item->nama_pelanggan;?>
                             </option>
                           <?php }?>
-                        <?php }?>
                       </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-4 control-label" for="kode">Kode Order</label>
+                    <div class="col-sm-8">
+                      <input type="text" name="username" value="<?php echo set_value('username') ?>">  
                     </div>
                   </div>
                 </div>
@@ -47,12 +51,12 @@
                   <div class="form-group">
                     <label class="col-sm-4 control-label" for="category_id">Pembayaran</label>
                     <div class="col-sm-8">
-                      <select class="form-control" id="is_cash" name="is_cash">
-                        <option value="1" <?php if(!empty($order) && $order[0]->is_cash == true) echo 'selected="selected"';?>>
+                      <select name='is_cash' class="form-control">
+                        <option value="1" <?php if(!empty($penjualan) && $penjualan[0]->is_cash == true) echo 'selected="selected"';?>>
                           Cash
                         </option>
-                        <option value="0" <?php if(!empty($order) && $order[0]->is_cash == false) echo 'selected="selected"';?>>
-                          Bayar Nanti
+                        <option value="0" <?php if(!empty($penjualan) && $penjualan[0]->is_cash == true) echo 'selected="selected"';?>>
+                          Cash
                         </option>
                       </select>
                     </div>
@@ -73,13 +77,13 @@
                       <tbody id="transaksi-item">
                         <tr>
                           <td>
-                            <select class="form-control" id="produk" name="id_produk">
+                            <select class="form-control" id="produk" name="kode_produk">
                               <option value="0">
                                 Please select one
                               </option>
                               <?php if(isset($produk) && is_array($produk)){?>
                                 <?php foreach($produk as $item){?>
-                                  <option value="<?php echo $item->id_produk;?>">
+                                  <option value="<?php echo $item->kode_produk;?>">
                                     <?php echo $item->nama_produk;?>
                                   </option>
                                 <?php }?>
@@ -90,7 +94,9 @@
                             <input type="number" id="jumlah" class="form-control" name="jumlah" min="1" value="1"/>
                           </td>
                           <td>
-                            <select class="form-control" id="sale_price" name="sale_price"></select>
+                            <select class="form-control" id="sale_price" name="sale_price">
+                              
+                            </select>
                           </td>
                           <td>
                             <a href="#" class="btn btn-primary" id="tambah-barang">Input Barang</a>
@@ -99,7 +105,6 @@
                         <?php if(!empty($carts) && is_array($carts)){?>
                             <?php foreach($carts['data'] as $k => $cart){?>
                               <tr id="<?php echo $k;?>" class="cart-value">
-                                <!-- <td><?php echo $cart['category_name'];?></td> -->
                                 <td><?php echo $cart['name'];?></td>
                                 <td><?php echo $cart['qty'];?></td>
                                 <td>Rp<?php echo number_format($cart['price']);?></td>
@@ -110,10 +115,12 @@
                       </tbody>
                       <tfoot>
                         <tr>
-                          <td>Total Order</td>
+                          <td>Total Penjualan</td>
                           <td id="total-pembelian"><?php echo !empty($carts) ? 'Rp'.number_format($carts['total_price']) : '';?></td>
                         </tr>
                       </tfoot>
+                      </tbody>
+                     
                     </table>
                   </div>
                 </div>
@@ -140,3 +147,169 @@
       <?php echo form_close(); ?>
       <!-- /.row -->
       <!-- END CUSTOM TABS -->
+<script type="text/javascript">
+  $(document).ready(function(){
+
+      // ambil data produk dan harga
+      $('body').on("change","#produk",function(){
+        var url =  '<?php echo base_url(); ?>' + 'admin/order/check_product/' + this.value;
+        //alert(url);
+        var type1 = '';
+        var type2 = '';
+        var type3 = '';
+        $("#sale_price").text("");
+        $.get(url, function(data, status) {
+            if(status == 'success' && data != 'false') {
+                var value = $.parseJSON(data);
+                var val = value[0];
+                var sale_value = '<option value="' + val.harga_customer + '">' + parseInt(val.harga_customer) + ' Harga Customer</option>';
+                if(val.harga_mitra != "0"){
+                    var type1 = '<option value="' + val.harga_mitra + '">' + parseInt(val.harga_mitra) + ' Harga Mitra </option>';
+                }
+                if(val.harga_distributor != "0"){
+                    var type2 = '<option value="' + val.harga_distributor + '">' + parseInt(val.harga_distributor) + ' Harga Distributor</option>';
+                }
+                $('#sale_price').append(sale_value+type1+type2);
+            }
+        });
+      });
+      //tambah chart
+      $('body').on("click","#tambah-barang",function(){
+        // alert("hai");
+        var id_produk = $("#produk").val();
+        var quantity = $("#jumlah").val();
+        var sale_price = $("#sale_price").val();
+        if($('#harga_satuan_net').length){
+            sale_price = $('#harga_satuan_net').unmask();
+        }
+        //alert(id_produk)
+        if(id_produk !== null && sale_price !== null){
+            $.ajax({
+                url: '<?php echo base_url(); ?>' + 'admin/order/add_item',
+                data: {
+                    'id_produk' : id_produk,
+                    'quantity' : quantity,
+                    'sale_price' : sale_price
+                },
+                type: 'POST',
+                beforeSend : function(){
+                    //$("body").faLoading();
+                },
+                success: function(data){
+                    var res = $.parseJSON(data);
+                    $(".cart-value").remove();
+                    $.each(res.data, function(key,value) {
+                        var row_2 = "";
+                        if($('#harga_satuan_net').length){
+                            //row_2 = "colspan='2'";
+                        }
+                        var display = '<tr class="cart-value" id="'+ key +'">' +
+                                    '<td>'+ value.name +'</td>' +
+                                    '<td>'+ value.qty +'</td>' +
+                                    '<th '+row_2+'>Rp'+ value.subtotal +'</th>' +
+                                    '<td><span class="btn btn-danger btn-sm transaksi-delete-item" data-cart="'+ key +'">x</span></td>' +
+                                    '</tr>';
+                        $("#transaksi-item tr:last").after(display);
+                    });
+                    $("#total-pembelian").text('Rp'+res.total_price);
+                    $("#transaksi-item").find("input[type=text], input[type=number]").val("0");
+                    //$("body").faLoading(false);
+                    console.log(res);
+                },
+                // error: function(){
+                //     alert('Something Error');
+                // }
+            });
+        }else{
+            alert("Silahkan isi semua box");
+        }
+        });
+      //delete chart
+      $(document).on("click",".transaksi-delete-item",function(e){
+        var rowid = $(this).attr("data-cart");
+        //$el.faLoading();
+        $.get('<?php echo base_url(); ?>' + 'admin/order/delete_item/'+rowid,
+            function(data,status){
+                if(status == 'success'  && data != 'false'){
+                    $("#"+rowid).remove();
+                    console.log(data);
+                    $("#total-pembelian").text('Rp'+data);
+                    //$el.faLoading(false);
+                }                
+            }
+        );
+    });
+      //add order
+      $("#submit-transaksi").on('click',function(e){
+        e.preventDefault();
+        var status = false;
+        var method = null;
+        var arr = null;
+
+        var kode_transaksi = $("#kode_transaksi").val();
+        var supplier_id = $("#supplier_id").val();
+        var status_id = $("#kode_transaksi").attr("data-attr");
+        // if(typeof transaction_id !== "undefined" && transaction_id != ""){
+        //     status = true;
+        //     method = "transaksi";
+        //     arr = {
+        //         'transaction_id': transaction_id,
+        //         'supplier_id': supplier_id
+        //     };
+        //     console.log(arr);
+        // }
+
+        // Penjualan
+        var penjualan = penjualan_status();
+        if(penjualan[0] == true){
+            status = penjualan[0];
+            method = penjualan[1];
+            arr = penjualan[2];
+        }
+
+
+        if(status == true) {
+            $.ajax({
+                url: $("#transaction-form").attr("action"),
+                data: arr,
+                type: 'POST',
+                beforeSend: function () {
+                    //$el.faLoading();
+                },
+                success: function (data) {
+                    var response = $.parseJSON(data);
+                    //$el.faLoading(false);
+                    if(response.status == "ok"){
+                        alert("sukses");
+                        window.location.href = '<?php echo base_url('admin/order'); ?>';
+                    }else if(response.status == "limit"){
+                        alert("Stok jumlah produk yang anda pilih sudah habis");
+                    }else{
+                        alert("Terjadi error di server, silahkan coba lagi");
+                    }
+                }
+            });
+        }else{
+            alert("Silahkan periksa kode transaksi atau supplier anda!");
+        }
+    });
+      function penjualan_status(){
+        var data = false;
+        var kode_transaksi = $("#kode_transaksi").val();
+        var id_pelanggan = $("#id_pelanggan").val();
+        // var is_cash = $("#is_cash").val();
+        if(typeof kode_transaksi !== "undefined" && kode_transaksi != ""){
+            var status = true;
+            var method = "penjualan";
+            var arr = {
+                'kode_transaksi': kode_transaksi,
+                'id_pelanggan': id_pelanggan,
+                // 'is_cash' : is_cash
+            };
+            data = [status,method,arr];
+        }
+        return data;
+    }
+
+    });
+</script>

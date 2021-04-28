@@ -10,6 +10,8 @@ class Order extends CI_Controller
 		parent::__construct();
 		$this->load->model('order_model');
 		$this->load->model('pembayaran_model');
+		$this->load->model('pelanggan_model');
+		$this->load->model('produk_model');
 		//load helper random string
 		$this->load->helper('string');
 		//proteksi halaman
@@ -97,10 +99,94 @@ class Order extends CI_Controller
 	}
 	public function tambah_order()
 	{
+		// destry cart
+		$this->cart->destroy();
+
+		$kode_transaksi = date('dmY').strtoupper(random_string('alnum',8));
+		$pelanggan 		= $this->pelanggan_model->alllisting();
+		$produk 		= $this->produk_model->listing();
 		
 		$data = array(	'title'				=> 'Tambah Order',
+						'kode_transaksi'	=> $kode_transaksi,
+						'pelanggan'			=> $pelanggan,
+						'produk'			=> $produk,
 						'isi'				=> 'admin/order/tambah_order'
 					);
 		$this->load->view('admin/layout/wrapper', $data, FALSE);
+	}
+	public function check_product($kode_produk){
+		$produk = $this->produk_model->get_by_produk($kode_produk);
+		echo json_encode($produk);
 	} 
+	public function add_item(){
+		$id_produk = $this->input->post('id_produk');
+		$quantity = $this->input->post('quantity');
+		$sale_price = $this->input->post('sale_price');
+
+		$get_product_detail =  $this->produk_model->detail_by_id($id_produk);
+		if($get_product_detail){
+			$data = array(
+				'id'      => $id_produk,
+				'qty'     => $quantity,
+				'price'   => $sale_price,
+				'name'    => $get_product_detail[0]['nama_produk']
+			);
+			$this->cart->insert($data);
+			echo json_encode(array('status' => 'ok',
+							'data' => $this->cart->contents() ,
+							'total_item' => $this->cart->total_items(),
+							'total_price' => $this->cart->total()
+						)
+				);
+		}else{
+			echo json_encode(array('status' => 'error'));
+		}
+
+	}
+	public function delete_item($rowid){
+		if($this->cart->remove($rowid)) {
+			echo number_format($this->cart->total());
+		}else{
+			echo "false";
+		}
+	}
+
+	public function add_process(){
+		$this->form_validation->set_rules('kode_transaksi', 'kode_transaksi', 'required');
+		$user = $this->input->post("username");
+		$carts =  $this->cart->contents();
+		if(!empty($carts) && is_array($carts)){
+			$data['kode_transaksi'] = $this->input->post('kode_transaksi');
+			$data['id_pelanggan'] = $this->input->post('id_pelanggan');
+			$data['total_transaksi'] = $this->cart->total();
+			$data['status_bayar'] = '0';
+			$data['tanggal_transaksi'] = $this->input->post('tanggal_transaksi');
+			// $data['metode_pembayaran'] = $this->input->post('metode_pembayaran');
+			$data['total_item'] = $this->cart->total_items();
+			$data['metode_pembayara'] = $this->input->post("username");
+
+			$this->order_model->tambah($data);
+			if($data['kode_transaksi']){
+				$this->_insert_purchase_data($data['kode_transaksi'],$carts);
+			}
+			echo json_encode(array('status' => 'ok'));
+		}else{
+			echo json_encode(array('status' => 'error'));
+		}
+	}
+	private function _insert_purchase_data($kode_transaksi,$carts){
+		foreach($carts as $key => $cart){
+			$purchase_data = array(
+				'kode_transaksi' => $kode_transaksi,
+				'id_produk' => $cart['id'],
+				//'category_id' => $cart['category_id'],
+				'jml_beli' => $cart['qty'],
+				'harga' => $cart['price'],
+				'total_harga' => $cart['subtotal']
+			);
+			$this->order_model->tambah_order($purchase_data);
+		}
+		$this->cart->destroy();
+	}
+
 }
