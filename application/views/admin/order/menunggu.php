@@ -29,7 +29,7 @@ echo form_open_multipart(base_url('admin/produk/tambah'), ' class="form-horizont
           <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>Kode Transaksi</th>
+                    <th>Kode Invoice</th>
                     <th>Nama</th>
                     <th>Tanggal</th>
                     <th>Jumlah Item</th>

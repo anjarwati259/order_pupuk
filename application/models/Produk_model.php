@@ -77,4 +77,17 @@ class Produk_model extends CI_Model
 		}
 		return $response;
 	}
+	public function update_qty_min($id,$data){
+		$this->db->set('stok', 'stok-'.$data['stok'], FALSE);
+		$this->db->where('kode_produk', $id);
+		$this->db->update('tb_produk');
+	}
+	public function get_by_id($id){
+		$response = false;
+		$query = $this->db->get_where('tb_produk',array('kode_produk' => $id));
+		if($query && $query->num_rows()){
+			$response = $query->result_array();
+		}
+		return $response;
+	}
 }

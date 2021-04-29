@@ -25,6 +25,7 @@ class Order extends CI_Controller
 		$data = array(	'title'			=> 'Data Pesanan',
 						'menunggu'		=> $menunggu,
 						'order'			=> $order,
+						'konfirmasi'	=> $order,
 						'isi'			=> 'admin/order/list'
 						);
 		$this->load->view('admin/layout/wrapper', $data, FALSE);
@@ -153,11 +154,33 @@ class Order extends CI_Controller
 
 	public function add_process(){
 		$this->form_validation->set_rules('kode_transaksi', 'kode_transaksi', 'required');
-		$user = $this->input->post("username");
+
 		$carts =  $this->cart->contents();
+		if($this->_check_qty($carts)){
+			echo json_encode(array('status' => 'limit'));
+			exit;
+		}
+
+		$user = $this->session->userdata('id_user');
+		// $carts =  $this->cart->contents();
+
+		//grand total
+		$subtotal = $this->cart->total();
+		$ongkir = $this->input->post('ongkir');
+		$total_bayar = $subtotal + $ongkir;
 		if(!empty($carts) && is_array($carts)){
 			$data['kode_transaksi'] = $this->input->post('kode_transaksi');
 			$data['id_pelanggan'] = $this->input->post('id_pelanggan');
+			$data['id_user'] = $user;
+			$data['nama_pelanggan'] = $this->input->post('nama_pelanggan');
+			$data['alamat'] = $this->input->post('alamat');
+			$data['provinsi'] = $this->input->post('provinsi');
+			$data['kabupaten'] = $this->input->post('kabupaten');
+			$data['kecamatan'] = $this->input->post('kecamatan');
+			$data['expedisi'] = $this->input->post('ekspedisi');
+			$data['ongkir'] = $ongkir;
+			$data['no_hp'] = $this->input->post('no_hp');
+			$data['total_bayar'] = $total_bayar;
 			$data['total_transaksi'] = $this->cart->total();
 			$data['status_bayar'] = '0';
 			$data['tanggal_transaksi'] = $this->input->post('tanggal_transaksi');
@@ -184,8 +207,41 @@ class Order extends CI_Controller
 				'total_harga' => $cart['subtotal']
 			);
 			$this->order_model->tambah_order($purchase_data);
+
+			$this->produk_model->update_qty_min($cart['id'],array('stok' => $cart['qty']));
 		}
 		$this->cart->destroy();
+	}
+	private function _check_qty($carts){
+		$status = false;
+		foreach($carts as $key => $cart){
+			$product = $this->produk_model->get_by_id($cart['id']);
+			if($cart['qty'] >= $product[0]['stok']){
+				$status = true;
+				break;
+			}
+		}
+		return $status;
+	}
+
+	public function konfirmasi($kode_transaksi){
+
+		$data = array(	'kode_transaksi'	=> $kode_transaksi,
+						'id_rekening'		=> $this->input->post('id_rekening'),
+						'status_bayar'		=> 1
+						);
+		$this->order_model->update_status($data);
+
+		//insert pembayaran
+		$data = array(	'kode_transaksi'	=> $kode_transaksi,
+						'nama_bank'			=> $this->input->post('nama_bank'),
+						'id_rekening'		=> $this->input->post('id_rekening'),
+						'tanggal_bayar'		=> $this->input->post('tanggal_bayar'),
+						'jumlah_bayar'		=> $this->input->post('total_bayar')
+						);
+		$this->pembayaran_model->bayar($data);
+		$this->session->set_flashdata('sukses','Status Telah Diubah');
+		redirect(base_url('admin/order/sudah_bayar'), 'refresh');
 	}
 
 }

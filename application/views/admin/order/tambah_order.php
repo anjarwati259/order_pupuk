@@ -12,118 +12,150 @@
               <!-- /.tab-pane -->
               <div class="tab-pane active" id="tab_1">
                 <form id="transaction-form" class="form-horizontal" method="POST" action="<?php echo base_url('admin/order/add_process');?>">
-              <div class="box-body">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label class="col-sm-4 control-label" for="kode">Kode Order</label>
-                    <div class="col-sm-8">
-                      <input type="hidden" name="kode_transaksi" id="kode_transaksi" value="<?php echo $kode_transaksi?>"/>
-                      <input type="text" name="kode" id="kode_transaksi" class="form-control" value="<?php echo $kode_transaksi ?>" disabled/>
+                <div class="box-body">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="col-sm-4 control-label" for="kode">Kode Invoice</label>
+                      <div class="col-sm-8">
+                        <input type="hidden" name="kode_transaksi" id="kode_transaksi" value="<?php echo $kode_transaksi?>"/>
+                        <input type="text" name="kode" id="kode_transaksi" class="form-control" value="<?php echo $kode_transaksi ?>" disabled/>
+                      </div>
                     </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="col-sm-4 control-label" for="category_id">Customer</label>
-                    <div class="col-sm-8">
-                      <select class="form-control" id="id_pelanggan" name="id_pelanggan">
-                          <?php foreach($pelanggan as $item){?>
-                             <option value="<?php echo $item->id_pelanggan;?>">
-                              <?php echo $item->nama_pelanggan;?>
-                            </option>
-                          <?php }?>
-                      </select>
+                    <div class="form-group">
+                      <label class="col-sm-4 control-label" for="category_id">Nama</label>
+                      <div class="col-sm-8">
+                        <input type="text" name="nama_pelanggan" id="nama_pelanggan" value="<?php echo set_value('nama_pelanggan') ?>" class="form-control"/>
+                        <input type="hidden" name="id_pelanggan" id="id_pelanggan" value="<?php echo set_value('id_pelanggan') ?>" class="form-control"/>
+                      </div>
                     </div>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label class="col-sm-4 control-label" for="date">Tanggal</label>
-                    <div class="col-sm-8">
-                      <input type="text" value="<?php echo date('Y-m-d H:i:s');?>" id="date" class="form-control" disabled/>
-                      <input type="hidden" id="tanggal_transaksi" name="tanggal_transaksi" value="<?php echo date('Y-m-d H:i:s');?>" id="tanggal_transaksi" class="form-control"/>
+                    <div class="form-group">
+                      <label class="col-sm-4 control-label" for="category_id">Alamat</label>
+                      <div class="col-sm-8">
+                        <textarea type="text" name="alamat" id="alamat" value="<?php echo set_value('alamat') ?>" class="form-control"></textarea>
+                      </div>
                     </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="col-sm-4 control-label" for="category_id">Pembayaran</label>
-                    <div class="col-sm-8">
-                      <select name='metode_pembayaran' class="form-control" id="metode_pembayaran">
-                        <option value='1'>Transfer Bank</option>
-                        <option value='0'>COD</option>
-                      </select>
+                    <div class="form-group">
+                      <label class="col-sm-4 control-label" for="category_id">Provinsi</label>
+                      <div class="col-sm-8">
+                        <input type="text" name="provinsi" id="provinsi" value="<?php echo set_value('provinsi') ?>" class="form-control"/>
+                      </div>
                     </div>
+                    <div class="form-group">
+                      <label class="col-sm-4 control-label" for="category_id">Kabupaten</label>
+                      <div class="col-sm-8">
+                        <input type="text" name="kabupaten" id="kabupaten" value="<?php echo set_value('kabupaten') ?>" class="form-control"/>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-4 control-label" for="category_id">Kecamatan</label>
+                      <div class="col-sm-8">
+                        <input type="text" name="kecamatan" id="kecamatan" value="<?php echo set_value('kecamatan') ?>" class="form-control"/>
+                      </div>
+                    </div>
+                    <input type="hidden" class="form-control" name="no_hp" id="no_hp" value="<?php echo set_value('no_hp') ?>" />
                   </div>
-                </div> 
-                <div class="col-md-11 col-md-offset-1">
-                  <h3 class="content-title">Informasi Barang</h3>
-                  <div class="content-process">
-                    <table class="table">
-                      <thead>
-                        <tr>
-                          <td>Nama Barang</td>
-                          <td>Jumlah</td>
-                          <td>Harga Beli Satuan</td>
-                          <td>Input Barang</td>
-                        </tr>
-                      </thead>
-                      <tbody id="transaksi-item">
-                        <tr>
-                          <td>
-                            <select class="form-control" id="produk" name="kode_produk">
-                              <option value="0">
-                                Please select one
-                              </option>
-                              <?php if(isset($produk) && is_array($produk)){?>
-                                <?php foreach($produk as $item){?>
-                                  <option value="<?php echo $item->kode_produk;?>">
-                                    <?php echo $item->nama_produk;?>
-                                  </option>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="col-sm-4 control-label" for="date">Tanggal</label>
+                      <div class="col-sm-8">
+                        <input type="text" value="<?php echo date('Y-m-d H:i:s');?>" id="date" class="form-control" disabled/>
+                        <input type="hidden" id="tanggal_transaksi" name="tanggal_transaksi" value="<?php echo date('Y-m-d H:i:s');?>" id="tanggal_transaksi" class="form-control"/>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-4 control-label" for="category_id">Ekspedisi</label>
+                      <div class="col-sm-8">
+                        <input type="text" class="form-control" name="ekspedisi" id="ekspedisi"/>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-4 control-label" for="category_id">Ongkos Kirim</label>
+                      <div class="col-sm-8">
+                        <input type="number" class="form-control" name="ongkir" id="ongkir"/>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-4 control-label" for="category_id">Pembayaran</label>
+                      <div class="col-sm-8">
+                        <select name='metode_pembayaran' class="form-control" id="metode_pembayaran">
+                          <option value='1'>Transfer Bank</option>
+                          <option value='0'>COD</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div> 
+                  <div class="col-md-11 col-md-offset-1">
+                    <h3 class="content-title">Informasi Barang</h3>
+                    <div class="content-process">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <td>Nama Barang</td>
+                            <td>Jumlah</td>
+                            <td>Harga Beli Satuan</td>
+                            <td>Input Barang</td>
+                          </tr>
+                        </thead>
+                        <tbody id="transaksi-item">
+                          <tr>
+                            <td>
+                              <select class="form-control" id="produk" name="kode_produk">
+                                <option value="0">
+                                  Please select one
+                                </option>
+                                <?php if(isset($produk) && is_array($produk)){?>
+                                  <?php foreach($produk as $item){?>
+                                    <option value="<?php echo $item->kode_produk;?>">
+                                      <?php echo $item->nama_produk;?>
+                                    </option>
+                                  <?php }?>
                                 <?php }?>
+                              </select>
+                            </td>
+                            <td>
+                              <input type="number" id="jumlah" class="form-control" name="jumlah" min="1" value="1"/>
+                            </td>
+                            <td>
+                              <select class="form-control" id="sale_price" name="sale_price">
+                                
+                              </select>
+                            </td>
+                            <td>
+                              <a href="#" class="btn btn-primary" id="tambah-barang">Input Barang</a>
+                            </td>
+                          </tr>
+                          <?php if(!empty($carts) && is_array($carts)){?>
+                              <?php foreach($carts['data'] as $k => $cart){?>
+                                <tr id="<?php echo $k;?>" class="cart-value">
+                                  <td><?php echo $cart['name'];?></td>
+                                  <td><?php echo $cart['qty'];?></td>
+                                  <td>Rp<?php echo number_format($cart['price']);?></td>
+                                  <td><span class="btn btn-danger btn-sm transaksi-delete-item" data-cart="<?php echo $k;?>">x</span></td>
+                                </tr>
                               <?php }?>
-                            </select>
-                          </td>
-                          <td>
-                            <input type="number" id="jumlah" class="form-control" name="jumlah" min="1" value="1"/>
-                          </td>
-                          <td>
-                            <select class="form-control" id="sale_price" name="sale_price">
-                              
-                            </select>
-                          </td>
-                          <td>
-                            <a href="#" class="btn btn-primary" id="tambah-barang">Input Barang</a>
-                          </td>
-                        </tr>
-                        <?php if(!empty($carts) && is_array($carts)){?>
-                            <?php foreach($carts['data'] as $k => $cart){?>
-                              <tr id="<?php echo $k;?>" class="cart-value">
-                                <td><?php echo $cart['name'];?></td>
-                                <td><?php echo $cart['qty'];?></td>
-                                <td>Rp<?php echo number_format($cart['price']);?></td>
-                                <td><span class="btn btn-danger btn-sm transaksi-delete-item" data-cart="<?php echo $k;?>">x</span></td>
-                              </tr>
-                            <?php }?>
-                        <?php }?>
-                      </tbody>
-                      <tfoot>
-                        <tr>
-                          <td>Total Penjualan</td>
-                          <td id="total-pembelian"><?php echo !empty($carts) ? 'Rp'.number_format($carts['total_price']) : '';?></td>
-                        </tr>
-                      </tfoot>
-                      </tbody>
-                     
-                    </table>
+                          <?php }?>
+                        </tbody>
+                        <tfoot>
+                          <tr>
+                            <td>Total Penjualan</td>
+                            <td id="total-pembelian"><?php echo !empty($carts) ? 'Rp'.number_format($carts['total_price']) : '';?></td>
+                          </tr>
+                        </tfoot>
+                        </tbody>
+                       
+                      </table>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <!-- /.box-body -->
-              <div class="box-footer">
-                <div class="col-md-3 col-md-offset-4">
-                  <a class="btn btn-default" href="<?php echo site_url('order');?>">Cancel</a>
-                  <a class="btn btn-info pull-right" href="#" id="submit-transaksi">Submit</a>
+                <!-- /.box-body -->
+                <div class="box-footer">
+                  <div class="col-md-3 col-md-offset-4">
+                    <a class="btn btn-default" href="<?php echo site_url('order');?>">Cancel</a>
+                    <a class="btn btn-info pull-right" href="#" id="submit-transaksi">Submit</a>
+                  </div>
                 </div>
-              </div>
-              <!-- /.box-footer -->
-            </form>
+                <!-- /.box-footer -->
+              </form>
                 <!-- /.box -->
               </div>
               <!-- /.tab-pane -->
@@ -134,9 +166,52 @@
         </div>
         <!-- /.col -->
       </div>
-      <?php echo form_close(); ?>
-      <!-- /.row -->
-      <!-- END CUSTOM TABS -->
+
+<!-- modal -->
+<div class="modal fade" id="modal-item">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" arial-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">Pilih Data Customer</h4>
+      </div>
+      <div class="modal-body table-responsive">
+        <table class="table table-bordered table-striped" id="table1">
+          <thead>
+            <tr>
+              <td>Nama</td>
+              <td>Alamat</td>
+              <td>No. Hp</td>
+              <td>Jenis Pelanggan</td>
+              <td>Action</td>
+            </tr>
+          </thead>
+          <tbody>
+            <?php foreach ($pelanggan as $value) {?>
+            <tr>
+              <td><?php echo $value->nama_pelanggan ?></td>
+              <td><?php echo $value->alamat ?></td>
+              <td><?php echo $value->no_hp ?></td>
+              <td><?php echo $value->jenis_pelanggan ?></td>
+              <td><button class="btn btn-xs btn-primary pilih" data-kodepel="<?php echo $value->id_pelanggan; ?>" 
+              alamat="<?php echo $value->alamat; ?>" 
+              provinsi="<?php echo $value->provinsi; ?>"
+              kab="<?php echo $value->kabupaten; ?>"
+              kec="<?php echo $value->kecamatan; ?>"
+              no_hp="<?php echo $value->no_hp; ?>"
+              data-napel="<?php echo $value->nama_pelanggan; ?>">Pilih</button></td>
+            </tr>
+          <?php } ?>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- javascript -->
 <script type="text/javascript">
   $(document).ready(function(){
 
@@ -277,6 +352,14 @@
         var data = false;
         var kode_transaksi = $("#kode_transaksi").val();
         var id_pelanggan = $("#id_pelanggan").val();
+        var nama_pelanggan = $("#nama_pelanggan").val();
+        var alamat = $("#alamat").val();
+        var provinsi = $("#provinsi").val();
+        var kabupaten = $("#kabupaten").val();
+        var kecamatan = $("#kecamatan").val();
+        var ekspedisi = $("#ekspedisi").val();
+        var ongkir = $("#ongkir").val();
+        var no_hp = $("#no_hp").val();
         var metode_pembayaran = $("#metode_pembayaran").val();
         var tanggal_transaksi = $("#tanggal_transaksi").val();
         if(typeof kode_transaksi !== "undefined" && kode_transaksi != ""){
@@ -285,6 +368,14 @@
             var arr = {
                 'kode_transaksi': kode_transaksi,
                 'id_pelanggan': id_pelanggan,
+                'nama_pelanggan': nama_pelanggan,
+                'alamat': alamat,
+                'provinsi': provinsi,
+                'kabupaten': kabupaten,
+                'kecamatan': kecamatan,
+                'ekspedisi': ekspedisi,
+                'ongkir': ongkir,
+                'no_hp': no_hp,
                 'metode_pembayaran' : metode_pembayaran,
                 'tanggal_transaksi' : tanggal_transaksi
             };
@@ -293,5 +384,26 @@
         return data;
     }
 
+    $("#nama_pelanggan").click(function(){
+      $("#modal-item").modal("show");
+    });
+    $(".pilih").click(function(){
+      var id_pelanggan = $(this).attr("data-kodepel");
+      var nama_pelanggan = $(this).attr("data-napel");
+      var alamat = $(this).attr("alamat");
+      var provinsi = $(this).attr("provinsi");
+      var kab = $(this).attr("kab");
+      var kec = $(this).attr("kec");
+      var no_hp = $(this).attr("no_hp");
+
+      $("#id_pelanggan").val(id_pelanggan);
+      $("#nama_pelanggan").val(nama_pelanggan);
+      $("#alamat").val(alamat);
+      $("#provinsi").val(provinsi);
+      $("#kabupaten").val(kab);
+      $("#kecamatan").val(kec);
+      $("#no_hp").val(no_hp);
+      $("#modal-item").modal("hide");
+    });
     });
 </script>

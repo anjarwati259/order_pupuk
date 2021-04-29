@@ -52,7 +52,7 @@ function tanggal_indo($tanggal, $cetak_hari = false)
         <table id="example1" class="table table-bordered table-striped">
           <tbody>
           	<tr>
-          		<td width="40%">Kode Transaksi</td>
+          		<td width="40%">Kode Invoice</td>
           		<th><?php echo $detail_order->kode_transaksi ?></th>
           	</tr>
           	<tr>
