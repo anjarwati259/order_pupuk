@@ -5,14 +5,14 @@
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3>150</h3>
+              <h3><?php echo $order->total ?></h3>
 
               <p>Order Terbaru</p>
             </div>
             <div class="icon">
               <i class="fa fa-cart-arrow-down"></i>
             </div>
-            <a href="#" class="small-box-footer">Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="<?php echo base_url('admin/order') ?>" class="small-box-footer">Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -20,14 +20,14 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>53<sup style="font-size: 20px">%</sup></h3>
+              <h3><?php echo $mitra->total ?></h3>
 
               <p>Mitra</p>
             </div>
             <div class="icon">
               <i class="fa fa-users"></i>
             </div>
-            <a href="#" class="small-box-footer">Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="<?php echo base_url('admin/pelanggan/mitra') ?>" class="small-box-footer">Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -35,14 +35,14 @@
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>44</h3>
+              <h3><?php echo $dist->total ?></h3>
 
               <p>Distributor</p>
             </div>
             <div class="icon">
               <i class="fa fa-users"></i>
             </div>
-            <a href="#" class="small-box-footer">Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="<?php echo base_url('admin/pelanggan/distributor') ?>" class="small-box-footer">Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -50,14 +50,14 @@
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>65</h3>
+              <h3><?php echo $customer->total ?></h3>
 
-              <p>Stok</p>
+              <p>Customer</p>
             </div>
             <div class="icon">
-              <i class="fa fa-cubes"></i>
+              <i class="fa fa-user"></i>
             </div>
-            <a href="#" class="small-box-footer">Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="<?php echo base_url('admin/pelanggan') ?>" class="small-box-footer">Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -153,12 +153,23 @@
 
         <div class="col-md-4">
           <!-- Info Boxes Style 2 -->
+          <div class="info-box bg-aqua">
+            <span class="info-box-icon"><a href="" style="color: #fff;"><i class="fa fa-cubes"></i></a></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Stok</span>
+              <span class="info-box-number"><?php echo $stok->total ?></span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+          <!-- Info Boxes Style 2 -->
           <div class="info-box bg-yellow">
             <span class="info-box-icon"><i class="fa fa-shopping-bag"></i></span>
 
             <div class="info-box-content">
               <span class="info-box-text">TRX PENJUALAN HARIAN</span>
-              <span class="info-box-number">5,200</span>
+              <span class="info-box-number"><?php echo $hari ?></span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -167,7 +178,7 @@
             <span class="info-box-icon"><i class="fa fa-shopping-basket"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">TRX PENJUALAN BULANAN</span>
+              <span class="info-box-text">TRX PENJUALAN MINGGUAN</span>
               <span class="info-box-number">92,050</span>
 
             </div>
@@ -178,7 +189,7 @@
             <span class="info-box-icon"><i class="fa fa-shopping-bag"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">TRX PENJUALAN TAHUNAN</span>
+              <span class="info-box-text">TRX PENJUALAN BULANAN</span>
               <span class="info-box-number">114,381</span>
 
             </div>

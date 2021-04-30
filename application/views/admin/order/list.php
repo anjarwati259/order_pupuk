@@ -4,10 +4,7 @@
     <div class="nav-tabs-custom">
       <ul class="nav nav-tabs">
         <li class="active"><a href="#tab_1" data-toggle="tab">Belum Bayar</a></li>
-        <li><a href="<?php echo site_url('admin/order/menunggu');?>">Menunggu Konfirmasi</a></li>
         <li><a href="<?php echo site_url('admin/order/sudah_bayar');?>">Dikemas</a></li>
-        <li><a href="<?php echo site_url('admin/order/listkirim');?>">Dikirim</a></li>
-        <li><a href="<?php echo site_url('admin/order/selesai');?>">Selesai</a></li>
       </ul>
       <div class="tab-content">
         <div class="tab-pane active" id="tab_1">
@@ -16,6 +13,7 @@
             <tr>
               <th>Kode Invoice</th>
               <th>Nama</th>
+              <th>No. HP</th>
               <th>Tanggal</th>
               <th>Jumlah Item</th>
               <th>Jumlah Belanja</th>
@@ -62,7 +60,8 @@
               <tr>
                 <td><a href="<?php echo base_url('admin/order/detail/'.$order->kode_transaksi) ?>"><?php echo $order->kode_transaksi ?></a></td>
                 <td><?php echo $order->nama_pelanggan ?></td>
-                <td><?php echo tanggal_indo(date('Y-m-d',strtotime($order->tanggal_transaksi)),true); ?></td>
+                <td><?php echo $order->no_hp ?></td>
+                <td><?php echo tanggal_indo(date('Y-m-d',strtotime($order->tanggal_transaksi)),FALSE); ?></td>
                 <td><?php echo $order->total_item ?></td>
                 <td><?php echo $order->total_bayar ?></td>
                 <td><?php if($order->status_bayar==0){

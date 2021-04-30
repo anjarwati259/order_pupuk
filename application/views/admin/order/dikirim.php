@@ -18,7 +18,6 @@ echo form_open_multipart(base_url('admin/produk/tambah'), ' class="form-horizont
     <div class="nav-tabs-custom">
       <ul class="nav nav-tabs">
       <li role="presentation"><a href="<?php echo site_url('admin/order');?>">Belum Bayar</a></li>
-      <li role="presentation"><a href="<?php echo site_url('admin/order/menunggu');?>">Menunggu Konfirmasi</a></li>
       <li role="presentation"><a href="<?php echo site_url('admin/order/sudah_bayar');?>">Dikemas</a></li>
       <li role="presentation" class="active"><a href="#tab_1">Dikirim</a></li>
       <li role="presentation"><a href="<?php echo site_url('admin/order/selesai');?>">Selesai</a></li>
@@ -80,10 +79,13 @@ echo form_open_multipart(base_url('admin/produk/tambah'), ' class="form-horizont
                   <td><?php echo tanggal_indo(date('Y-m-d',strtotime($dikirim->tanggal_transaksi)),true); ?></td>
                   <td><?php echo $dikirim->total_item ?></td>
                   <td><?php echo $dikirim->total_bayar ?></td>
-                  <td><?php if($dikirim->status_bayar==5){
+                  <td><?php if($dikirim->status_bayar==2){
                         echo "<span class='alert-success'>Barang Dikirim</span>";
-                      }
-                   ?></td>
+                      }?>
+                      <button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#diterima">
+                          <i class="fa fa-check"></i> Diterima
+                        </button>
+                   </td>
                 </tr>
               <?php } ?>
               </tbody>
@@ -100,3 +102,27 @@ echo form_open_multipart(base_url('admin/produk/tambah'), ' class="form-horizont
 </div>
 <!-- /.row -->
 <!-- END CUSTOM TABS -->
+
+
+<!-- modal -->
+<div class="modal fade" id="diterima">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title text-center">Pesanan Diterima</h4>
+      </div>
+      <div class="modal-body">
+        Apakah Anda Yakin Pesanan Telah Diterima?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
+        <a href="<?php echo base_url('admin/order/diterima/'.$dikirim->kode_transaksi) ?>" class="btn btn-danger"><i class="fa fa-trash-o"></i> Ya, Saya Yakin</a>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

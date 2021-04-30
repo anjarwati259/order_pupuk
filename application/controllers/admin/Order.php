@@ -20,23 +20,11 @@ class Order extends CI_Controller
 	//halaman list order
 	public function index()
 	{ 
-		$menunggu 	= $this->order_model->listing_admin(2);
 		$order 	= $this->order_model->listing_admin(0);
 		$data = array(	'title'			=> 'Data Pesanan',
-						'menunggu'		=> $menunggu,
 						'order'			=> $order,
 						'konfirmasi'	=> $order,
 						'isi'			=> 'admin/order/list'
-						);
-		$this->load->view('admin/layout/wrapper', $data, FALSE);
-	}
-	//list menunggu
-	public function menunggu()
-	{ 
-		$menunggu 	= $this->order_model->listing_admin(2);
-		$data = array(	'title'			=> 'Data Pesanan',
-						'menunggu'		=> $menunggu,
-						'isi'			=> 'admin/order/menunggu'
 						);
 		$this->load->view('admin/layout/wrapper', $data, FALSE);
 	}
@@ -72,17 +60,37 @@ class Order extends CI_Controller
 	//tambah no resi 
 	public function dikirim($kode_transaksi)
 	{
+		$valid = $this-> form_validation;
+
+		$valid->set_rules('no_resi', 'No Resi','required',
+				array(	'required' 		=> '%s harus diisi'
+						));
+		if($valid->run()===FALSE){
+			$this->session->set_flashdata('sukses','No resi belum diisi');
+			redirect(base_url('admin/order/sudah_bayar'), 'refresh');
+		}else{
+			
 			$data = array(	'kode_transaksi'	=> $kode_transaksi,
 							'no_resi'			=> $this->input->post('no_resi'),
-							'status_bayar'		=> 5
+							'status_bayar'		=> 2
 						);
 			$this->order_model->update_status($data);
 			$this->session->set_flashdata('sukses','Status Telah Diubah');
 			redirect(base_url('admin/order/listkirim'), 'refresh');
+		}
+	}
+	public function diterima($kode_transaksi)
+	{
+			$data = array(	'kode_transaksi'	=> $kode_transaksi,
+							'status_bayar'		=> 3
+						);
+			$this->order_model->update_status($data);
+			$this->session->set_flashdata('sukses','Status Telah Diubah');
+			redirect(base_url('admin/order/selesai'), 'refresh');
 	}
 	public function listkirim()
 	{
-		$dikirim 	= $this->order_model->listing_admin(5);
+		$dikirim 	= $this->order_model->listing_admin(2);
 		$data = array(	'title'			=> 'Data Pesanan',
 						'dikirim'		=> $dikirim,
 						'isi'			=> 'admin/order/dikirim'
@@ -91,7 +99,7 @@ class Order extends CI_Controller
 	}
 	public function selesai()
 	{
-		$selesai 	= $this->order_model->listing_admin(6);
+		$selesai 	= $this->order_model->listing_admin(3);
 		$data = array(	'title'			=> 'Data Pesanan',
 						'selesai'		=> $selesai,
 						'isi'			=> 'admin/order/selesai'

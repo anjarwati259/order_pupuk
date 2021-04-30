@@ -14,6 +14,7 @@ class Dashboard extends CI_Controller
 		$this->load->model('wilayah_model');
 	}
 	public function index(){
+		
 		$data = array('title' => 'Admin',
 						'isi' => 'admin/dashboard/list' );
 		$this->load->view('admin/layout/wrapper',$data, FALSE);

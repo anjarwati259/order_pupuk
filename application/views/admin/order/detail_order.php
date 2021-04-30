@@ -76,15 +76,17 @@ function tanggal_indo($tanggal, $cetak_hari = false)
           		<th>Rp. <?php echo number_format($detail_order->total_bayar,'0',',','.') ?></th>
           	</tr>
           	<tr>
-          		<td width="40%">Status Pembayaran</td>
+          		<td width="40%">Status</td>
           		<th><?php $status = $detail_order->status_bayar;
                if($status==0){
           			echo "Belum Bayar";
-              }else if($status==2){
-                echo "Menunggu Konfirmasi";
+              }else if($status==1){
+                echo "Sudah Bayar";
+          		}else if($status==2){
+          			echo "Barang Dikirim";
           		}else{
-          			echo "Sudah Bayar";
-          		} ?></th>
+                echo "Pesanan Telah Diterima";
+              } ?></th>
           	</tr>
           </tbody>
         </table>
@@ -156,9 +158,6 @@ function tanggal_indo($tanggal, $cetak_hari = false)
         <?php }else{ ?>
         <table id="example1" class="table table-bordered table-striped">
           <tbody>
-            <tr>
-              <td colspan="2"><img height="450px" width="400px" src="<?php echo base_url('assets/upload/image/thumbs/'.$bayar->bukti_bayar) ?>"></td>
-            </tr>
           	<tr>
           		<td width="40%">Transfer</td>
           		<th>Rp. <?php echo number_format($bayar->jumlah_bayar,'0',',','.') ?></th>
@@ -173,28 +172,16 @@ function tanggal_indo($tanggal, $cetak_hari = false)
           	</tr>
           	<tr>
           		<td width="40%">Transfer Dari</td>
-          		<th><?php echo $bayar->nama_bank ?> a.n <?php echo $bayar->atas_nama ?> (<?php echo $bayar->no_rekening ?>)</th>
+          		<th>
+                <?php if($bayar->nama_bank == null){
+                  echo 'Nama Bank Tidak Ada';
+                }else{ 
+                  echo $bayar->nama_bank; 
+                } ?></th>
           	</tr>
           </tbody>
         </table>
-        <?php if($detail_order->status_bayar == 2){ ?>
-        <?php echo form_open(base_url('pembayaran/konfirmasi/'.$detail_order->kode_transaksi)); ?>
-        <div class="row">
-            <div class="col-md-8">
-              <select class="form-control" name="konfirmasi">
-                <option>-- Pilih --</option>
-                <option value="1">Konfirmasi Pembayaran</option>
-                <option value="3">Tidak Ada Pembayaran</option>
-              </select>
-            </div>
-            <div class="col-md-4">
-              <button type="submit" class="btn btn-block btn-success">Konfirmasi</button>
-            </div>
-          </div>
-          <br>
-      </div>
-      <?php echo form_close();
-    }}?>
+        <?php }?>
       <!-- /.box -->
     </div>
     <!--/.col (right) -->

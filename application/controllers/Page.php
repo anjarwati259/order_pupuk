@@ -7,10 +7,22 @@ class Page extends CI_Controller{
     $this->simple_login->cek_login();
   }
   function index(){
-
+    $tanggal = date('Y-m-d');
+    $order = $this->dashboard_model->order_admin();
+    $mitra = $this->dashboard_model->pelanggan('Mitra');
+    $dist = $this->dashboard_model->pelanggan('Distributor');
+    $customer = $this->dashboard_model->pelanggan('Customer');
+    $stok = $this->dashboard_model->stok();
+    $hari = $this->dashboard_model->harian($tanggal);
     //Allowing akses to admin only
       if($this->session->userdata('hak_akses')==='1'){
         $data = array('title' => 'Admin',
+                        'order' => $order,
+                        'mitra' => $mitra,
+                        'dist' => $dist,
+                        'customer' => $customer,
+                        'stok'    => $stok,
+                        'hari'    => $tanggal,
                         'isi' => 'admin/dashboard/list' );
         $this->load->view('admin/layout/wrapper',$data, FALSE);
       }else{
@@ -19,8 +31,8 @@ class Page extends CI_Controller{
 
   }
 
-  function distributor(){
-    //Allowing akses to staff only
+  function distributor(){ 
+    //Allowing akses to distributor only
     if($this->session->userdata('hak_akses')==='2'){
       $order = $this->dashboard_model->order();
       $proses = $this->dashboard_model->order_proses();
