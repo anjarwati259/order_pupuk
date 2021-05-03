@@ -55,4 +55,5 @@ class Dashboard_model extends CI_Model
 		$query = $this->db->get();
 		return $query->row();
 	}
+	
 }

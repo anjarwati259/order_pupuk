@@ -38,7 +38,6 @@
                         <th>Kabupaten</th>
                         <th>Provinsi</th>
                         <th>Komoditi</th>
-                        <th>Beli Awal</th>
                         <th>Tanggal Gabung</th>
                         <th>Action</th>
                       </tr>
@@ -92,8 +91,7 @@
                         </td>
                         <td><?php echo $distributor->kabupaten ?></td>
                         <td><?php echo $distributor->provinsi ?></td>
-                        <td><?php echo $distributor->nama_komoditi ?></td>
-                        <td><?php echo $distributor->pembelian_awal ?></td>
+                        <td><?php echo $distributor->komoditi ?></td>
                         <td><?php echo tanggal_indo(date('Y-m-d',strtotime($distributor->tanggal_daftar))); ?></td>
                         <td>
                           <a href="<?php echo base_url('admin/pelanggan/edit_distributor/'.$distributor->id_pelanggan) ?>" class="btn btn-warning btn-xs" ><i class="fa fa-edit"></i> Edit</a>

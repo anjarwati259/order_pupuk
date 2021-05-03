@@ -79,14 +79,26 @@ class Order extends CI_Controller
 			redirect(base_url('admin/order/listkirim'), 'refresh');
 		}
 	}
-	public function diterima($kode_transaksi)
+	public function cod($kode_transaksi)
 	{
+		$detail_order 	= $this->order_model->kode_transaksi($kode_transaksi);
 			$data = array(	'kode_transaksi'	=> $kode_transaksi,
-							'status_bayar'		=> 3
+							'status_bayar'		=> 1
 						);
 			$this->order_model->update_status($data);
 			$this->session->set_flashdata('sukses','Status Telah Diubah');
-			redirect(base_url('admin/order/selesai'), 'refresh');
+			//redirect(base_url('admin/order/sudah_bayar'), 'refresh');
+
+			//insert pembayaran
+		$data = array(	'kode_transaksi'	=> $kode_transaksi,
+						'nama_bank'			=> '-',
+						'id_rekening'		=> 0,
+						'tanggal_bayar'		=> date('Y-m-d'),
+						'jumlah_bayar'		=> $detail_order->kode_transaksi
+						);
+		$this->pembayaran_model->bayar($data);
+		$this->session->set_flashdata('sukses','Status Telah Diubah');
+		redirect(base_url('admin/order/sudah_bayar'), 'refresh');
 	}
 	public function listkirim()
 	{
@@ -108,10 +120,19 @@ class Order extends CI_Controller
 	}
 	public function tambah_order()
 	{
+		//kode invoice 
+
+		$id = $this->order_model->get_last_id();
+		if($id){
+			$id = $id[0]->kode_transaksi;
+			$kode_transaksi = generate_code('INV0',$id);
+		}else{
+			$kode_transaksi = 'INV0001';
+		}
 		// destry cart
 		$this->cart->destroy();
 
-		$kode_transaksi = date('dmY').strtoupper(random_string('alnum',8));
+		//$kode_transaksi = "INV";
 		$pelanggan 		= $this->pelanggan_model->alllisting();
 		$produk 		= $this->produk_model->listing();
 		

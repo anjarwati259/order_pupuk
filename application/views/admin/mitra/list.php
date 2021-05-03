@@ -36,7 +36,6 @@
                         <th>Kabupaten</th>
                         <th>Provinsi</th>
                         <th>Komoditi</th>
-                        <th>Beli Awal</th>
                         <th>Tanggal Gabung</th>
                         <th>Action</th>
                       </tr>
@@ -88,8 +87,7 @@
                         </td>
                         <td><?php echo $mitra->kabupaten ?></td>
                         <td><?php echo $mitra->provinsi ?></td>
-                        <td><?php echo $mitra->nama_komoditi ?></td>
-                        <td><?php echo $mitra->pembelian_awal ?></td>
+                        <td><?php echo $mitra->komoditi ?></td>
                         <td><?php echo tanggal_indo(date('Y-m-d',strtotime($mitra->tanggal_daftar))); ?></td>
                         <td>
                           <a href="<?php echo base_url('admin/pelanggan/edit_mitra/'.$mitra->id_pelanggan) ?>" class="btn btn-warning btn-xs" ><i class="fa fa-edit"></i> Edit</a>
@@ -176,17 +174,7 @@
                       <div class="form-group">
                         <label class="col-sm-4 control-label" for="komoditi">Komoditi</label>
                         <div class="col-sm-8">
-                          <select class="form-control" name="id_komoditi">
-                            <?php foreach ($komoditi as $komoditi) { ?>
-                            <option value="<?php echo $komoditi->id_komoditi ?>"><?php echo $komoditi->nama_komoditi ?></option>
-                          <?php } ?>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="col-sm-4 control-label" for="pembelian_awal">Pembelian Awal</label>
-                        <div class="col-sm-8">
-                          <input type="text" value="<?php echo set_value('pembelian_awal') ?>" name="pembelian_awal" placeholder="Pembelian Awal" class="form-control"/>
+                          <input type="text" value="<?php echo set_value('komoditi') ?>" name="komoditi" placeholder="Komoditi" class="form-control"/>
                         </div>
                       </div>
                     </div>

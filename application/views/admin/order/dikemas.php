@@ -1,13 +1,12 @@
-
-
 <!-- START CUSTOM TABS -->
 <div class="row">
   <div class="col-md-12">
     <!-- Custom Tabs -->
     <div class="nav-tabs-custom">
       <ul class="nav nav-tabs">
+        <li><a href="<?php echo site_url('admin/order/tambah_order');?>">Tambah Order</a></li>
       <li role="presentation"><a href="<?php echo site_url('admin/order');?>">Belum Bayar</a></li>
-      <li role="presentation" class="active"><a href="#tab_1">Sudah Bayar</a></li>
+      <li role="presentation" class="active"><a href="<?php echo site_url('admin/order/sudah_bayar');?>">Sudah Bayar</a></li>
       </ul>
       <?php 
       //notifikasi
@@ -76,13 +75,12 @@
                       <td><?php echo tanggal_indo(date('Y-m-d',strtotime($sudah_bayar->tanggal_transaksi)),FALSE); ?></td>
                       <td><?php echo $sudah_bayar->total_item ?></td>
                       <td><?php echo $sudah_bayar->total_bayar ?></td>
-                      <td><?php if($sudah_bayar->status_bayar==1){
-                            echo "<span class='alert-success'>Sudah Bayar</span>";
-                          }else if($sudah_bayar->metode_pembayaran==0){
-                            echo "<span class='alert-danger'>COD</span>";
-                          }
-
-                       ?></td>
+                      <td><?php if($sudah_bayar->status_bayar==1 && $sudah_bayar->metode_pembayaran ==1){
+                          echo "<span class='alert-success'>Sudah Bayar</span>";
+                        }else{
+                          echo "<span class='alert-success'>COD</span>";
+                        }
+                    ?></td>
                     </tr>
               <?php } ?>
               </tbody>

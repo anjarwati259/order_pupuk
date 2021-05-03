@@ -6,6 +6,8 @@
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
               <li role="presentation" class="active"><a href="#tab_1">Tambah Order</a></li>
+              <li role="presentation"><a href="<?php echo site_url('admin/order');?>">Belum Bayar</a></li>
+              <li role="presentation"><a href="<?php echo site_url('admin/order/sudah_bayar');?>">Sudah Bayar</a></li>
             <!-- <li role="presentation"><a href="<?php echo site_url('admin/pelanggan');?>">Data Customer</a></li> -->
             </ul>
             <div class="tab-content">

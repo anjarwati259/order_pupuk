@@ -35,7 +35,6 @@
             <li><a href="<?php echo base_url('admin/pelanggan') ?>"><i class="fa fa-user"></i> Data Customer</a></li>
             <li><a href="<?php echo base_url('admin/pelanggan/mitra') ?>"><i class="fa fa-users"></i> Data Mitra</a></li>
             <li><a href="<?php echo base_url('admin/pelanggan/distributor') ?>"><i class="fa fa-users"></i> Data Distributor</a></li>
-            <li><a href="<?php echo base_url('admin/komoditi') ?>"><i class="fa fa-th-large"></i> Data Komoditi</a></li>
           </ul>
         </li>
         <!-- distributor -->
@@ -53,18 +52,18 @@
           </ul>
         </li>
         <!-- Order -->
-        <li class="treeview">
-          <a href="#">
+        <li>
+          <a href="<?php echo base_url('admin/order/tambah_order') ?>">
             <i class="fa fa-cart-plus"></i>
             <span>Order</span>
-            <span class="pull-right-container">
+            <!-- <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
-            </span>
+            </span> -->
           </a>
-          <ul class="treeview-menu">
-            <li><a href="<?php echo base_url('admin/order') ?>"><i class="fa fa-area-chart"></i> Data Order</a></li>
+          <!-- <ul class="treeview-menu">
+            <li><a href="<?php echo base_url('admin/order/tambah_order') ?>"><i class="fa fa-area-chart"></i> Data Order</a></li>
             <li><a href="<?php echo base_url('admin/order/tambah_order') ?>"><i class="fa fa-plus-square-o"></i> Tambah Order</a></li>
-          </ul>
+          </ul> -->
         </li>
 
         <!-- setting toko -->
@@ -75,7 +74,7 @@
         </li>
 
         <!-- pengguna -->
-        <li class="treeview">
+        <!-- <li class="treeview">
           <a href="#">
             <i class="fa fa-users"></i>
             <span>Pengguna</span>
@@ -87,7 +86,7 @@
             <li><a href="<?php echo base_url('admin/user') ?>"><i class="fa fa-users"></i> Data Pengguna</a></li>
             <li><a href="<?php echo base_url('admin/user/tambah_user') ?>"><i class="fa fa-plus-square-o"></i> Tambah Pengguna</a></li>
           </ul>
-        </li>
+        </li> -->
       </ul>
     </section>
     <!-- /.sidebar -->

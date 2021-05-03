@@ -3,8 +3,9 @@
     <!-- Custom Tabs -->
     <div class="nav-tabs-custom">
       <ul class="nav nav-tabs">
+        <li><a href="<?php echo site_url('admin/order/tambah_order');?>">Tambah Order</a></li>
         <li class="active"><a href="#tab_1" data-toggle="tab">Belum Bayar</a></li>
-        <li><a href="<?php echo site_url('admin/order/sudah_bayar');?>">Dikemas</a></li>
+        <li><a href="<?php echo site_url('admin/order/sudah_bayar');?>">Sudah Bayar</a></li>
       </ul>
       <div class="tab-content">
         <div class="tab-pane active" id="tab_1">
@@ -18,6 +19,7 @@
               <th>Jumlah Item</th>
               <th>Jumlah Belanja</th>
               <th>Status</th>
+              <th>Action</th>
             </tr>
             </thead>
             <tbody>
@@ -64,13 +66,22 @@
                 <td><?php echo tanggal_indo(date('Y-m-d',strtotime($order->tanggal_transaksi)),FALSE); ?></td>
                 <td><?php echo $order->total_item ?></td>
                 <td><?php echo $order->total_bayar ?></td>
-                <td><?php if($order->status_bayar==0){
+                <td><?php if($order->status_bayar==0 && $order->metode_pembayaran ==1){
                       echo "<span class='alert-warning'>Belum Bayar</span>";
+                    }else{
+                      echo "<span class='alert-danger'>COD</span>";
                     }
                  ?>
+                 <td>
+                  <?php if($order->metode_pembayaran ==1){ ?>
                    <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#konfirmasi<?= $order->kode_transaksi?>">
                     <i class="fa fa-check"></i> Konfirmasi
                   </button>
+                <?php }else{ ?>
+                  <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#cod<?php echo $order->kode_transaksi?>"><i class="fa fa-check"></i> Konfirmasi</button>
+                <?php } ?>
+                 </td>
+                   
                  </td>
               </tr>
             <?php } ?>
@@ -85,7 +96,7 @@
   </div>
   <!-- /.col -->
 
-<!-- modal -->
+<!-- modal konfirmasi transfer bank -->
 <?php foreach ($konfirmasi as $order) { ?>
 <div class="modal fade" id="konfirmasi<?php echo$order->kode_transaksi?>">
   <div class="modal-dialog">
@@ -154,6 +165,30 @@
             <button type="submit" class="btn btn-primary">Konfirmasi</button>
           </div>
         </form>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<?php } ?>
+
+<!-- modal COD -->
+<?php foreach ($konfirmasi as $order) { ?>
+<div class="modal fade" id="cod<?php echo $order->kode_transaksi ?>">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title text-center">Pesanan COD Diterima</h4>
+      </div>
+      <div class="modal-body">
+        Apakah Anda Yakin COD Telah Diterima?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
+        <a href="<?php echo base_url('admin/order/cod/'.$order->kode_transaksi) ?>" class="btn btn-danger"><i class="fa fa-trash-o"></i> Ya, Saya Yakin</a>
       </div>
     </div>
     <!-- /.modal-content -->

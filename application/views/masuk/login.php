@@ -7,29 +7,29 @@
 
         <title>PT. Agrikultur Gemilang Indonesia</title>
 
-        <link href="http://localhost/toko_sayur/assets/themes/vegefoods/custom/auth/login/css/style.css" rel="stylesheet" type="text/css" />
-        <link href="http://localhost/toko_sayur/assets/themes/vegefoods/custom/auth/login/css/fontawesome-all.css" rel="stylesheet" />
+        <link href="<?php echo base_url() ?>assets/login/login/css/style.css" rel="stylesheet" type="text/css" />
+        <link href="<?php echo base_url() ?>assets/login/login/css/fontawesome-all.css" rel="stylesheet" />
         <link href="//fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     </head>
 
     <body>
         <h1>Login ke Order PT AGI</h1>
-        <?php if($this->session->flashdata('sukses')){
-        echo '<div class="alert alert-warning">';
-        echo $this->session->flashdata('sukses');
-        echo '</div>';
-        } ?>
+        
         <div class=" w3l-login-form">
             <h2>Login Akun</h2>
+            <?php if ($this->session->flashdata('sukses')){ ?>
+            <div class="flash-message">
+                <?php echo $this->session->flashdata('sukses') ?>
+            </div>
+        <?php } ?>
+        <?php if ($this->session->flashdata('warning')){ ?>
+            <div class="flash-message">
+                <?php echo $this->session->flashdata('warning') ?>
+            </div>
+        <?php } ?>
             <?php 
         //display error
         echo validation_errors('<div class="alert alert-warning">','</div>');
-        //Display notifikasi error login
-        if($this->session->flashdata('warning')){
-            echo '<div class="alert alert-warning">';
-            echo $this->session->flashdata('warning');
-            echo '</div>';
-        }
         //form open
         echo form_open(base_url('login'),'class="leave-comment"'); ?>
             

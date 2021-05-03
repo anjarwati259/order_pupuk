@@ -23,7 +23,6 @@
               <div class="tab-pane active" id="tab_2">
                 <div class="box">
                   <div class="box-header">
-                    <h3 class="box-title">Data Table With Full Features</h3>
                   </div>
                   <!-- /.box-header -->
                   <div class="box-body">
@@ -38,7 +37,6 @@
                         <th>Kabupaten</th>
                         <th>Provinsi</th>
                         <th>Komoditi</th>
-                        <th>Beli Awal</th>
                         <th>Tanggal Gabung</th>
                         <th>Action</th>
                       </tr>
@@ -90,8 +88,7 @@
                         </td>
                         <td><?php echo $customer->kabupaten ?></td>
                         <td><?php echo $customer->provinsi ?></td>
-                        <td><?php echo $customer->nama_komoditi ?></td>
-                        <td><?php echo $customer->pembelian_awal ?></td>
+                        <td><?php echo $customer->komoditi ?></td>
                         <td><?php echo tanggal_indo(date('Y-m-d',strtotime($customer->tanggal_daftar))); ?></td>
                         <td>
                           <a href="<?php echo base_url('admin/pelanggan/edit_customer/'.$customer->id_pelanggan) ?>" class="btn btn-warning btn-xs" ><i class="fa fa-edit"></i> Edit</a>
@@ -178,17 +175,7 @@
                       <div class="form-group">
                         <label class="col-sm-4 control-label" for="komoditi">Komoditi</label>
                         <div class="col-sm-8">
-                          <select class="form-control" name="id_komoditi">
-                            <?php foreach ($komoditi as $komoditi) { ?>
-                            <option value="<?php echo $komoditi->id_komoditi ?>"><?php echo $komoditi->nama_komoditi ?></option>
-                          <?php } ?>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="col-sm-4 control-label" for="pembelian_awal">Pembelian Awal</label>
-                        <div class="col-sm-8">
-                          <input type="text" value="<?php echo set_value('pembelian_awal') ?>" name="pembelian_awal" placeholder="Pembelian Awal" class="form-control"/>
+                          <input type="text" name="komoditi" value="<?php echo set_value('komoditi') ?>" placeholder="Komoditi" class="form-control"/>
                         </div>
                       </div>
                     </div>

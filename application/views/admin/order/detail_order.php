@@ -80,13 +80,9 @@ function tanggal_indo($tanggal, $cetak_hari = false)
           		<th><?php $status = $detail_order->status_bayar;
                if($status==0){
           			echo "Belum Bayar";
-              }else if($status==1){
+              }else{
                 echo "Sudah Bayar";
-          		}else if($status==2){
-          			echo "Barang Dikirim";
-          		}else{
-                echo "Pesanan Telah Diterima";
-              } ?></th>
+          		} ?></th>
           	</tr>
           </tbody>
         </table>
@@ -139,6 +135,14 @@ function tanggal_indo($tanggal, $cetak_hari = false)
           		<td width="40%">Alamat</td>
           		<th><?php echo $detail_order->alamat ?></th>
           	</tr>
+            <tr>
+              <td width="40%">Kabupaten</td>
+              <th><?php echo $detail_order->kabupaten ?></th>
+            </tr>
+            <tr>
+              <td width="40%">Provinsi</td>
+              <th><?php echo $detail_order->provinsi ?></th>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -174,7 +178,7 @@ function tanggal_indo($tanggal, $cetak_hari = false)
           		<td width="40%">Transfer Dari</td>
           		<th>
                 <?php if($bayar->nama_bank == null){
-                  echo 'Nama Bank Tidak Ada';
+                  echo '-';
                 }else{ 
                   echo $bayar->nama_bank; 
                 } ?></th>

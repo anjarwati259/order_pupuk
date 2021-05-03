@@ -89,19 +89,7 @@ echo form_open_multipart(base_url('admin/pelanggan/edit_customer/'.$customer->id
                       <div class="form-group">
                         <label class="col-sm-4 control-label" for="komoditi">Komoditi</label>
                         <div class="col-sm-8">
-                          <select class="form-control" name="id_komoditi">
-                            <?php foreach ($komoditi as $komoditi) { ?>
-                            <option value="<?php echo $provinsi->kode ?>"<?php if($customer->id_komoditi==$komoditi->id_komoditi){ echo "selected"; } ?>>
-                             <?php echo $komoditi->nama_komoditi ?> 
-                            </option>
-                          <?php } ?>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="col-sm-4 control-label" for="pembelian_awal">Pembelian Awal</label>
-                        <div class="col-sm-8">
-                          <input type="text" value="<?php echo $customer->pembelian_awal ?>" name="pembelian_awal" placeholder="Pembelian Awal" class="form-control"/>
+                          <input type="text" value="<?php echo $customer->komoditi ?>" name="komoditi" placeholder="Komoditi" class="form-control"/>
                         </div>
                       </div>
                     </div>

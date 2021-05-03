@@ -14,10 +14,25 @@ class Dashboard extends CI_Controller
 		$this->load->model('wilayah_model');
 	}
 	public function index(){
+		$harian = $this->harian();
 		
 		$data = array('title' => 'Admin',
+						'harian' => $harian,
 						'isi' => 'admin/dashboard/list' );
 		$this->load->view('admin/layout/wrapper',$data, FALSE);
+	}
+	private function harian($bulanan = false){
+		$today = date("Y-m-d",strtotime("today"));
+		$yesterday = date("Y-m-d",strtotime("-1 day"));	
+		if($bulanan){
+			$yesterday = date("Y-m-d",strtotime("-30 day"));	
+		}	
+
+		$filter['DATE(tb_detail_order.tanggal_transaksi) >='] = $yesterday;
+		$filter['DATE(tb_detail_order.tanggal_transaksi) <='] = $today;
+
+		$order = $this->order_model->get_filter($filter);
+		return $order;
 	}
 	public function setting(){
 		$valid = $this-> form_validation;

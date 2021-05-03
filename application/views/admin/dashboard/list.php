@@ -71,7 +71,7 @@
           <!-- MAP & BOX PANE -->
           <div class="box box-success">
             <div class="box-header with-border">
-              <h3 class="box-title">H-7 Pengiriman Barang</h3>
+              <h3 class="box-title">Order Terbaru</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -87,7 +87,7 @@
                     <table id="example1" class="table table-bordered table-striped">
                       <thead>
                           <tr>
-                              <th>Kode Transaksi</th>
+                              <th>Kode Invoice</th>
                               <th>Nama Customer</th>
                               <th>Total Item</th>
                               <th>Total Harga</th>
@@ -95,51 +95,22 @@
                               <th>Telepon</th>
                           </tr>
                       </thead>
+                      
                       <tbody>
+                        <?php foreach ($order_baru as $order_baru) { ?>
                           <tr>
-                              <td>OUT1616543298</td>
-                              <td>Cyntia</td>
-                              <td>4</td>
-                              <td>Rp440,000</td>
+                              <td><?php echo $order_baru->kode_transaksi ?></td>
+                              <td><?php echo $order_baru->nama_pelanggan ?></td>
+                              <td><?php echo $order_baru->total_item ?></td>
+                              <td><?php echo $order_baru->total_bayar ?></td>
                               <td>2021-04-23</td>
-                              <td>081212121</td>
+                              <td><?php echo $order_baru->no_hp ?></td>
                           </tr>
-                          <tr>
-                              <td>OUT1464796372</td>
-                              <td>Erwin</td>
-                              <td>1</td>
-                              <td>Rp6,200,000</td>
-                              <td>2016-07-01</td>
-                              <td>0812121212</td>
-                          </tr>
-                          <tr>
-                              <td>OUT1467028283</td>
-                              <td>Cyntia</td>
-                              <td>5</td>
-                              <td>Rp600,000</td>
-                              <td>2016-07-27</td>
-                              <td>081212121</td>
-                          </tr>
-                          <tr>
-                              <td>OUT1467028283</td>
-                              <td>Cyntia</td>
-                              <td>5</td>
-                              <td>Rp600,000</td>
-                              <td>2016-07-27</td>
-                              <td>081212121</td>
-                          </tr>
-                          <tr>
-                              <td>OUT1467028283</td>
-                              <td>Cyntia</td>
-                              <td>5</td>
-                              <td>Rp600,000</td>
-                              <td>2016-07-27</td>
-                              <td>081212121</td>
-                          </tr>
+                        <?php } ?>
                       </tbody>
                   </table>
-                  <div class="clearfix">
-                      <a href="http://localhost/pos/tunggakan" class="btn btn-primary">Tampilkan Semua</a>
+                  <div>
+                      <a href="<?php echo base_url('admin/order') ?>" class="btn btn-primary">Tampilkan Semua</a>
                   </div>
                   </div>
                 </div>
@@ -154,7 +125,7 @@
         <div class="col-md-4">
           <!-- Info Boxes Style 2 -->
           <div class="info-box bg-aqua">
-            <span class="info-box-icon"><a href="" style="color: #fff;"><i class="fa fa-cubes"></i></a></span>
+            <span class="info-box-icon"><a href="#" style="color: #fff;"><i class="fa fa-cubes"></i></a></span>
 
             <div class="info-box-content">
               <span class="info-box-text">Stok</span>
@@ -168,8 +139,8 @@
             <span class="info-box-icon"><i class="fa fa-shopping-bag"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">TRX PENJUALAN HARIAN</span>
-              <span class="info-box-number"><?php echo $hari ?></span>
+              <span class="info-box-text">PENJUALAN HARIAN</span>
+              <span class="info-box-number"><?php echo $harian->total ?></span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -178,8 +149,8 @@
             <span class="info-box-icon"><i class="fa fa-shopping-basket"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">TRX PENJUALAN MINGGUAN</span>
-              <span class="info-box-number">92,050</span>
+              <span class="info-box-text">PENJUALAN MINGGUAN</span>
+              <span class="info-box-number"><?php echo $mingguan->total?></span>
 
             </div>
             <!-- /.info-box-content -->
@@ -189,8 +160,8 @@
             <span class="info-box-icon"><i class="fa fa-shopping-bag"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">TRX PENJUALAN BULANAN</span>
-              <span class="info-box-number">114,381</span>
+              <span class="info-box-text">PENJUALAN BULANAN</span>
+              <span class="info-box-number"><?php echo $bulanan->total?> </span>
 
             </div>
             <!-- /.info-box-content -->
