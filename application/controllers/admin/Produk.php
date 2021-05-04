@@ -74,6 +74,7 @@ class Produk extends CI_Controller
 							'harga_mitra'		=> $i->post('harga_mitra'),
 							'harga_distributor'	=> $i->post('harga_distributor'),
 							'stok'				=> $i->post('stok'),
+							'berat'				=> $i->post('berat'),
 							'gambar'			=> $upload_gambar['upload_data']['file_name'],
 							'keterangan'		=> $i->post('keterangan'),
 							'tanggal_update'		=> date('Y-m-d H:i:s')
@@ -149,6 +150,7 @@ class Produk extends CI_Controller
 							'harga_mitra'		=> $i->post('harga_mitra'),
 							'harga_distributor'	=> $i->post('harga_distributor'),
 							'stok'				=> $i->post('stok'),
+							'berat'				=> $i->post('berat'),
 							'gambar'			=> $upload_gambar['upload_data']['file_name'],
 							'keterangan'		=> $i->post('keterangan'),
 							'tanggal_update'		=> date('Y-m-d H:i:s')
@@ -165,6 +167,7 @@ class Produk extends CI_Controller
 							'harga_mitra'		=> $i->post('harga_mitra'),
 							'harga_distributor'	=> $i->post('harga_distributor'),
 							'stok'				=> $i->post('stok'),
+							'berat'				=> $i->post('berat'),
 							// 'gambar'			=> $upload_gambar['upload_data']['file_name'],
 							'keterangan'		=> $i->post('keterangan'),
 							'tanggal_update'		=> date('Y-m-d H:i:s')

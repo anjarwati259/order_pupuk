@@ -44,6 +44,12 @@ echo form_open_multipart(base_url('admin/produk/edit/'.$produk->kode_produk), ' 
                           <input type="text" value="<?php echo $produk->stok ?>" name="stok" placeholder="Stok Produk" class="form-control" required/>
                         </div>
                       </div>
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label">Berat Produk</label>
+                        <div class="col-sm-8">
+                          <input type="text" value="<?php echo $produk->berat ?>" name="berat" placeholder="Berat Produk" class="form-control" required/>
+                        </div>
+                      </div>
 
                     </div>
                     <div class="col-md-6">

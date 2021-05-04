@@ -84,7 +84,7 @@
                 <div class="col-md-12 col-sm-12">
                   <div class="pad">
                     <!-- Map will be created here -->
-                    <table id="example1" class="table table-bordered table-striped">
+                    <table class="table table-bordered table-striped">
                       <thead>
                           <tr>
                               <th>Kode Invoice</th>

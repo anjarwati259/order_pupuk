@@ -44,6 +44,12 @@ echo form_open_multipart(base_url('admin/produk/tambah'), ' class="form-horizont
                           <input type="text" value="<?php echo set_value('stok') ?>" name="stok" placeholder="Stok Produk" class="form-control" required/>
                         </div>
                       </div>
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label">Berat Produk</label>
+                        <div class="col-sm-8">
+                          <input type="text" value="<?php echo set_value('berat') ?>" name="berat" placeholder="Berat Produk" class="form-control" required/>
+                        </div>
+                      </div>
 
                     </div>
                     <div class="col-md-6">

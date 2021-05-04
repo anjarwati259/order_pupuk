@@ -180,7 +180,7 @@
         <h4 class="modal-title">Pilih Data Customer</h4>
       </div>
       <div class="modal-body table-responsive">
-        <table class="table table-bordered table-striped" id="table1">
+        <table class="table table-bordered table-striped" id="example1">
           <thead>
             <tr>
               <td>Nama</td>
@@ -229,12 +229,12 @@
             if(status == 'success' && data != 'false') {
                 var value = $.parseJSON(data);
                 var val = value[0];
-                var sale_value = '<option value="' + val.harga_customer + '">' + parseInt(val.harga_customer) + ' Harga Customer</option>';
+                var sale_value = '<option value="' + val.harga_customer + '">' + 'Rp. '+ parseInt(val.harga_customer) + '</option>';
                 if(val.harga_mitra != "0"){
-                    var type1 = '<option value="' + val.harga_mitra + '">' + parseInt(val.harga_mitra) + ' Harga Mitra </option>';
+                    var type1 = '<option value="' + val.harga_mitra + '">' + 'Rp. '+ parseInt(val.harga_mitra) + '</option>';
                 }
                 if(val.harga_distributor != "0"){
-                    var type2 = '<option value="' + val.harga_distributor + '">' + parseInt(val.harga_distributor) + ' Harga Distributor</option>';
+                    var type2 = '<option value="' + val.harga_distributor + '">' + 'Rp. '+ parseInt(val.harga_distributor) + '</option>';
                 }
                 $('#sale_price').append(sale_value+type1+type2);
             }
@@ -342,7 +342,7 @@
                     }else if(response.status == "limit"){
                         alert("Stok jumlah produk yang anda pilih sudah habis");
                     }else{
-                        alert("Terjadi error di server, silahkan coba lagi");
+                        alert("Data Ada yg belum diisi, Silahkan lengkapi!!!");
                     }
                 }
             });

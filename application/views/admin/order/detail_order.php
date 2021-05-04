@@ -75,6 +75,16 @@ function tanggal_indo($tanggal, $cetak_hari = false)
           		<td width="40%">Total Bayar</td>
           		<th>Rp. <?php echo number_format($detail_order->total_bayar,'0',',','.') ?></th>
           	</tr>
+            <tr>
+              <td width="40%">No Resi</td>
+              <th><?php if($detail_order->no_resi !=null){
+                echo $detail_order->no_resi;
+              } else{
+                echo "-";
+              }
+              ?>
+              </th>
+            </tr>
           	<tr>
           		<td width="40%">Status</td>
           		<th><?php $status = $detail_order->status_bayar;
@@ -185,7 +195,25 @@ function tanggal_indo($tanggal, $cetak_hari = false)
           	</tr>
           </tbody>
         </table>
+      <div class="row">
+        <div class="col-sm-9">
+          <?php echo form_open(base_url('admin/order/resi/'.$detail_order->kode_transaksi)); ?>
+          <div class="input-group">
+            <!-- /btn-group -->
+            <input type="text" name="no_resi" placeholder="No Resi" value="<?php echo $detail_order->no_resi ?>" class="form-control">
+            <div class="input-group-btn">
+              <button type="submit" class="btn btn-success">Kirim</button>
+            </div>
+          </div>
+          <?php form_close(); ?>
+        </div>
+        <div class="col-sm-3">
+          <a href="<?php echo base_url('admin/order/print/'.$detail_order->kode_transaksi) ?>" class="btn btn-info"><i class="fa fa-print" target="_blank"></i> Print</a>
+        </div>
+      </div>
+        <br>
         <?php }?>
+
       <!-- /.box -->
     </div>
     <!--/.col (right) -->

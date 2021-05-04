@@ -58,7 +58,7 @@ class Order extends CI_Controller
 		$this->load->view('admin/layout/wrapper', $data, FALSE);
 	}
 	//tambah no resi 
-	public function dikirim($kode_transaksi)
+	public function resi($kode_transaksi)
 	{
 		$valid = $this-> form_validation;
 
@@ -72,17 +72,16 @@ class Order extends CI_Controller
 			
 			$data = array(	'kode_transaksi'	=> $kode_transaksi,
 							'no_resi'			=> $this->input->post('no_resi'),
-							'status_bayar'		=> 2
 						);
 			$this->order_model->update_status($data);
-			$this->session->set_flashdata('sukses','Status Telah Diubah');
-			redirect(base_url('admin/order/listkirim'), 'refresh');
+			$this->session->set_flashdata('sukses','Resi Telah ditambah');
+			redirect(base_url('admin/order/detail/'.$kode_transaksi), 'refresh');
 		}
 	}
 	public function cod($kode_transaksi)
 	{
-		$detail_order 	= $this->order_model->kode_transaksi($kode_transaksi);
 			$data = array(	'kode_transaksi'	=> $kode_transaksi,
+							'no_resi'			=> $this->input->post('no_resi'),
 							'status_bayar'		=> 1
 						);
 			$this->order_model->update_status($data);
@@ -93,8 +92,8 @@ class Order extends CI_Controller
 		$data = array(	'kode_transaksi'	=> $kode_transaksi,
 						'nama_bank'			=> '-',
 						'id_rekening'		=> 0,
-						'tanggal_bayar'		=> date('Y-m-d'),
-						'jumlah_bayar'		=> $detail_order->kode_transaksi
+						'tanggal_bayar'		=> $this->input->post('tanggal_bayar'),
+						'jumlah_bayar'		=> $this->input->post('total_bayar')
 						);
 		$this->pembayaran_model->bayar($data);
 		$this->session->set_flashdata('sukses','Status Telah Diubah');
@@ -183,6 +182,14 @@ class Order extends CI_Controller
 
 	public function add_process(){
 		$this->form_validation->set_rules('kode_transaksi', 'kode_transaksi', 'required');
+		$this->form_validation->set_rules('nama_pelanggan', 'nama_pelanggan', 'required');
+		$this->form_validation->set_rules('alamat', 'alamat', 'required');
+		$this->form_validation->set_rules('provinsi', 'provinsi', 'required');
+		$this->form_validation->set_rules('kabupaten', 'kabupaten', 'required');
+		$this->form_validation->set_rules('kecamatan', 'kecamatan', 'required');
+		$this->form_validation->set_rules('no_hp', 'no_hp', 'required');
+		$this->form_validation->set_rules('ekspedisi', 'ekspedisi', 'required');
+		$this->form_validation->set_rules('ongkir', 'ongkir', 'required');
 
 		$carts =  $this->cart->contents();
 		if($this->_check_qty($carts)){
@@ -196,8 +203,10 @@ class Order extends CI_Controller
 		//grand total
 		$subtotal = $this->cart->total();
 		$ongkir = $this->input->post('ongkir');
-		$total_bayar = $subtotal + $ongkir;
-		if(!empty($carts) && is_array($carts)){
+		
+		if($this->form_validation->run() != FALSE && !empty($carts) && is_array($carts) && $ongkir != null){
+			$total_bayar = $subtotal + $ongkir;
+
 			$data['kode_transaksi'] = $this->input->post('kode_transaksi');
 			$data['id_pelanggan'] = $this->input->post('id_pelanggan');
 			$data['id_user'] = $user;
@@ -271,6 +280,13 @@ class Order extends CI_Controller
 		$this->pembayaran_model->bayar($data);
 		$this->session->set_flashdata('sukses','Status Telah Diubah');
 		redirect(base_url('admin/order/sudah_bayar'), 'refresh');
+	}
+	public function print($kode_transaksi){
+		$details = $this->order_model->kode_transaksi($kode_transaksi);
+		$order = $this->order_model->kode_order($kode_transaksi);
+		$data['detail'] = $details;
+		$data['order'] = $order;
+		$this->load->view("admin/order/print",$data);
 	}
 
 }

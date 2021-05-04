@@ -13,7 +13,7 @@
     </head>
 
     <body>
-        <h1>Login ke Order PT AGI</h1>
+        <h1>PT AGI</h1>
         
         <div class=" w3l-login-form">
             <h2>Login Akun</h2>

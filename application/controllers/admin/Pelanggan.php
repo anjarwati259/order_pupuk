@@ -96,6 +96,18 @@ class Pelanggan extends CI_Controller
 		$valid->set_rules('no_hp', 'No. Telp','required',
 				array(	'required' 		=> '%s harus diisi',
 						));
+		$valid->set_rules('provinsi', 'provinsi','required',
+				array(	'required' 		=> '%s harus diisi'
+						));
+		$valid->set_rules('kabupaten', 'kabupaten','required',
+				array(	'required' 		=> '%s harus diisi'
+						));
+		$valid->set_rules('kecamatan', 'kecamatan','required',
+				array(	'required' 		=> '%s harus diisi',
+						));
+		$valid->set_rules('komoditi', 'komoditi','required',
+				array(	'required' 		=> '%s harus diisi',
+						));
 
 		if($valid->run()===FALSE){
 			//end validation
@@ -149,6 +161,18 @@ class Pelanggan extends CI_Controller
 				array(	'required' 		=> '%s harus diisi'
 						));
 		$valid->set_rules('no_hp', 'No. Telp','required',
+				array(	'required' 		=> '%s harus diisi',
+						));
+		$valid->set_rules('provinsi', 'provinsi','required',
+				array(	'required' 		=> '%s harus diisi'
+						));
+		$valid->set_rules('kabupaten', 'kabupaten','required',
+				array(	'required' 		=> '%s harus diisi'
+						));
+		$valid->set_rules('kecamatan', 'kecamatan','required',
+				array(	'required' 		=> '%s harus diisi',
+						));
+		$valid->set_rules('komoditi', 'komoditi','required',
 				array(	'required' 		=> '%s harus diisi',
 						));
 
@@ -215,6 +239,18 @@ class Pelanggan extends CI_Controller
 		$valid->set_rules('no_hp', 'No. Telp','required',
 				array(	'required' 		=> '%s harus diisi',
 						));
+		$valid->set_rules('provinsi', 'provinsi','required',
+				array(	'required' 		=> '%s harus diisi'
+						));
+		$valid->set_rules('kabupaten', 'kabupaten','required',
+				array(	'required' 		=> '%s harus diisi'
+						));
+		$valid->set_rules('kecamatan', 'kecamatan','required',
+				array(	'required' 		=> '%s harus diisi',
+						));
+		$valid->set_rules('komoditi', 'komoditi','required',
+				array(	'required' 		=> '%s harus diisi',
+						));
 
 		if($valid->run()===FALSE){
 			//end validation
@@ -269,6 +305,18 @@ class Pelanggan extends CI_Controller
 				array(	'required' 		=> '%s harus diisi'
 						));
 		$valid->set_rules('no_hp', 'No. Telp','required',
+				array(	'required' 		=> '%s harus diisi',
+						));
+		$valid->set_rules('provinsi', 'provinsi','required',
+				array(	'required' 		=> '%s harus diisi'
+						));
+		$valid->set_rules('kabupaten', 'kabupaten','required',
+				array(	'required' 		=> '%s harus diisi'
+						));
+		$valid->set_rules('kecamatan', 'kecamatan','required',
+				array(	'required' 		=> '%s harus diisi',
+						));
+		$valid->set_rules('komoditi', 'komoditi','required',
 				array(	'required' 		=> '%s harus diisi',
 						));
 
@@ -326,9 +374,6 @@ class Pelanggan extends CI_Controller
 		//validation
 		$valid = $this-> form_validation;
 
-		// $valid->set_rules('id_pelanggan', 'ID','required',
-		// 		array(	'required' 		=> '%s harus diisi'
-		// 				));
 		$valid->set_rules('nama_pelanggan', 'Nama Pelanggan','required',
 				array(	'required' 		=> '%s harus diisi'
 						));
@@ -336,6 +381,18 @@ class Pelanggan extends CI_Controller
 				array(	'required' 		=> '%s harus diisi'
 						));
 		$valid->set_rules('no_hp', 'No. Telp','required',
+				array(	'required' 		=> '%s harus diisi',
+						));
+		$valid->set_rules('provinsi', 'provinsi','required',
+				array(	'required' 		=> '%s harus diisi'
+						));
+		$valid->set_rules('kabupaten', 'kabupaten','required',
+				array(	'required' 		=> '%s harus diisi'
+						));
+		$valid->set_rules('kecamatan', 'kecamatan','required',
+				array(	'required' 		=> '%s harus diisi',
+						));
+		$valid->set_rules('komoditi', 'komoditi','required',
 				array(	'required' 		=> '%s harus diisi',
 						));
 
@@ -391,6 +448,18 @@ class Pelanggan extends CI_Controller
 				array(	'required' 		=> '%s harus diisi'
 						));
 		$valid->set_rules('no_hp', 'No. Telp','required',
+				array(	'required' 		=> '%s harus diisi',
+						));
+		$valid->set_rules('provinsi', 'provinsi','required',
+				array(	'required' 		=> '%s harus diisi'
+						));
+		$valid->set_rules('kabupaten', 'kabupaten','required',
+				array(	'required' 		=> '%s harus diisi'
+						));
+		$valid->set_rules('kecamatan', 'kecamatan','required',
+				array(	'required' 		=> '%s harus diisi',
+						));
+		$valid->set_rules('komoditi', 'komoditi','required',
 				array(	'required' 		=> '%s harus diisi',
 						));
 

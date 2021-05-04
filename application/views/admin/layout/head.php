@@ -7,6 +7,11 @@
   <title>Dashboard | PT AGI</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+  <!-- favicon -->
+  <link href="<?php echo base_url() ?>assets/img/logo/favicon.ico" rel="icon">
+  <link href="<?php echo base_url() ?>assets/img/logo/favicon.ico" rel="apple-touch-icon">
+  
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="<?php echo base_url()?>assets/admin/bower_components/bootstrap/dist/css/bootstrap.min.css">
   <!-- Font Awesome -->
@@ -29,6 +34,7 @@
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="<?php echo base_url()?>assets/admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
   <link rel="stylesheet" href="<?php echo base_url()?>assets/admin/documentation/style.css">
+  <link rel="stylesheet" href="<?php echo base_url()?>assets/admin/datatable/datatables.min.css">
 
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">

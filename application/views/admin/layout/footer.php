@@ -246,6 +246,7 @@
 <script src="<?php echo base_url()?>assets/admin/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url()?>assets/admin/dist/js/demo.js"></script>
+<script src="<?php echo base_url()?>assets/admin/datatable/datatables.min.js"></script>
 <!-- main js -->
 <!-- <script src="<?php echo base_url()?>assets/admin/main.js"></script> -->
 
