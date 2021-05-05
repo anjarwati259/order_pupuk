@@ -55,7 +55,7 @@
                                              </p>
                                         </td>
                                         <td class="remove-pr">
-                                            <a href="#">
+                                            <a href="<?php echo base_url('belanja/hapus/'.$keranjang['rowid']) ?>">
     									<i class="fas fa-times"></i>
         								</a>
                                         <button type="submit" class="btn btn-default" name="update">

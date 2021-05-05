@@ -23,7 +23,7 @@
           </a>
         </li>
         <li class="">
-          <a href="<?php echo base_url() ?>">
+          <a href="<?php echo base_url('home') ?>">
             <i class="fa fa-shopping-cart"></i> <span>Belanja</span>
           </a>
         </li>

@@ -98,7 +98,7 @@ class Belanja extends CI_Controller
 
 		//kondisi sudah login
 		if($this->session->userdata('username')){
-			$id_user				= $this->session->userdata('id_user');
+			$id_user	= $this->session->userdata('id_user');
 			$nama_user 	= $this->session->userdata('nama_user');
 			$pelanggan 	= $this->pelanggan_model->sudah_login($id_user, $nama_user);
 

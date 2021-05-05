@@ -15,7 +15,7 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="navbar-menu">
                     <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
-                        <li class="nav-item active"><a class="nav-link" href="<?php echo base_url() ?>">Beranda</a></li>
+                        <li class="nav-item active"><a class="nav-link" href="<?php echo base_url('home') ?>">Beranda</a></li>
                         <li class="nav-item"><a class="nav-link" href="https://ptagi.co.id">Tentang Kami</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Order</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Kontak</a></li>

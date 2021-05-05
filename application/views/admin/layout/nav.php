@@ -65,6 +65,11 @@
             <li><a href="<?php echo base_url('admin/order/tambah_order') ?>"><i class="fa fa-plus-square-o"></i> Tambah Order</a></li>
           </ul> -->
         </li>
+        <li>
+          <a href="<?php echo base_url('admin/stok') ?>">
+            <i class="fa fa-cubes"></i> <span>Stok</span>
+          </a>
+        </li>
 
         <!-- setting toko -->
         <li>

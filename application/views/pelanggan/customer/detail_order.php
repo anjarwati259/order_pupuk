@@ -136,6 +136,14 @@ function tanggal_indo($tanggal, $cetak_hari = false)
           		<td width="40%">Alamat</td>
           		<th><?php echo $detail_order->alamat ?></th>
           	</tr>
+            <tr>
+              <td width="40%">Kabupaten</td>
+              <th><?php echo $detail_order->kabupaten ?></th>
+            </tr>
+            <tr>
+              <td width="40%">Provinsi</td>
+              <th><?php echo $detail_order->provinsi ?></th>
+            </tr>
           </tbody>
         </table>
       </div>

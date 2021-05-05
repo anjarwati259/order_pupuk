@@ -164,6 +164,8 @@
                       <input type="hidden" name="expedisi">
                       <input type="hidden" name="ongkir">
                       <input type="hidden" name="total">
+                      <input type="hidden" name="provinsi">
+                      <input type="hidden" name="kabupaten">
 
                     <div class="col-12 d-flex shopping-box"> <button class="ml-auto btn hvr-hover">Buat Pesanan</button> </div>
                     <?php echo form_close(); ?>
