@@ -15,20 +15,7 @@
           </div>
         </div>
         <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-green">
-            <div class="inner">
-              <h3><?php echo $proses->total ?></h3>
 
-              <p>Order Diproses</p>
-            </div>
-            <div class="icon">
-            </div>
-            <a href="" class="small-box-footer">Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
-          </div>
-        </div>
-        <!-- ./col -->
         <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->

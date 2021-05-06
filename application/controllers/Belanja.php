@@ -143,7 +143,10 @@ class Belanja extends CI_Controller
 							'total_item'		=> $i->post('total_item'),
 							'expedisi'			=> $i->post('expedisi'),
 							'ongkir'			=> $i->post('ongkir'),
+							'provinsi'			=> $i->post('provinsi'),
+							'kabupaten'			=> $i->post('kabupaten'),
 							'status_bayar'		=> 0,
+							'metode_pembayaran'		=> 1,
 						);
 			$this->order_model->tambah($data);
 			//proses masuk ke tabel transaksi

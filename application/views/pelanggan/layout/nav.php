@@ -19,7 +19,7 @@
         <li class="header"></li>
         <li class="active">
           <a href="<?php echo base_url('home/dashboard') ?>">
-            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+            <i class="fas fa-tachometer-alt"></i> <span>Dashboard</span>
           </a>
         </li>
         <li class="">
@@ -34,7 +34,12 @@
         </li>
         <li>
           <a href="#">
-            <i class="fa fa-money"></i> <span>Point</span>
+            <i class="far fa-money-bill-alt"></i>  <span>Point</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://wa.me/6285336477178" target="_blank">
+            <i class="fas fa-headset"></i>  <span>Bantuan</span>
           </a>
         </li>
       </ul>

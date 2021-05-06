@@ -155,7 +155,7 @@ function tanggal_indo($tanggal, $cetak_hari = false)
         <?php if($detail_order->status_bayar==0){ ?>
           <br>
           <div class="alert alert-success alert-dismissible">
-            Belum Ada Pembayaran, segera lakukan pembayaran terlebih dahulu!!!
+            Belum Ada Pembayaran, segera lakukan pembayaran terlebih dahulu dan lakukan konfirmasi via WA berikut
           </div>
           <div class="row">
             <div class="col-md-4">
@@ -163,7 +163,7 @@ function tanggal_indo($tanggal, $cetak_hari = false)
             </div>
             
             <div class="col-md-4">
-              <a href="<?php echo base_url('pembayaran/bayar/'.$detail_order->kode_transaksi) ?>" type="button" class="btn btn-block btn-primary">Konfirmasi</a>
+              <a href="https://wa.me/6281554988354" type="button" class="btn btn-block btn-success" target="_blank"><i class="fab fa-whatsapp"></i> Konfirmasi</a>
             </div>
             <div class="col-md-4">
               
@@ -187,14 +187,8 @@ function tanggal_indo($tanggal, $cetak_hari = false)
           	</tr>
           	<tr>
           		<td width="40%">Transfer Dari</td>
-          		<th><?php echo $bayar->nama_bank ?> a.n <?php echo $bayar->atas_nama ?> (<?php echo $bayar->no_rekening ?>)</th>
+          		<th><?php echo $bayar->nama_bank ?>
           	</tr>
-            <tr>
-              <td width="40%">Bukti Bayar</td>
-            </tr>
-            <tr>
-              <td colspan="2"><img height="450px" width="400px" src="<?php echo base_url('assets/upload/image/thumbs/'.$bayar->bukti_bayar) ?>"></td>
-            </tr>
           </tbody>
         </table>
         <div class="row">

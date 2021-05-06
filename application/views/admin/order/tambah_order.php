@@ -152,7 +152,7 @@
                 <!-- /.box-body -->
                 <div class="box-footer">
                   <div class="col-md-3 col-md-offset-4">
-                    <a class="btn btn-default" href="<?php echo site_url('order');?>">Cancel</a>
+                    <a class="btn btn-default" href="<?php echo base_url('order');?>">Cancel</a>
                     <a class="btn btn-info pull-right" href="#" id="submit-transaksi">Submit</a>
                   </div>
                 </div>

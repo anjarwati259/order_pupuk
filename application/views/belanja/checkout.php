@@ -164,8 +164,8 @@
                       <input type="hidden" name="expedisi">
                       <input type="hidden" name="ongkir">
                       <input type="hidden" name="total">
-                      <input type="hidden" name="provinsi">
-                      <input type="hidden" name="kabupaten">
+                      <input type="text" name="provinsi">
+                      <input type="text" name="kabupaten">
 
                     <div class="col-12 d-flex shopping-box"> <button class="ml-auto btn hvr-hover">Buat Pesanan</button> </div>
                     <?php echo form_close(); ?>
@@ -189,6 +189,7 @@
 
     //kota
     $("select[name=provinsi]").on("change", function(){
+      var provinsi = $("option:selected", this).attr('provinsi');
       var id_provinsi = $("option:selected", this).attr('id_provinsi');
       $.ajax({
       type: "POST",
@@ -197,17 +198,20 @@
       success: function(hasil_kota){
         //console.log(hasil_kota);
         $("select[name=kota]").html(hasil_kota);
+        $("input[name=provinsi]").val(provinsi);
       }
     });
     });
     //ekspedisi
     $("select[name=kota]").on("change", function(){
+      var kota = $("option:selected", this).attr('kota');
         $.ajax({
       type: "POST",
       url: "<?php echo base_url('rajaongkir/ekspedisi') ?>",
       success: function(hasil_ekspedisi){
         //console.log(hasil_kota);
         $("select[name=ekspedisi]").html(hasil_ekspedisi);
+        $("input[name=kabupaten]").val(kota);
       }
     });
     });

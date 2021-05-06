@@ -23,9 +23,6 @@
                         <th>Kode Produk</th>
                         <th>Nama Produk</th>
                         <th>Stok</th>
-                        <th>Harga Customer</th>
-                        <th>Harga Mitra</th>
-                        <th>Harga Distributor</th>
                         <th>Action</th>
                       </tr>
                       </thead>
@@ -36,9 +33,6 @@
                         <td><?php echo $produk->kode_produk ?></td>
                         <td><?php echo $produk->nama_produk ?></td>
                         <td><?php echo $produk->stok ?></td>
-                        <td><?php echo $produk->harga_customer ?></td>
-                        <td><?php echo $produk->harga_mitra ?></td>
-                        <td><?php echo $produk->harga_distributor ?></td>
                         <td>
                           <a href="<?php echo base_url('admin/produk/edit/'.$produk->kode_produk) ?>" class="btn btn-warning btn-xs" ><i class="fa fa-edit"></i> Edit</a>
                           <a href="<?php echo base_url('admin/produk/delete/'.$produk->kode_produk) ?>" class="btn btn-danger btn-xs" onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')" ><i class="fa fa-trash"></i> Hapus</a>
