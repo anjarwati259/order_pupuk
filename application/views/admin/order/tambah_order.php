@@ -124,7 +124,7 @@
                                 </option>
                                 <?php if(isset($promo) && is_array($promo)){?>
                                   <?php foreach($promo as $item){?>
-                                    <option value="<?php echo $item->kode_produk;?>">
+                                    <option value="<?php echo $item->kode_produk;?>" dataid="<?php echo $item->id_promo;?>">
                                       <?php echo $item->nama_promo;?>
                                     </option>
                                   <?php }?>
@@ -295,19 +295,19 @@
 
       // ambil promo
       $('body').on("change","#paket",function(){
-        var id = $(this).val();
+        var id = $(this).find(':selected').attr('dataid');
         alert(id);
-        // var data = "id="+id;
-        // $.ajax({
-        //   type: 'POST',
-        //   url: "<?php echo base_url('admin/order/get_promo'); ?>",
-        //   data: data,
-        //   success: function(hasil) {
-        //     var jumlah = hasil['jumlah']
-        //     $("input[name=jumlah]").val(jumlah);
+        var data = "id="+id;
+        $.ajax({
+          type: 'POST',
+          url: "<?php echo base_url('admin/order/get_promo'); ?>",
+          data: data,
+          success: function(hasil) {
+            var jumlah = hasil[1]
+            $("input[name=jumlah]").val(jumlah);
 
-        //   }
-        // });
+          }
+        });
       });
 
       //tambah chart
