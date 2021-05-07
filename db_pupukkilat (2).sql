@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 30 Apr 2021 pada 10.24
+-- Waktu pembuatan: 03 Bulan Mei 2021 pada 11.12
 -- Versi server: 10.4.18-MariaDB
 -- Versi PHP: 7.2.33
 
@@ -54,37 +54,16 @@ CREATE TABLE `tb_detail_order` (
 --
 
 INSERT INTO `tb_detail_order` (`kode_transaksi`, `id_pelanggan`, `id_user`, `id_rekening`, `nama_pelanggan`, `no_hp`, `alamat`, `provinsi`, `kecamatan`, `kabupaten`, `total_item`, `total_transaksi`, `expedisi`, `ongkir`, `total_bayar`, `tanggal_transaksi`, `metode_pembayaran`, `status_bayar`, `no_resi`) VALUES
-('21042021WJPFH4Q7', 'CUS001', 2, 1, 'customer', '0812226656', 'jember', '', '', '', 5, 550000, 'jne', 144000, 694000, '2021-04-21', '', 3, 'JKT01'),
-('23042021EXZSJBFI', 'CUS001', 2, 2, 'customer', '0812226656', 'jember', '', '', '', 3, 510000, 'pos', 126000, 636000, '2021-04-23', '1', 3, 'JKT01'),
-('24042021XR8V03A7', 'CUS001', 2, 1, 'customer', '0812226656', 'jember', '', '', '', 4, 500000, 'jne', 48000, 548000, '2021-04-24', '', 3, ''),
-('26042021IVHDQ1XM', 'CUS001', 2, 1, 'customer', '0812226656', 'jember', '', '', '', 1, 110000, 'jne', 20000, 130000, '2021-04-26', '1', 3, 'jkt23'),
-('290420218EPIIBXJ', 'DIS003', 1, 0, 'egi', '081554988354', 'Dusun Kedung ringin, Drenges, Kertosono ', 'JAWA TIMUR', 'Kertosono', 'KAB. NGANJUK', 1, 170000, 'JNE', 120000, 290000, '2021-04-29', '1', 0, NULL),
-('290420219FZJ5VY7', 'MIT002', 1, 2, 'Sistoni', '081554988354', 'Ds. Jayalaksana rt 25 rw 05 blok kedokan ori Kec. Kedokan Bunder', 'JAWA BARAT', 'Kedokan Bunder', 'KAB. INDRAMAYU', 3, 240000, 'JNE', 120000, 360000, '2021-04-29', '1', 1, NULL),
-('29042021CJ4ZGEYR', 'CUS001', 1, 0, 'customer', '0812226656', 'jember', 'Jawa Timur', '', 'jember', 11, 770000, 'JNE', 120000, 890000, '2021-04-29', '1', 0, NULL),
-('29042021FG2BBTJU', 'MIT002', 1, 0, 'Sistoni', '081554988354', 'Ds. Jayalaksana rt 25 rw 05 blok kedokan ori Kec. Kedokan Bunder', 'JAWA BARAT', 'Kedokan Bunder', 'KAB. INDRAMAYU', 10, 1700000, 'JNE', 120000, 1820000, '2021-04-29', '0', 0, NULL),
-('29042021PTKVJL1C', 'DIS003', 1, 0, 'egi', '081554988354', 'Dusun Kedung ringin, Drenges, Kertosono ', 'JAWA TIMUR', 'Kertosono', 'KAB. NGANJUK', 1, 80000, 'JNE', 120000, 200000, '2021-04-29', '1', 0, NULL),
-('29042021QASYDKHV', 'DIS003', 1, 0, 'egi', '081554988354', 'Dusun Kedung ringin, Drenges, Kertosono ', 'JAWA TIMUR', 'Kertosono', 'KAB. NGANJUK', 3, 510000, 'JNE', 120000, 630000, '2021-04-29', '1', 0, NULL),
-('30042021NMNTGWJB', 'DIS003', 1, 0, 'egi', '081554988354', 'Dusun Kedung ringin, Drenges, Kertosono ', 'JAWA TIMUR', 'Kertosono', 'KAB. NGANJUK', 1, 170000, 'JNE', 120000, 290000, '2021-04-30', '0', 0, NULL);
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `tb_komoditi`
---
-
-CREATE TABLE `tb_komoditi` (
-  `id_komoditi` varchar(20) NOT NULL,
-  `nama_komoditi` varchar(50) NOT NULL,
-  `tanggal_update` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `tb_komoditi`
---
-
-INSERT INTO `tb_komoditi` (`id_komoditi`, `nama_komoditi`, `tanggal_update`) VALUES
-('KOM01', 'Jagung', '2021-04-12'),
-('KOM02', 'Jeruk', '2021-04-12');
+('INV0001', 'CUS003', 1, 0, 'ria', '081554988354', 'jl karimata 4 jember', 'JAWA TIMUR', 'Sumbersari', 'KAB. JEMBER', 1, 110000, '111', 111, 110111, '2021-05-03', '0', 0, NULL),
+('INV0002', 'CUS003', 1, 2, 'ria', '081554988354', 'jl karimata 4 jember', 'JAWA TIMUR', 'Sumbersari', 'KAB. JEMBER', 1, 110000, 'JNE', 120000, 230000, '2021-05-03', '1', 1, NULL),
+('INV0003', 'DIS003', 1, 2, 'egi', '081554988354', 'Dusun Kedung ringin, Drenges, Kertosono ', 'JAWA TIMUR', 'Kertosono', 'KAB. NGANJUK', 1, 110000, 'JNE', 1200000, 1310000, '2021-05-03', '1', 1, NULL),
+('INV0004', 'DIS003', 1, 0, 'egi', '081554988354', 'Dusun Kedung ringin, Drenges, Kertosono ', 'JAWA TIMUR', 'Kertosono', 'KAB. NGANJUK', 1, 80000, 'JNE', 12000, 92000, '2021-05-03', '0', 0, NULL),
+('INV0005', 'CUS003', 1, 0, 'ria', '081554988354', 'jl karimata 4 jember', 'JAWA TIMUR', 'Sumbersari', 'KAB. JEMBER', 1, 110000, 'JNE', 12000, 122000, '2021-05-03', '0', 0, NULL),
+('INV0006', 'DIS003', 1, 0, 'egi', '081554988354', 'Dusun Kedung ringin, Drenges, Kertosono ', 'JAWA TIMUR', 'Kertosono', 'KAB. NGANJUK', 1, 110000, 'JNT', 120000, 230000, '2021-05-03', '0', 0, NULL),
+('INV0007', 'DIS003', 1, 0, 'egi', '081554988354', 'Dusun Kedung ringin, Drenges, Kertosono ', 'JAWA TIMUR', 'Kertosono', 'KAB. NGANJUK', 1, 110000, 'JNT', 120000, 230000, '2021-05-03', '0', 0, NULL),
+('INV0008', 'DIS003', 1, 0, 'egi', '081554988354', 'Dusun Kedung ringin, Drenges, Kertosono ', 'JAWA TIMUR', 'Kertosono', 'KAB. NGANJUK', 1, 110000, 'JNE', 20000, 130000, '2021-05-03', '0', 0, NULL),
+('INV0009', 'MIT002', 1, 0, 'Sistoni', '081554988354', 'Ds. Jayalaksana rt 25 rw 05 blok kedokan ori Kec. Kedokan Bunder', 'JAWA BARAT', 'Kedokan Bunder', 'KAB. INDRAMAYU', 1, 110000, 'JNE', 500000, 610000, '2021-05-03', '1', 0, NULL),
+('INV0010', 'MIT002', 1, 0, 'Sistoni', '081554988354', 'Ds. Jayalaksana rt 25 rw 05 blok kedokan ori Kec. Kedokan Bunder', 'JAWA BARAT', 'Kedokan Bunder', 'KAB. INDRAMAYU', 1, 80000, 'JNE', 12000, 92000, '2021-05-03', '1', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -108,21 +87,16 @@ CREATE TABLE `tb_order` (
 --
 
 INSERT INTO `tb_order` (`id_order`, `kode_transaksi`, `id_pelanggan`, `id_produk`, `jml_beli`, `harga`, `total_harga`, `tanggal_transaksi`) VALUES
-(1, '21042021WJPFH4Q7', 'CUS001', 'NUTRISITERNAK', 3, 110000, 330000, '2021-04-21'),
-(2, '21042021WJPFH4Q7', 'CUS001', 'NUTRISIIKAN', 2, 110000, 220000, '2021-04-21'),
-(3, '23042021EXZSJBFI', 'CUS001', 'POC', 3, 170000, 510000, '2021-04-23'),
-(4, '24042021XR8V03A7', 'CUS001', 'NUTRISIIKAN', 1, 110000, 110000, '2021-04-24'),
-(5, '24042021XR8V03A7', 'CUS001', 'NUTRISITERNAK', 1, 110000, 110000, '2021-04-24'),
-(6, '24042021XR8V03A7', 'CUS001', 'POC', 1, 170000, 170000, '2021-04-24'),
-(7, '24042021XR8V03A7', 'CUS001', 'POC500', 1, 110000, 110000, '2021-04-24'),
-(8, '26042021IVHDQ1XM', 'CUS001', 'POC500', 1, 110000, 110000, '2021-04-26'),
-(39, '290420218EPIIBXJ', '', 'POC', 1, 170000, 170000, '0000-00-00'),
-(40, '29042021CJ4ZGEYR', '', 'POC', 11, 70000, 770000, '0000-00-00'),
-(41, '290420219FZJ5VY7', '', 'POC', 3, 80000, 240000, '0000-00-00'),
-(42, '29042021FG2BBTJU', '', 'POC', 10, 170000, 1700000, '0000-00-00'),
-(43, '29042021QASYDKHV', '', 'POC', 3, 170000, 510000, '0000-00-00'),
-(44, '29042021PTKVJL1C', '', 'POC', 1, 80000, 80000, '0000-00-00'),
-(45, '30042021NMNTGWJB', '', 'POC', 1, 170000, 170000, '0000-00-00');
+(50, 'INV0001', '', 'POC500', 1, 110000, 110000, '0000-00-00'),
+(51, 'INV0002', '', 'NUTRISITERNAK', 1, 110000, 110000, '0000-00-00'),
+(52, 'INV0003', '', 'POC500', 1, 110000, 110000, '0000-00-00'),
+(53, 'INV0004', '', 'NUTRISIIKAN', 1, 80000, 80000, '0000-00-00'),
+(54, 'INV0005', '', 'NUTRISITERNAK', 1, 110000, 110000, '0000-00-00'),
+(55, 'INV0006', '', 'NUTRISIIKAN', 1, 110000, 110000, '0000-00-00'),
+(56, 'INV0007', '', 'NUTRISIIKAN', 1, 110000, 110000, '0000-00-00'),
+(57, 'INV0008', '', 'NUTRISITERNAK', 1, 110000, 110000, '0000-00-00'),
+(58, 'INV0009', '', 'NUTRISITERNAK', 1, 110000, 110000, '0000-00-00'),
+(59, 'INV0010', '', 'NUTRISITERNAK', 1, 80000, 80000, '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -132,7 +106,7 @@ INSERT INTO `tb_order` (`id_order`, `kode_transaksi`, `id_pelanggan`, `id_produk
 
 CREATE TABLE `tb_pelanggan` (
   `id_pelanggan` varchar(50) NOT NULL,
-  `id_komoditi` varchar(50) NOT NULL,
+  `komoditi` varchar(100) NOT NULL,
   `id_user` int(8) NOT NULL,
   `nama_pelanggan` varchar(50) NOT NULL,
   `no_hp` varchar(50) NOT NULL,
@@ -149,10 +123,12 @@ CREATE TABLE `tb_pelanggan` (
 -- Dumping data untuk tabel `tb_pelanggan`
 --
 
-INSERT INTO `tb_pelanggan` (`id_pelanggan`, `id_komoditi`, `id_user`, `nama_pelanggan`, `no_hp`, `pembelian_awal`, `alamat`, `kecamatan`, `kabupaten`, `provinsi`, `jenis_pelanggan`, `tanggal_daftar`) VALUES
-('CUS001', 'KOM01', 2, 'customer', '0812226656', 23, 'jember', '', 'jember', 'Jawa Timur', 'Customer', '2021-04-07'),
+INSERT INTO `tb_pelanggan` (`id_pelanggan`, `komoditi`, `id_user`, `nama_pelanggan`, `no_hp`, `pembelian_awal`, `alamat`, `kecamatan`, `kabupaten`, `provinsi`, `jenis_pelanggan`, `tanggal_daftar`) VALUES
+('CUS001', 'Jeruk', 2, 'customer', '0812226656', 23, 'jember', '', 'jember', 'Jawa Timur', 'Customer', '2021-04-07'),
+('CUS003', 'jagung', 0, 'ria', '081554988354', 0, 'jl karimata 4 jember', 'Sumbersari', 'KAB. JEMBER', 'JAWA TIMUR', 'Customer', '2021-05-03'),
 ('DIS003', 'KOM01', 0, 'egi', '081554988354', 3, 'Dusun Kedung ringin, Drenges, Kertosono ', 'Kertosono', 'KAB. NGANJUK', 'JAWA TIMUR', 'Distributor', '2021-04-26'),
-('MIT002', 'KOM01', 0, 'Sistoni', '081554988354', 2, 'Ds. Jayalaksana rt 25 rw 05 blok kedokan ori Kec. Kedokan Bunder', 'Kedokan Bunder', 'KAB. INDRAMAYU', 'JAWA BARAT', 'Mitra', '2021-04-26');
+('MIT002', 'Jeruk', 0, 'Sistoni', '081554988354', 2, 'Ds. Jayalaksana rt 25 rw 05 blok kedokan ori Kec. Kedokan Bunder', 'Kedokan Bunder', 'KAB. INDRAMAYU', 'JAWA BARAT', 'Mitra', '2021-04-26'),
+('MIT003', 'Jagng', 0, 'eli', '081554988354', 0, 'jl. kalimantan 2 no 44', 'Umbulsari', 'KAB. JEMBER', 'JAWA TIMUR', 'Mitra', '2021-05-03');
 
 -- --------------------------------------------------------
 
@@ -181,7 +157,12 @@ INSERT INTO `tb_pembayaran` (`id_pembayaran`, `kode_transaksi`, `id_rekening`, `
 (8, '24042021XR8V03A7', 1, '', '', '2021-04-29 00:00:00', '', 548000, ''),
 (9, '290420219FZJ5VY7', 2, '', '', '2021-04-30 00:00:00', '', 360000, ''),
 (10, '23042021EXZSJBFI', 2, '', '', '2021-04-30 00:00:00', 'Bank BCA', 636000, ''),
-(11, '26042021IVHDQ1XM', 1, '', '', '2021-04-30 00:00:00', 'bank BRI', 130000, '');
+(11, '26042021IVHDQ1XM', 1, '', '', '2021-04-30 00:00:00', 'bank BRI', 130000, ''),
+(12, '29042021FG2BBTJU', 0, '', '', '2021-05-03 00:00:00', '-', 29042021, ''),
+(13, '30042021NMNTGWJB', 0, '', '', '2021-05-03 00:00:00', '-', 30042021, ''),
+(14, '03052021HF21PBO0', 2, '', '', '2021-05-03 00:00:00', '', 230000, ''),
+(15, 'INV0002', 2, '', '', '2021-05-03 00:00:00', '-', 230000, ''),
+(16, 'INV0003', 2, '', '', '2021-05-03 00:00:00', '', 1310000, '');
 
 -- --------------------------------------------------------
 
@@ -207,10 +188,10 @@ CREATE TABLE `tb_produk` (
 --
 
 INSERT INTO `tb_produk` (`kode_produk`, `nama_produk`, `harga_customer`, `harga_mitra`, `harga_distributor`, `keterangan`, `gambar`, `stok`, `berat`, `tanggal_update`) VALUES
-('NUTRISIIKAN', 'Nutrisi Ikan', 110000, 80000, 80000, '<p>Nutrisi ikan</p>\r\n', '21.png', 45, 500, '2021-04-16'),
-('NUTRISITERNAK', 'Nutrisi Ternak', 110000, 80000, 80000, '<p>nutrisi ternak</p>\r\n', '31.png', 80, 500, '2021-04-16'),
+('NUTRISIIKAN', 'Nutrisi Ikan', 110000, 80000, 80000, '<p>Nutrisi ikan</p>\r\n', '21.png', 42, 500, '2021-04-16'),
+('NUTRISITERNAK', 'Nutrisi Ternak', 110000, 80000, 80000, '<p>nutrisi ternak</p>\r\n', '31.png', 75, 500, '2021-04-16'),
 ('POC', 'Pupuk Kilat 1L', 170000, 80000, 70000, '<p>pupuk kilat&nbsp;</p>\r\n', '11.png', 1, 1000, '2021-04-16'),
-('POC500', 'Pupuk Kilat 500ml', 110000, 80000, 80000, '<p>pupuk kilat 500ml</p>\r\n', '12.png', 50, 500, '2021-04-16');
+('POC500', 'Pupuk Kilat 500ml', 110000, 80000, 80000, '<p>pupuk kilat 500ml</p>\r\n', '12.png', 42, 500, '2021-04-16');
 
 -- --------------------------------------------------------
 
@@ -91578,12 +91559,6 @@ ALTER TABLE `tb_detail_order`
   ADD PRIMARY KEY (`kode_transaksi`);
 
 --
--- Indeks untuk tabel `tb_komoditi`
---
-ALTER TABLE `tb_komoditi`
-  ADD PRIMARY KEY (`id_komoditi`);
-
---
 -- Indeks untuk tabel `tb_order`
 --
 ALTER TABLE `tb_order`
@@ -91640,13 +91615,13 @@ ALTER TABLE `wilayah_2020`
 -- AUTO_INCREMENT untuk tabel `tb_order`
 --
 ALTER TABLE `tb_order`
-  MODIFY `id_order` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id_order` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_pembayaran`
 --
 ALTER TABLE `tb_pembayaran`
-  MODIFY `id_pembayaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_pembayaran` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_rekening`

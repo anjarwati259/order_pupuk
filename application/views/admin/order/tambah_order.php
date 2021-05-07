@@ -144,6 +144,7 @@
                                 <?php }?>
                               </select>
                             </td>
+
                             <td width="15%">
                               <input type="number" id="jumlah" class="form-control" name="jumlah" min="1" value="1"/>
                             </td>
@@ -288,6 +289,7 @@
                 if(val.harga_distributor != "0"){
                     var type2 = '<option value="' + val.harga_distributor + '">' + 'Rp. '+ parseInt(val.harga_distributor) + '</option>';
                 }
+                $("#bonus").val('0');
                 $('#sale_price').append(sale_value+type1+type2);
             }
         });
@@ -296,15 +298,26 @@
       // ambil promo
       $('body').on("change","#paket",function(){
         var id = $(this).find(':selected').attr('dataid');
-        alert(id);
+        
         var data = "id="+id;
+        //alert(data);
         $.ajax({
           type: 'POST',
           url: "<?php echo base_url('admin/order/get_promo'); ?>",
           data: data,
           success: function(hasil) {
-            var jumlah = hasil[1]
-            $("input[name=jumlah]").val(jumlah);
+            var response = $.parseJSON(hasil);
+            var jumlah = response[0].jumlah;
+            var bonus = response[0].bonus;
+            //console.log(jumlah);
+            $("#jumlah").val(jumlah);
+            $("#bonus").val(bonus);
+            if(hasil != 'false') {
+              var harga = '<option value="' + response[0].harga+ '">' + 'Rp. '+ parseInt(response[0].harga) + '</option>';
+              $("#sale_price").empty();
+            $('#sale_price').append(harga);
+            }
+
 
           }
         });
@@ -313,20 +326,29 @@
       //tambah chart
       $('body').on("click","#tambah-barang",function(){
         // alert("hai");
-        var id_produk = $("#produk").val();
+        var paket = $("#pilih").val();
+        //alert(id_produk);
+        if(paket==1){
+          var id_produk = $("#produk").val();
+          var sale_price = $("#sale_price").val();
+        }else{
+          var id_produk = $("#paket").val();
+          var sale_price = 170000;
+        }
+        var bonus = $("#bonus").val();
         var quantity = $("#jumlah").val();
-        var sale_price = $("#sale_price").val();
+
         if($('#harga_satuan_net').length){
             sale_price = $('#harga_satuan_net').unmask();
         }
-        //alert(id_produk)
         if(id_produk !== null && sale_price !== null){
             $.ajax({
                 url: '<?php echo base_url(); ?>' + 'admin/order/add_item',
                 data: {
                     'id_produk' : id_produk,
                     'quantity' : quantity,
-                    'sale_price' : sale_price
+                    'sale_price' : sale_price,
+                    'bonus' : bonus
                 },
                 type: 'POST',
                 beforeSend : function(){

@@ -162,14 +162,25 @@ class Order extends CI_Controller
 		$id_produk = $this->input->post('id_produk');
 		$quantity = $this->input->post('quantity');
 		$sale_price = $this->input->post('sale_price');
+		$id_bonus= $this->input->post('id_bonus');
+		$bonus = $this->input->post('bonus');
 
 		$get_product_detail =  $this->produk_model->detail_by_id($id_produk);
+		$get_bonus_detail =  $this->produk_model->detail_by_id($id_bonus);
 		if($get_product_detail){
 			$data = array(
+				array(
 				'id'      => $id_produk,
 				'qty'     => $quantity,
 				'price'   => $sale_price,
 				'name'    => $get_product_detail[0]['nama_produk']
+			),
+			array(
+				'id'      => 'POC500',
+				'qty'     => $bonus,
+				'price'   => 0,
+				'name'    => 'Pupuk Kilat 500ml'
+			)
 			);
 			$this->cart->insert($data);
 			echo json_encode(array('status' => 'ok',
