@@ -92,45 +92,15 @@
                       <table class="table">
                         <thead>
                           <tr>
-                            <td>Pilih Paket</td>
                             <td>Nama Barang</td>
                             <td>Jumlah</td>
-                            <td>Bonus</td>
-                            <td>Harga Beli</td>
+                            <td>Harga Beli Satuan</td>
                             <td>Input Barang</td>
                           </tr>
                         </thead>
                         <tbody id="transaksi-item">
                           <tr>
                             <td>
-                              <select class="form-control" id="pilih" name="kode_produk">
-                                <option value="0">
-                                  Please select one
-                                </option>
-                                    <option value="1">Satuan</option>
-                                    <option value="2">Promo</option>
-                              </select>
-                            </td>
-
-                            <td>
-                              <!-- paket -->
-                              <select class="form-control" id="0">
-                              </select>
-
-                              <!-- paket -->
-                              <select class="form-control" id="paket" name="kode_produk">
-                                <option value="0">
-                                  Please select one
-                                </option>
-                                <?php if(isset($promo) && is_array($promo)){?>
-                                  <?php foreach($promo as $item){?>
-                                    <option value="<?php echo $item->kode_produk;?>">
-                                      <?php echo $item->nama_promo;?>
-                                    </option>
-                                  <?php }?>
-                                <?php }?>
-                              </select>
-                              <!-- satuan -->
                               <select class="form-control" id="produk" name="kode_produk">
                                 <option value="0">
                                   Please select one
@@ -144,11 +114,8 @@
                                 <?php }?>
                               </select>
                             </td>
-                            <td width="15%">
+                            <td>
                               <input type="number" id="jumlah" class="form-control" name="jumlah" min="1" value="1"/>
-                            </td>
-                            <td width="15%">
-                              <input type="number" id="bonus" class="form-control" name="bonus"/>
                             </td>
                             <td>
                               <select class="form-control" id="sale_price" name="sale_price">
@@ -249,26 +216,6 @@
 <!-- javascript -->
 <script type="text/javascript">
   $(document).ready(function(){
-    $("#0").show();
-    $("#paket").hide();
-    $("#produk").hide();
-    // ambil data kabupaten ketika data memilih provinsi
-      $('body').on("change","#pilih",function(){
-        var id_paket = $(this).val();
-        //alert(id_paket);
-        //$("#id_paket").val(id_paket);
-          if(id_paket==2){
-            $("#paket").show();
-            $("#produk").hide();
-            $("#0").hide();
-          }else{
-            $("#paket").hide();
-            $("#produk").show();
-            $("#0").hide();
-          }
-         
-      });
-
       // ambil data produk dan harga
       $('body').on("change","#produk",function(){
         var url =  '<?php echo base_url(); ?>' + 'admin/order/check_product/' + this.value;
@@ -292,24 +239,6 @@
             }
         });
       });
-
-      // ambil promo
-      $('body').on("change","#paket",function(){
-        var id = $(this).val();
-        alert(id);
-        // var data = "id="+id;
-        // $.ajax({
-        //   type: 'POST',
-        //   url: "<?php echo base_url('admin/order/get_promo'); ?>",
-        //   data: data,
-        //   success: function(hasil) {
-        //     var jumlah = hasil['jumlah']
-        //     $("input[name=jumlah]").val(jumlah);
-
-        //   }
-        // });
-      });
-
       //tambah chart
       $('body').on("click","#tambah-barang",function(){
         // alert("hai");

@@ -19,6 +19,14 @@ class Produk_model extends CI_Model
 		$query = $this->db->get();
 		return $query->result();
 	}
+	//listing all user
+	public function promo(){
+		$this->db->select('*');
+		$this->db->from('tb_promo');
+		$this->db->order_by('id_promo','asc');
+		$query = $this->db->get();
+		return $query->result();
+	}
 	//tambah
 	public function tambah($data)
 	{

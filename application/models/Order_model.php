@@ -139,4 +139,12 @@ class Order_model extends CI_Model
 		$query = $this->db->get();
 		return $query->row();
 	}
+	public function get_promo($id){
+		$this->db->select('*');
+		$this->db->from('tb_promo');
+		$this->db->where('id_promo', $id);
+		$query = $this->db->get();
+		return $query->result();
+	}
+
 }

@@ -132,20 +132,31 @@ class Order extends CI_Controller
 		$this->cart->destroy();
 
 		//$kode_transaksi = "INV";
-		$pelanggan 		= $this->pelanggan_model->alllisting();
-		$produk 		= $this->produk_model->listing();
+		$pelanggan 	= $this->pelanggan_model->alllisting();
+		$produk 	= $this->produk_model->listing();
+		$promo 		= $this->produk_model->promo();
 		
 		$data = array(	'title'				=> 'Tambah Order',
 						'kode_transaksi'	=> $kode_transaksi,
 						'pelanggan'			=> $pelanggan,
 						'produk'			=> $produk,
+						'promo'				=> $promo,
 						'isi'				=> 'admin/order/tambah_order'
 					);
 		$this->load->view('admin/layout/wrapper', $data, FALSE);
 	}
+	// get promo
+	public function get_promo(){
+		$id = $this->input->post('id');
+
+		$promo = $this->order_model->get_promo($id);
+		echo json_encode($promo);
+		
+	}
+
 	public function check_product($kode_produk){
 		$produk = $this->produk_model->get_by_produk($kode_produk);
-		echo json_encode($produk);
+		echo json_encode($produk); 
 	} 
 	public function add_item(){
 		$id_produk = $this->input->post('id_produk');
@@ -245,7 +256,7 @@ class Order extends CI_Controller
 				'total_harga' => $cart['subtotal']
 			);
 			$this->order_model->tambah_order($purchase_data);
-
+			
 			$this->produk_model->update_qty_min($cart['id'],array('stok' => $cart['qty']));
 		}
 		$this->cart->destroy();
