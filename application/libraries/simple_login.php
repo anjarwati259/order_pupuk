@@ -34,6 +34,8 @@ class Simple_login
         redirect(base_url('page/distributor'),'refresh');
       }else if($hak_akses=='3'){
         redirect(base_url('page/mitra'),'refresh');
+      }else if($hak_akses=='4'){
+        redirect(base_url('page/logistik'),'refresh');
       }
     }else{
       //kalau tidak ada, maka suruh login lagi

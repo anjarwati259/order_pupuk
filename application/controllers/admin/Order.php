@@ -99,24 +99,6 @@ class Order extends CI_Controller
 		$this->session->set_flashdata('sukses','Status Telah Diubah');
 		redirect(base_url('admin/order/sudah_bayar'), 'refresh');
 	}
-	public function listkirim()
-	{
-		$dikirim 	= $this->order_model->listing_admin(2);
-		$data = array(	'title'			=> 'Data Pesanan',
-						'dikirim'		=> $dikirim,
-						'isi'			=> 'admin/order/dikirim'
-						);
-		$this->load->view('admin/layout/wrapper', $data, FALSE);	
-	}
-	public function selesai()
-	{
-		$selesai 	= $this->order_model->listing_admin(3);
-		$data = array(	'title'			=> 'Data Pesanan',
-						'selesai'		=> $selesai,
-						'isi'			=> 'admin/order/selesai'
-						);
-		$this->load->view('admin/layout/wrapper', $data, FALSE);	
-	}
 	public function tambah_order()
 	{
 		//kode invoice 
@@ -226,11 +208,12 @@ class Order extends CI_Controller
 		$subtotal = $this->cart->total();
 		$ongkir = $this->input->post('ongkir');
 		
-		if($this->form_validation->run() != FALSE && !empty($carts) && is_array($carts) && $ongkir != null){
+		if(!empty($carts) && is_array($carts) && $ongkir != null){
 			$total_bayar = $subtotal + $ongkir;
+			$id_pelanggan = $this->input->post('id_pelanggan');
 
 			$data['kode_transaksi'] = $this->input->post('kode_transaksi');
-			$data['id_pelanggan'] = $this->input->post('id_pelanggan');
+			$data['id_pelanggan'] = $id_pelanggan;
 			$data['id_user'] = $user;
 			$data['nama_pelanggan'] = $this->input->post('nama_pelanggan');
 			$data['alamat'] = $this->input->post('alamat');
@@ -249,19 +232,20 @@ class Order extends CI_Controller
 
 			$this->order_model->tambah($data);
 			if($data['kode_transaksi']){
-				$this->_insert_purchase_data($data['kode_transaksi'],$carts);
+				$this->_insert_purchase_data($data['kode_transaksi'],$carts,$id_pelanggan);
+				$this->_insert_stok_data($carts,$id_pelanggan);
 			}
 			echo json_encode(array('status' => 'ok'));
 		}else{
 			echo json_encode(array('status' => 'error'));
 		}
 	}
-	private function _insert_purchase_data($kode_transaksi,$carts){
+	private function _insert_purchase_data($kode_transaksi,$carts,$id_pelanggan){
 		foreach($carts as $key => $cart){
 			$purchase_data = array(
 				'kode_transaksi' => $kode_transaksi,
 				'id_produk' => $cart['id'],
-				//'id_pelanggan' => $cart['category_id'],
+				'id_pelanggan' => $id_pelanggan,
 				'jml_beli' => $cart['qty'],
 				'harga' => $cart['price'],
 				'total_harga' => $cart['subtotal']
@@ -269,6 +253,27 @@ class Order extends CI_Controller
 			$this->order_model->tambah_order($purchase_data);
 			
 			$this->produk_model->update_qty_min($cart['id'],array('stok' => $cart['qty']));
+		}
+		$this->cart->destroy();
+	}
+	private function _insert_stok_data($carts,$id_pelanggan){
+		
+		foreach($carts as $key => $cart){
+			$id = array($cart['id']);
+			//$id=array('POC','POC500');
+			$sisa =  $this->produk_model->get_stok_id($id);
+
+			$stok = array(
+				'kode_produk' => $cart['id'],
+				'id_pelanggan' => $id_pelanggan,
+				'qty' => $cart['qty'],
+				'tanggal' => date('Y-m-d'),
+				'sisa'	=> $sisa->stok,
+				'status' => 'out'
+			);
+			$this->order_model->tambah_stok($stok);
+			
+			//$this->produk_model->update_qty_min($cart['id'],array('stok' => $cart['qty']));
 		}
 		$this->cart->destroy();
 	}
@@ -309,6 +314,17 @@ class Order extends CI_Controller
 		$data['detail'] = $details;
 		$data['order'] = $order;
 		$this->load->view("admin/order/print",$data);
+	}
+	//halaman list stok
+	public function stok()
+	{ 
+
+		$stok 	= $this->order_model->getstok();
+		$data = array(	'title'			=> 'Data Stok',
+						'stok'			=> $stok,
+						'isi'			=> 'admin/order/stok'
+						);
+		$this->load->view('admin/layout/wrapper', $data, FALSE);
 	}
 
 }

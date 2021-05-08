@@ -40,15 +40,15 @@
         <!-- distributor -->
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-shopping-cart"></i>
-            <span>Produk</span>
+            <i class="fa fa-cubes"></i>
+            <span>Stok</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo base_url('admin/produk') ?>"><i class="fa fa-shopping-cart"></i> Data Produk</a></li>
-            <li><a href="<?php echo base_url('admin/produk/tambah') ?>"><i class="fa fa-plus-square-o"></i> Tambah Produk</a></li>
+            <li><a href="<?php echo base_url('admin/produk') ?>"><i class="fa fa-users"></i> Data Stok</a></li>
+            <li><a href="<?php echo base_url('admin/order/stok') ?>"><i class="fa fa-plus-square-o"></i> Riwayat Stok</a></li>
           </ul>
         </li>
         <!-- Order -->
@@ -56,21 +56,8 @@
           <a href="<?php echo base_url('admin/order/tambah_order') ?>">
             <i class="fa fa-cart-plus"></i>
             <span>Order</span>
-            <!-- <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span> -->
           </a>
-          <!-- <ul class="treeview-menu">
-            <li><a href="<?php echo base_url('admin/order/tambah_order') ?>"><i class="fa fa-area-chart"></i> Data Order</a></li>
-            <li><a href="<?php echo base_url('admin/order/tambah_order') ?>"><i class="fa fa-plus-square-o"></i> Tambah Order</a></li>
-          </ul> -->
         </li>
-        <!-- <li>
-          <a href="<?php echo base_url('admin/stok') ?>">
-            <i class="fa fa-cubes"></i> <span>Stok</span>
-          </a>
-        </li> -->
-
         <!-- setting toko -->
         <li>
           <a href="<?php echo base_url('admin/dashboard/setting') ?>">

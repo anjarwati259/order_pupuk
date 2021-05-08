@@ -54,6 +54,11 @@ class Order_model extends CI_Model
 	{
 		$this->db->insert('tb_order', $data);
 	}
+	//tambah
+	public function tambah_stok($data)
+	{
+		$this->db->insert('tb_stok', $data);
+	}
 
 	//detail
 	public function kode_transaksi($kode_transaksi){
@@ -143,6 +148,18 @@ class Order_model extends CI_Model
 		$this->db->select('*');
 		$this->db->from('tb_promo');
 		$this->db->where('id_promo', $id);
+		$query = $this->db->get();
+		return $query->result();
+	}
+	//listing order stok
+	public function getstok(){
+		$this->db->select('tb_stok.*,
+							tb_pelanggan.nama_pelanggan, tb_produk.nama_produk, tb_produk.stok');
+		$this->db->from('tb_stok');
+		$this->db->join('tb_pelanggan','tb_pelanggan.id_pelanggan = tb_stok.id_pelanggan', 'left');
+		$this->db->join('tb_produk','tb_produk.kode_produk = tb_stok.kode_produk', 'left');
+		$this->db->group_by('tb_stok.id_stok');
+		$this->db->order_by('id_stok','asc');
 		$query = $this->db->get();
 		return $query->result();
 	}

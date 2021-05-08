@@ -84,4 +84,22 @@ class Page extends CI_Controller{
     }
   }
 
+  function logistik(){ 
+    //Allowing akses to distributor only
+    if($this->session->userdata('hak_akses')==='4'){
+      $order = $this->dashboard_model->order();
+      $proses = $this->dashboard_model->order_proses();
+      $hak_akses = $this->session->userdata('hak_akses');
+
+      $data = array('title' => 'Halaman Customer',
+                      'order' => $order,
+                      'proses' => $proses,
+                      'hak_akses' => $hak_akses,
+                      'isi' => 'pelanggan/dashboard/list' );
+    $this->load->view('pelanggan/layout/wrapper',$data, FALSE);
+    }else{
+        echo "Access Denied";
+    }
+  }
+
 }

@@ -98,4 +98,12 @@ class Produk_model extends CI_Model
 		}
 		return $response;
 	}
+	//listing all home
+	public function get_stok_id($kode_produk){
+		$this->db->select('stok');
+		$this->db->from('tb_produk');
+		$this->db->where_in('kode_produk',$kode_produk);
+		$query = $this->db->get();
+		return $query->row();
+	}
 }

@@ -4,9 +4,9 @@
 
 	"default": {
 
-		"host": "101.50.1.26",
-		"username": "user@ptagi.co.id",  // or null for anonymous login
-		"password": "neB@UaIXchbd",
+		"host": "",
+		"username": "",  // or null for anonymous login
+		"password": "",
 		"path": "/order_pupuk",
 
 		"upload_on_save": true, // set *false* if you do not want to upload on save!
