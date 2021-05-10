@@ -28,6 +28,7 @@
                 <th>Tanggal</th>
                 <th>Jumlah Item</th>
                 <th>Jumlah Belanja</th>
+                <th>Jumlah Bayar</th>
                 <th>Status</th>
               </tr>
               </thead>
@@ -74,7 +75,8 @@
                       <td><?php echo $sudah_bayar->no_hp ?></td>
                       <td><?php echo tanggal_indo(date('Y-m-d',strtotime($sudah_bayar->tanggal_transaksi)),FALSE); ?></td>
                       <td><?php echo $sudah_bayar->total_item ?></td>
-                      <td><?php echo $sudah_bayar->total_bayar ?></td>
+                      <td>Rp. <?php echo number_format($sudah_bayar->total_bayar,'0',',','.') ?></td>
+                      <td>Rp. <?php echo number_format($sudah_bayar->jumlah_bayar,'0',',','.') ?></td>
                       <td><?php if($sudah_bayar->status_bayar==1 && $sudah_bayar->metode_pembayaran ==1){
                           echo "<span class='alert-success'>Sudah Bayar</span>";
                         }else{

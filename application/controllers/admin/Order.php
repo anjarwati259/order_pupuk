@@ -326,5 +326,9 @@ class Order extends CI_Controller
 						);
 		$this->load->view('admin/layout/wrapper', $data, FALSE);
 	}
+	public function coba(){
+		$produk = array($this->order_model->hari());
+		echo json_encode($produk); 
+	}
 
 }

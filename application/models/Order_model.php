@@ -95,10 +95,11 @@ class Order_model extends CI_Model
 	//listing order admin
 	public function listing_admin($data){
 		$this->db->select('tb_detail_order.*,
-							tb_pelanggan.nama_pelanggan');
+							tb_pelanggan.nama_pelanggan, tb_pembayaran.jumlah_bayar');
 		$this->db->from('tb_detail_order');
 		$this->db->where('status_bayar', $data);
 		$this->db->join('tb_pelanggan','tb_pelanggan.id_pelanggan = tb_detail_order.id_pelanggan', 'left');
+		$this->db->join('tb_pembayaran','tb_pembayaran.kode_transaksi = tb_detail_order.kode_transaksi', 'left');
 		$this->db->group_by('tb_detail_order.kode_transaksi');
 		$this->db->order_by('kode_transaksi','asc');
 		$query = $this->db->get();
@@ -115,6 +116,17 @@ class Order_model extends CI_Model
 		$this->db->from('tb_detail_order');
 		$this->db->where('tanggal_transaksi',date('Y-m-d'));
 		$this->db->order_by('tanggal_transaksi','desc');
+		$query = $this->db->get();
+		return $query->row();
+	}
+	public function hari(){
+		// SELECT jml_beli, tanggal_transaksi from tb_order WHERE tanggal_transaksi >= '2021-05-01' AND tanggal_transaksi <= date_add('2021-05-01', INTERVAL 3 DAY)
+
+		$this->db->select('jml_beli as total, tanggal_transaksi');
+		$this->db->from('tb_order');
+		$this->db->where('tanggal_transaksi BETWEEN date_sub(NOW(), interval 15 day) and now()');
+		$this->db->where('id_produk','POC');
+		$this->db->group_by('tanggal_transaksi');
 		$query = $this->db->get();
 		return $query->row();
 	}

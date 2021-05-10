@@ -76,7 +76,7 @@
                       </div>
                     </div>
                     <div class="form-group">
-                      <label class="col-sm-4 control-label" for="category_id">Pembayaran</label>
+                      <label class="col-sm-4 control-label" for="category_id">Metode Bayar</label>
                       <div class="col-sm-8">
                         <select name='metode_pembayaran' class="form-control" id="metode_pembayaran">
                           <option value='1'>Transfer Bank</option>
