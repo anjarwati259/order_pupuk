@@ -163,7 +163,7 @@ function tanggal_indo($tanggal, $cetak_hari = false)
             </div>
             
             <div class="col-md-4">
-              <a href="https://wa.me/6281554988354" type="button" class="btn btn-block btn-success" target="_blank"><i class="fab fa-whatsapp"></i> Konfirmasi</a>
+              <a href="https://wa.me/6281335005334" type="button" class="btn btn-block btn-success" target="_blank"><i class="fab fa-whatsapp"></i> Konfirmasi</a>
             </div>
             <div class="col-md-4">
               

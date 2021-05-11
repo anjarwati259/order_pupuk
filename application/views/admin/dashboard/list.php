@@ -92,20 +92,38 @@
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<?php 
+$tanggal = array();
+$jual = array();
+$jual1 = array();
+$ikan = array();
 
+foreach ($hari as $hari) {
+  $tanggal[] = $hari->tanggal_transaksi;
+  $jual[] = intval($hari->jml_beli);
+}
+foreach ($POC1 as $POC1 ) {
+  $jual1[] = intval($POC1->jml_beli);
+}
+foreach ($ikan as $ikan ) {
+  $ikan[] = intval($ikan->jml_beli);
+}
+print_r(json_encode($jual1));
+print_r(json_encode($ikan));
+ ?>
 <script type="text/javascript">
   Highcharts.chart('data_penjualan', {
     chart: {
         type: 'area'
     },
     title: {
-        text: 'Data Penjualan Perminggu dalam satu bulan'
+        text: 'Grafik Penjualan Harian'
     },
     subtitle: {
         text: ''
     },
     xAxis: {
-        categories: ['senin', 'Selasa ', 'Rabu','Kamis', 'Jumat','sabtu','minggu'],
+        categories: <?= json_encode($tanggal)?>,
         tickmarkPlacement: 'on',
         title: {
             enabled: false
@@ -113,17 +131,17 @@
     },
     yAxis: {
         title: {
-            text: 'Billions'
+            text: 'Jumlah Penjualan'
         },
         labels: {
             formatter: function () {
-                return this.value / 1000;
+                return this.value;
             }
         }
     },
     tooltip: {
         split: true,
-        valueSuffix: ' millions'
+        valueSuffix: ''
     },
     plotOptions: {
         area: {
@@ -137,17 +155,18 @@
         }
     },
     series: [{
-        name: 'POC 1L',
-        data: [502, 635, 809, 947]
-    }, {
-        name: 'POC 500ml',
-        data: [106, 107, 111, 133]
-    }, {
-        name: 'Nutrisi Ternak',
-        data: [163, 203, 276, 408]
-    }, {
-        name: 'Nutrisi Ikan',
-        data: [18, 31, 54, 156]
-    }]
+        name: 'POC',
+        data: <?= json_encode($jual)?>
+      
+     }, {
+         name: 'POC 500ml',
+         data: <?= json_encode($jual1)?>
+     }, {
+         name: 'Nutrisi Ternak',
+         data: <?= json_encode($ikan)?>
+    // }, {
+    //     name: 'Nutrisi Ikan',
+    //     data: [18, 31, 54, 156, 70, 130]
+     }]
 });
 </script>

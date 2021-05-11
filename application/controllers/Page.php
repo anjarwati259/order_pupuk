@@ -18,6 +18,9 @@ class Page extends CI_Controller{
     $mingguan = $this->order_model->mingguan();
     $bulanan = $this->order_model->bulanan();
     $order_baru = $this->order_model->order_baru();
+    $POC = $this->order_model->hari('POC');
+    $POC1 = $this->order_model->hari('POC500');
+    $ikan = $this->order_model->hari('NUTRISIIKAN');
 
     //Allowing akses to admin only
       if($this->session->userdata('hak_akses')==='1'){
@@ -31,6 +34,9 @@ class Page extends CI_Controller{
                         'mingguan'    => $mingguan,
                         'bulanan' => $bulanan,
                         'order_baru' => $order_baru,
+                        'hari'  => $POC,
+                        'POC1'  => $POC1,
+                        'ikan'  => $ikan,
                         'isi' => 'admin/dashboard/list' );
         $this->load->view('admin/layout/wrapper',$data, FALSE);
       }else{

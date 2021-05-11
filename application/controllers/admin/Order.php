@@ -327,8 +327,10 @@ class Order extends CI_Controller
 		$this->load->view('admin/layout/wrapper', $data, FALSE);
 	}
 	public function coba(){
-		$produk = array($this->order_model->hari());
-		echo json_encode($produk); 
+		$today = date("Y-m-d",strtotime("today"));
+		$yesterday = date("Y-m-d",strtotime("-7 day"));	
+		 $produk = array($this->order_model->hari());
+		 
 	}
 
 }

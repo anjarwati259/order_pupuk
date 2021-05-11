@@ -119,16 +119,19 @@ class Order_model extends CI_Model
 		$query = $this->db->get();
 		return $query->row();
 	}
-	public function hari(){
-		// SELECT jml_beli, tanggal_transaksi from tb_order WHERE tanggal_transaksi >= '2021-05-01' AND tanggal_transaksi <= date_add('2021-05-01', INTERVAL 3 DAY)
+	public function hari($id_produk){
+		$today = date("Y-m-d",strtotime("today"));
+		$yesterday = date("Y-m-d",strtotime("-7 day"));	
 
-		$this->db->select('jml_beli as total, tanggal_transaksi');
+		$this->db->select('jml_beli, tanggal_transaksi, id_produk');
 		$this->db->from('tb_order');
-		$this->db->where('tanggal_transaksi BETWEEN date_sub(NOW(), interval 15 day) and now()');
-		$this->db->where('id_produk','POC');
+		$this->db->where('tanggal_transaksi <=','2021-05-11');
+		$this->db->where('tanggal_transaksi >','2021-05-04');
+		$this->db->where('id_produk',$id_produk);
 		$this->db->group_by('tanggal_transaksi');
+		$this->db->order_by('tanggal_transaksi','asc');
 		$query = $this->db->get();
-		return $query->row();
+		return $query->result();
 	}
 
 	public function mingguan(){
